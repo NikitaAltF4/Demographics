@@ -104,5 +104,8 @@ Django-таблицы (auth, sessions и др.)
 <img width="2036" height="1347" alt="Архитектура (1)" src="https://github.com/user-attachments/assets/5b2e3638-e210-4394-8128-4d57fd9df946" />
 
 
+Структура БД
+<img width="1556" height="2599" alt="БД (1)" src="https://github.com/user-attachments/assets/07847dcf-9fd8-497b-8778-97090367632d" />
+
 
 
