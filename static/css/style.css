@@ -1,0 +1,652 @@
+/* -------------------------------------------------- */
+/* 0. Переменные и базовые стили                      */
+/* -------------------------------------------------- */
+:root {
+    --primary-font: 'Roboto', sans-serif;
+    --background-color-page: #eaeaea;
+    --text-color-default: #333333;
+    --text-color-muted: #555555;
+    --border-color-light: #dcdcdc;
+    --accent-color-main: #f05550;
+    --header-height: 100px;
+    --background-color-page-alt: #FFFFF; /* <--- ИСПРАВЛЕНО */
+}
+
+body {
+    font-family: var(--primary-font), serif;
+    background-color: var(--background-color-page);
+    color: var(--text-color-default);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Новый стиль для альтернативного фона */
+body.page-alt-background {
+    background-color: var(--background-color-page-alt); /* Используем новую переменную */
+    /* или напрямую: background-color: #eeeeee; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+a {
+    transition: color 0.2s ease-in-out;
+}
+
+/* -------------------------------------------------- */
+/* 1. Шапка сайта                                     */
+/* -------------------------------------------------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: var(--background-color-page);
+}
+
+.custom-navbar {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color-page) !important;
+}
+
+.custom-navbar > .custom-navbar-container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin: 0 auto;
+}
+
+@media (min-width: 576px)  { .custom-navbar > .custom-navbar-container { max-width: 540px; } }
+@media (min-width: 768px)  { .custom-navbar > .custom-navbar-container { max-width: 720px; } }
+@media (min-width: 992px)  { .custom-navbar > .custom-navbar-container { max-width: 960px; } }
+@media (min-width: 1200px) { .custom-navbar > .custom-navbar-container { max-width: 1140px; } }
+@media (min-width: 1400px) { .custom-navbar > .custom-navbar-container { max-width: 1320px; } }
+
+body.page-full-width .custom-navbar > .custom-navbar-container {
+    max-width: none;
+}
+
+.custom-navbar .navbar-brand {
+    padding: 0;
+    margin-right: 1rem;
+}
+
+.logo-image {
+    height: var(--header-height);
+    max-height: 70px;
+    width: auto;
+    vertical-align: middle;
+}
+
+.custom-navbar .navbar-nav .nav-link {
+    color: var(--text-color-default) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.95rem;
+}
+
+.custom-navbar .navbar-nav .nav-link:hover,
+.custom-navbar .navbar-nav .nav-link.active {
+    color: var(--accent-color-main) !important;
+}
+
+.custom-navbar .navbar-toggler {
+    border-color: rgba(0,0,0,0.1);
+}
+
+.custom-navbar .user-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.login-link,
+.user-greeting-link {
+    color: var(--text-color-muted) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+}
+
+.login-link:hover,
+.user-greeting-link:hover {
+    color: var(--accent-color-main) !important;
+}
+
+.custom-btn-auth {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-width: 1px;
+}
+
+.btn-outline-secondary.custom-btn-auth {
+    border-color: var(--text-color-muted);
+    color: var(--text-color-muted);
+}
+
+.btn-outline-secondary.custom-btn-auth:hover {
+    background-color: var(--text-color-muted);
+    color: white;
+}
+
+/* -------------------------------------------------- */
+/* 2. Основной контент                                */
+/* -------------------------------------------------- */
+.main-content-area {
+    flex-grow: 1;
+    padding-top: var(--header-height);
+}
+
+.main-content-area .container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+/* -------------------------------------------------- */
+/* 3. Футер                                           */
+/* -------------------------------------------------- */
+.site-footer {
+    background-color: #333333;
+    border-top: 1px solid var(--border-color-light);
+    color: white;
+}
+
+.site-footer .footer-container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin: 0 auto;
+}
+
+@media (min-width: 576px)  { .site-footer .footer-container { max-width: 540px; } }
+@media (min-width: 768px)  { .site-footer .footer-container { max-width: 720px; } }
+@media (min-width: 992px)  { .site-footer .footer-container { max-width: 960px; } }
+@media (min-width: 1200px) { .site-footer .footer-container { max-width: 1140px; } }
+@media (min-width: 1400px) { .site-footer .footer-container { max-width: 1320px; } }
+
+body.page-full-width .site-footer .footer-container {
+    max-width: none;
+}
+
+.footer-text {
+    font-size: 0.85rem;
+}
+
+/* -------------------------------------------------- */
+/* 4. Адаптивность                                    */
+/* -------------------------------------------------- */
+@media (min-width: 1600px) {
+    .custom-navbar > .custom-navbar-container,
+    .site-footer .footer-container,
+    .features-section-spekk-style,
+    .hero-section-spekk-style {
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .site-footer {
+        width: 100%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .custom-navbar {
+        flex-direction: column;
+    }
+    .custom-navbar .navbar-nav {
+        margin-top: 0.75rem;
+        text-align: center;
+    }
+    .custom-navbar .navbar-nav .nav-item {
+        margin-bottom: 0.25rem;
+    }
+    .custom-navbar .navbar-right-actions {
+        padding-top: 0.75rem;
+        margin-top: 0.75rem;
+        border-top: 1px solid var(--border-color-light);
+        width: 100%;
+        justify-content: center !important;
+        flex-wrap: wrap;
+    }
+    .custom-navbar .navbar-right-actions > * {
+        margin: 0.3rem 0.5rem !important;
+    }
+    .features-section-spekk-style,
+    .hero-section-spekk-style {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .logo-image {
+        max-height: 35px;
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+    .login-link,
+    .user-greeting-link {
+        font-size: 0.85rem;
+    }
+    .custom-btn-auth {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.75rem;
+    }
+    .main-content-area .container h1 {
+        font-size: 2rem;
+    }
+}
+
+/* -------------------------------------------------- */
+/* 5. Hero Section                                    */
+/* -------------------------------------------------- */
+.hero-section-spekk-style {
+    background-color: #eeeeee;
+    min-height: calc(90vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background-map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+.hero-russia-map-svg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.hero-content-wrapper {
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-color-default);
+    margin-bottom: 0.75rem;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-color-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.btn-hero-spekk {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-width: 2px;
+    border-color: var(--text-color-default) !important;
+    color: var(--text-color-default) !important;
+    border-radius: 2px;
+    background-color: transparent;
+}
+
+.btn-hero-spekk:hover {
+    background-color: var(--text-color-default) !important;
+    color: white !important;
+}
+
+.scroll-down-indicator-spekk {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-color-muted);
+    opacity: 0.7;
+    animation: bounce-spekk 2s infinite;
+    z-index: 1;
+}
+
+@keyframes bounce-spekk {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -10px); }
+    60% { transform: translate(-50%, -5px); }
+}
+
+/* -------------------------------------------------- */
+/* 6. Features Section                                */
+/* -------------------------------------------------- */
+.features-section-spekk-style {
+    display: flex;
+    width: 100%;
+    color: white;
+}
+
+.feature-block-spekk {
+    flex: 1;
+    padding: 100px 20px;
+    /* Внутренние отступы для каждого блока */
+    text-align: center;
+}
+
+.feature-block-spekk .feature-content {
+    max-width: 300px;                   /* Максимальная ширина контента внутри блока */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;                       /* Занимает всю высоту родителя .feature-block-spekk */
+}
+
+.feature-icon {
+    height: 80px;                       /* Высота иконки */
+    width: 80px;                        /* Ширина иконки */
+    margin-bottom: 20px;                /* Нижний отступ от иконки */
+}
+
+.feature-title {
+    font-size: 1rem;                    /* Размер шрифта заголовка блока */
+    font-weight: 700;                   /* Жирность */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;              /* Межбуквенный интервал */
+    margin-bottom: 10px;                /* Нижний отступ */
+    color: white;          /* Цвет заголовка (переменная --color-white должна быть определена) */
+}
+
+.feature-description {
+    font-size: 0.85rem;                 /* Размер шрифта описания */
+    line-height: 1.5;                   /* Межстрочный интервал */
+    margin-bottom: 20px;                /* Нижний отступ */
+    opacity: 0.85;                      /* Небольшая прозрачность для текста */
+    flex-grow: 1;
+}
+
+.lottie-feature-animation.feature-icon { /* Используем оба класса для сохранения размеров */
+    height: 80px;                       /* Высота большой иконки */
+    width: 80px;                        /* Ширина большой иконки */
+    margin-bottom: 20px;
+    /* background-color: blue; /* Временно для отладки, чтобы видеть контейнер */
+}
+
+/* Стили для контейнера ссылки-стрелки */
+.feature-arrow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;       /* Вернули адекватную ширину */
+    height: 40px;      /* Вернули адекватную высоту */
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-top: auto;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+}
+
+/* Стили для статической SVG-иконки стрелки внутри круглой ссылки */
+.feature-arrow-link .feature-arrow-static-icon {
+    width: 16px !important;  /* Вернули адекватную ширину для стрелки внутри */
+    height: 16px !important; /* Вернули адекватную высоту для стрелки внутри */
+}
+
+.feature-arrow-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: white;
+    color: white;
+}
+
+/* -------------------------------------------------- */
+/* 7. Info Section                                    */
+/* -------------------------------------------------- */
+@media (min-width: 1600px) {
+    .info-section-spekk-style {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+.info-section-spekk-style {
+    overflow: hidden;
+    min-height: 800px;
+    display: flex; /* Чтобы можно было легко вертикально центрировать .container внутри, если нужно */
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+.bg-light-spekk {
+    background-color: white; /* Цвет фона для светлой инфо-секции (использует переменную или дефолтный #F7F7F7) */
+
+}
+
+.info-image-spekk {
+    border-radius: 4px;                 /* Скругление углов изображения */
+
+}
+
+.text-block-spekk {
+    padding: 0 1.5rem;                  /* Внутренние отступы по бокам для текстового блока */
+}
+
+@media (max-width: 767.98px) { /* Стили для мобильных устройств */
+    .text-block-spekk {
+        padding: 0;                     /* Убираем боковые отступы */
+        margin-top: 30px;               /* Верхний отступ (когда картинка сверху) */
+        text-align: right;
+    }
+
+    .info-section-spekk-style .row {
+        text-align: center;
+    }
+}
+
+.info-title-spekk {
+    font-size: 1.8rem;                  /* Размер шрифта заголовка инфо-секции */
+    font-weight: 700;                   /* Жирность */
+    color: var(--text-color-default);   /* Цвет текста заголовка */
+    margin-bottom: 1rem;                /* Нижний отступ */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;              /* Межбуквенный интервал */
+}
+
+.info-text-spekk {
+    font-size: 1rem;                    /* Размер шрифта основного текста инфо-секции */
+    color: var(--text-color-muted);     /* Цвет текста */
+    line-height: 1.7;                   /* Межстрочный интервал */
+    margin-bottom: 1.5rem;              /* Нижний отступ */
+}
+
+.btn-spekk {
+    font-size: 0.85rem;                 /* Размер шрифта для общих кнопок "spekk" */
+    text-transform: uppercase;
+    letter-spacing: 1px;                /* Межбуквенный интервал */
+    padding: 0.6rem 1.5rem;             /* Внутренние отступы */
+    border-width: 2px;                  /* Толщина рамки */
+    border-radius: 2px;                 /* Небольшое скругление углов */
+}
+
+.btn-outline-dark.btn-spekk {
+    border-color: var(--text-color-default) !important; /* Цвет рамки для темной контурной кнопки (важно) */
+    color: var(--text-color-default);        /* Цвет текста для темной контурной кнопки (важно) */
+}
+
+.btn-outline-dark.btn-spekk:hover {
+    background-color: var(--text-color-default); /* Цвет фона при наведении */
+    color: white !important;                                /* Цвет текста при наведении */
+}
+
+
+
+.history-page-title {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef; /* Более светлый разделитель */
+    font-weight: 500; /* Менее жирный, чем H1 по умолчанию */
+    color: #343a40;
+}
+
+.forecast-history-item {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    margin-bottom: 1.25rem; /* Больше отступ между элементами */
+    padding: 1.25rem;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.forecast-history-item:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.10);
+    transform: translateY(-2px); /* Легкий эффект "подъема" при наведении */
+}
+
+.forecast-history-item .forecast-title-date a {
+    font-size: 1.20rem; /* Немного крупнее для заголовка ссылки */
+    font-weight: 500;
+    color: #343a40; /* Стандартный синий Bootstrap для ссылок */
+    text-decoration: none;
+}
+.forecast-history-item .forecast-title-date a:hover {
+    text-decoration: underline;
+    color: var(--text-color-default);;
+}
+
+
+.forecast-history-item .forecast-params-summary {
+    font-size: 0.875rem; /* Читаемый размер для параметров */
+    color: #495057;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.forecast-history-item .forecast-params-summary strong {
+    color: #212529; /* Чуть темнее для выделения "Регионы:", "Период:" */
+}
+
+.forecast-history-item .alert-warning ul { /* Убрать лишние отступы у списка предупреждений */
+    padding-left: 1.2rem;
+}
+
+.forecast-history-item .forecast-actions {
+    /* Кнопки уже стилизованы Bootstrap btn-sm и btn-outline-* */
+}
+
+/* Адаптация кнопок и иконок Feather внутри них */
+.forecast-history-item .forecast-actions .btn .feather-sm,
+.results-sidebar .nav-link .feather, /* Изменил предыдущий для единообразия */
+.results-sidebar .btn .feather-sm { /* Для кнопок в сайдбаре */
+    width: 1em; /* Размер иконки будет как у текста */
+    height: 1em;
+    vertical-align: text-bottom; /* Лучшее выравнивание с текстом */
+    margin-right: 0.35em;
+}
+
+/* Общий стиль для пагинации, если не переопределяете цвета Bootstrap */
+.pagination .page-item.active .page-link {
+    z-index: 3;
+    /* Можно задать свой цвет, если не нравится дефолтный Bootstrap */
+    /* background-color: #f05550;
+       border-color: #f05550; */
+}
+
+.pagination .page-link {
+     /* color: #f05550; */ /* Если хотите акцентный цвет для ссылок пагинации */
+}
+.pagination .page-link:hover {
+    /* color: #d9423d; */
+}
+
+/* Для случая "нет прогнозов" */
+.lead + p { /* Для текста под "У вас пока нет сохраненных прогнозов" */
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+
+
+/* --- Переопределение стилей для кнопок Войти и Регистрация --- */
+
+/* Общий стиль для кастомных кнопок для убирания скругления */
+.custom-btn-auth {
+    border-radius: 0 !important; /* Убираем скругление углов */
+}
+
+/* Кнопка "Войти" (имеет .btn-outline-primary и .custom-btn-auth) */
+.btn.btn-outline-primary.custom-btn-auth {
+    color: #6a6a6a; /* Цвет текста */
+    border-color: #6a6a6a; /* Цвет рамки */
+    /* background-color: transparent; - обычно для outline он и так прозрачный */
+}
+
+/* Состояния для кнопки "Войти" */
+.btn.btn-outline-primary.custom-btn-auth:hover,
+.btn.btn-outline-primary.custom-btn-auth:focus,
+.btn.btn-outline-primary.custom-btn-auth:active,
+.btn.btn-outline-primary.custom-btn-auth.active, /* Для активного состояния */
+.btn.btn-outline-primary.custom-btn-auth:disabled { /* Для неактивного состояния */
+    color: #fff; /* Белый текст при наведении/активности */
+    background-color: #6a6a6a; /* Серый фон */
+    border-color: #6a6a6a; /* Серая рамка */
+    /* box-shadow: none; */ /* Если нужно убрать тень при фокусе */
+}
+
+/* Кнопка "Регистрация" (имеет .btn-primary и .custom-btn-auth) */
+.btn.btn-primary.custom-btn-auth {
+    color: #fff; /* Белый текст */
+    background-color: #6a6a6a; /* Серый фон */
+    border-color: #6a6a6a; /* Серая рамка */
+}
+
+/* Состояния для кнопки "Регистрация" */
+.btn.btn-primary.custom-btn-auth:hover,
+.btn.btn-primary.custom-btn-auth:focus,
+.btn.btn-primary.custom-btn-auth:active,
+.btn.btn-primary.custom-btn-auth.active,
+.btn.btn-primary.custom-btn-auth:disabled {
+    color: #fff;
+    background-color: #585858; /* Чуть темнее серый при наведении/активности */
+    border-color: #505050; /* Чуть темнее рамка */
+}
+
+
+/* Стилизация иконок user-icon внутри этих кнопок */
+
+/* Иконка для кнопки "Войти" (.btn-outline-primary.custom-btn-auth) */
+.btn.btn-outline-primary.custom-btn-auth .user-icon {
+    filter: invert(42%) sepia(0%) saturate(1%) hue-rotate(148deg) brightness(94%) contrast(88%);
+}
+
+/* Иконка для кнопки "Войти" при наведении и для кнопки "Регистрация" (всегда) - делаем белой */
+.btn.btn-outline-primary.custom-btn-auth:hover .user-icon,
+.btn.btn-outline-primary.custom-btn-auth:focus .user-icon,
+.btn.btn-outline-primary.custom-btn-auth:active .user-icon,
+.btn.btn-outline-primary.custom-btn-auth.active .user-icon,
+.btn.btn-primary.custom-btn-auth .user-icon {
+    filter: brightness(0) invert(1);
+}
