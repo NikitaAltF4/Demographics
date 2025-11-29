@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Детальный анализ по регионам России - LifeMap Analytics{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Используем те же CSS переменные и стили, что и для metodologiya.html */
+    /* Вы можете вынести их в общий CSS файл, если они часто повторяются */
+    :root {
+        --spekk-primary-color: #e66a64;
+        --spekk-secondary-color: #6c757d;
+        --spekk-light-bg: #f8f9fa;
+        --spekk-dark-text: #212529;
+        --spekk-medium-text: #495057;
+        --spekk-light-text: #6c757d;
+        --spekk-border-color: #dee2e6;
+        --spekk-accent-color: #ffc107;
+        --spekk-warning-bg: #fff3cd; /* Для блока с примечанием */
+        --spekk-warning-border: #ffeeba;
+        --spekk-warning-text: #856404;
+        --spekk-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    body.page-regional-analysis-info {
+        background-color: #f4f7f6;
+        color: var(--spekk-dark-text);
+        font-family: var(--spekk-font-sans-serif);
+    }
+
+    .content-info-wrapper { /* Переименовал для универсальности */
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .content-info-wrapper h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--spekk-primary-color);
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--spekk-primary-color);
+        letter-spacing: -0.5px;
+    }
+
+    .content-info-wrapper h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--spekk-dark-text);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--spekk-border-color);
+        position: relative;
+    }
+    .content-info-wrapper h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 70px;
+        height: 3px;
+        background-color: var(--spekk-primary-color);
+    }
+
+    .content-info-wrapper p,
+    .content-info-wrapper ul,
+    .content-info-wrapper ol {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--spekk-medium-text);
+        margin-bottom: 1.5rem;
+    }
+
+    .content-info-wrapper ul,
+    .content-info-wrapper ol {
+        padding-left: 25px;
+    }
+    .content-info-wrapper li {
+        margin-bottom: 0.75rem;
+    }
+    .content-info-wrapper ul li::marker {
+        color: var(--spekk-primary-color);
+    }
+    .content-info-wrapper ol li::marker {
+        color: var(--spekk-primary-color);
+        font-weight: bold;
+    }
+
+
+    .note-block {
+        background-color: var(--spekk-warning-bg);
+        border: 1px solid var(--spekk-warning-border);
+        color: var(--spekk-warning-text);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .note-block h3 {
+        color: var(--spekk-warning-text);
+        font-size: 1.25rem;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+     .note-block p:last-child {
+        margin-bottom: 0;
+    }
+
+    .call-to-action-regional {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .call-to-action-regional .btn {
+        font-size: 1.1rem;
+        padding: 12px 30px;
+    }
+
+    @media (max-width: 768px) {
+        .content-info-wrapper {
+            padding: 20px;
+        }
+        .content-info-wrapper h1 {
+            font-size: 2rem;
+        }
+        .content-info-wrapper h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body_class %}page-regional-analysis-info{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="content-info-wrapper">
+                <h1>Детальный демографический анализ по регионам России</h1>
+
+                <p>Откройте для себя глубину демографических тенденций с нашей функцией детального анализа по регионам. LifeMap Analytics предоставляет мощные инструменты для прогнозирования и изучения демографических изменений в различных субъектах Российской Федерации, позволяя вам принимать обоснованные решения на основе точных и актуальных данных.</p>
+
+                <h2>Что вы можете спрогнозировать и проанализировать?</h2>
+                <p>Наша платформа позволяет вам проводить комплексный анализ для выбранных вами регионов, включая:</p>
+                <ul>
+                    <li><strong>Динамику общей численности населения:</strong> Прогнозируйте рост или сокращение населения на краткосрочную и долгосрочную перспективу.</li>
+                    <li><strong>Возрастно-половую структуру:</strong> Визуализируйте будущие изменения в возрастных пирамидах, выявляйте тенденции старения населения или роста молодежных когорт.</li>
+                    <li><strong>Коэффициенты рождаемости и смертности:</strong> Анализируйте ожидаемые уровни рождаемости и смертности, а также их влияние на естественный прирост населения.</li>
+                    <li><strong>Миграционные потоки:</strong> Оценивайте прогнозные сальдо миграции и его вклад в общую динамику численности населения региона.</li>
+                    <li><strong>Плотность населения и урбанизация:</strong> Изучайте, как будет меняться распределение населения между городскими и сельскими территориями.</li>
+                    <li><strong>Демографическую нагрузку:</strong> Прогнозируйте соотношение трудоспособного населения и зависимых возрастных групп (дети и пожилые).</li>
+                </ul>
+
+                <h2>Как это работает?</h2>
+                <ol>
+                    <li><strong>Выберите регионы:</strong> В интерфейсе прогнозирования выберите один или несколько интересующих вас субъектов Российской Федерации из доступного списка.</li>
+                    <li><strong>Задайте параметры:</strong> Укажите временной горизонт прогноза, выберите сценарии рождаемости, смертности и миграции (если доступно), а также другие релевантные параметры.</li>
+                    <li><strong>Получите результаты:</strong> Наша система обработает ваш запрос и предоставит подробные отчеты, таблицы и визуализации (графики, диаграммы), отражающие прогнозные демографические показатели для выбранных регионов.</li>
+                </ol>
+
+                <h2>Преимущества регионального анализа с LifeMap Analytics:</h2>
+                <ul>
+                    <li><strong>Целевое планирование:</strong> Разрабатывайте стратегии развития, учитывающие специфику каждого региона.</li>
+                    <li><strong>Оптимизация ресурсов:</strong> Эффективно распределяйте ресурсы для социальной инфраструктуры, здравоохранения, образования и рынка труда.</li>
+                    <li><strong>Выявление диспропорций:</strong> Своевременно обнаруживайте региональные демографические вызовы и возможности.</li>
+                    <li><strong>Поддержка принятия решений:</strong> Получайте надежную информационную базу для государственных, муниципальных и бизнес-структур.</li>
+                </ul>
+
+                <div class="note-block">
+                    <h3>Важное примечание по регионам</h3>
+                    <p>На данный момент наша система позволяет проводить демографическое прогнозирование для большинства регионов Российской Федерации. <strong>Прогнозирование и анализ данных временно недоступны для Республики Крым, города федерального значения Севастополя, а также для новых территорий, недавно вошедших в состав РФ (Донецкая Народная Республика, Луганская Народная Республика, Запорожская область и Херсонская область).</strong></p>
+                    <p>Это связано с текущими особенностями сбора, гармонизации и унификации статистических данных по указанным регионам в соответствии с общероссийскими стандартами. Мы активно работаем над интеграцией данных и расширением географического охвата наших прогнозов. Следите за обновлениями!</p>
+                </div>
+
+                <div class="call-to-action-regional">
+                     <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-primary btn-lg"> {# Замените 'forecasting:run_forecast' на правильный URL вашей страницы создания прогноза #}
+                        <i data-feather="map-pin" class="feather-sm me-2"></i> Начать региональный анализ
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

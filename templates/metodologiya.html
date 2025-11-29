@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Метод Передвижки Возрастов - Методология LifeMap Analytics{% endblock %}
+
+{% block extra_head %}
+    <style>
+    :root {
+        --spekk-primary-color: #e66a64; /* Основной цвет (можно заменить на ваш) */
+        --spekk-secondary-color: #6c757d; /* Вторичный цвет */
+        --spekk-light-bg: #f8f9fa;      /* Светлый фон для секций */
+        --spekk-dark-text: #212529;     /* Темный текст */
+        --spekk-medium-text: #495057;   /* Средний текст */
+        --spekk-light-text: #6c757d;    /* Светлый текст (как вторичный) */
+        --spekk-border-color: #dee2e6;  /* Цвет границ */
+        --spekk-accent-color: #ffc107;  /* Акцентный цвет (например, для выделений) */
+        --spekk-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        --spekk-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    body.page-methodology-info {
+        background-color: #f4f7f6;
+        color: var(--spekk-dark-text);
+        font-family: var(--spekk-font-sans-serif);
+    }
+
+    .methodology-content-wrapper {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .methodology-content-wrapper h1 {
+        font-size: 2.5rem; /* Крупнее заголовок */
+        font-weight: 700;
+        color: var(--spekk-primary-color);
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--spekk-primary-color);
+        letter-spacing: -0.5px;
+    }
+
+    .methodology-content-wrapper h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--spekk-dark-text);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--spekk-border-color);
+        position: relative;
+    }
+    /* Декоративный элемент для H2 */
+    .methodology-content-wrapper h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px; /* Чтобы перекрыть border-bottom */
+        width: 70px;
+        height: 3px;
+        background-color: var(--spekk-primary-color);
+    }
+
+
+    .methodology-content-wrapper p,
+    .methodology-content-wrapper ul,
+    .methodology-content-wrapper ol {
+        font-size: 1.05rem; /* Чуть крупнее текст для читаемости */
+        line-height: 1.7;
+        color: var(--spekk-medium-text);
+        margin-bottom: 1.5rem;
+    }
+
+    .methodology-content-wrapper ul,
+    .methodology-content-wrapper ol {
+        padding-left: 25px;
+    }
+
+    .methodology-content-wrapper li {
+        margin-bottom: 0.75rem;
+    }
+    .methodology-content-wrapper ul li::marker {
+        color: var(--spekk-primary-color); /* Цвет маркеров списка */
+    }
+
+    .formula-block {
+        background-color: var(--spekk-light-bg);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--spekk-border-color);
+        margin-top: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .formula-block .formula-expression {
+        font-family: var(--spekk-font-monospace);
+        font-size: 1.25em;
+        color: var(--spekk-dark-text);
+        text-align: center;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 6px;
+        border: 1px dashed var(--spekk-border-color);
+        overflow-x: auto; /* Для очень длинных формул */
+        margin-bottom: 20px;
+    }
+
+    .formula-block .formula-description {
+        font-size: 0.95em;
+        color: var(--spekk-medium-text);
+    }
+
+    .formula-block .formula-description strong {
+        color: var(--spekk-dark-text);
+        font-weight: 600;
+    }
+
+    .formula-block .formula-description ul {
+        list-style-type: none;
+        padding-left: 0;
+        font-size: 0.9em; /* Мельче описание компонентов */
+    }
+    .formula-block .formula-description li {
+         margin-bottom: 0.5rem;
+         padding-left: 20px;
+         position: relative;
+    }
+    /* Декоративный элемент для списка компонентов формулы */
+    .formula-block .formula-description li::before {
+        content: "▹"; /* или "•", "▸" */
+        color: var(--spekk-primary-color);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+
+
+    .important-term { /* Замена класса .important для избежания конфликтов с Bootstrap */
+        font-weight: 600;
+        color: var(--spekk-primary-color);
+        /* background-color: #e9f5ff;
+        padding: 0.1em 0.3em;
+        border-radius: 3px; */
+    }
+    .important-term:hover {
+        text-decoration: underline;
+    }
+
+    .source-citation {
+        text-align: right;
+        font-size: 0.9em;
+        color: var(--spekk-light-text);
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid var(--spekk-border-color);
+        font-style: italic;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .methodology-content-wrapper {
+            padding: 20px;
+        }
+        .methodology-content-wrapper h1 {
+            font-size: 2rem;
+        }
+        .methodology-content-wrapper h2 {
+            font-size: 1.5rem;
+        }
+        .methodology-content-wrapper p,
+        .methodology-content-wrapper ul,
+        .methodology-content-wrapper ol {
+            font-size: 1rem;
+        }
+        .formula-block {
+            padding: 15px;
+        }
+        .formula-block .formula-expression {
+            font-size: 1.1em;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block body_class %}page-methodology-info{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5"> {# Используем ваш Bootstrap контейнер #}
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1"> {# Центрируем, как на странице истории #}
+            <div class="methodology-content-wrapper"> {# Новый класс-обертка для контента #}
+                <h1>Метод Передвижки Возрастов (Метод Компонентов)</h1>
+
+                <p>Для прогноза будущего состава населения по возрасту и полу используется <span class="important-term">метод «передвижки возрастов»</span>, также известный как <span class="important-term">метод компонентов</span>. Суть метода заключается в том, что в будущее «передвигается» текущая численность и структура населения с учетом изменений, вызванных рождаемостью, смертностью и миграцией.</p>
+
+                <h2>Основные Принципы и Механизм</h2>
+                <p>Исходными данными для прогноза служат численность и структура населения (обычно по данным переписи) и гипотезы относительно будущих тенденций воспроизводства и миграции населения.</p>
+                <ul>
+                    <li><strong>Временной шаг:</strong> Длина возрастной группы населения выбирается таким образом, чтобы с каждым шагом прогноза оставшаяся в живых численность возрастной группы переходила в следующий (старший) возрастной интервал.</li>
+                    <li><strong>Передвижка:</strong>
+                        <ol>
+                            <li>Численность каждой возрастной группы исходного населения (на начало прогнозного периода) умножается на <span class="important-term">коэффициент дожития (I<sub>x</sub>)</span> до следующего возрастного интервала. Этот коэффициент представляет собой соотношение двух смежных групп чисел живущих (L<sub>x</sub>) из таблиц смертности, характеризующих предполагаемые тенденции смертности в прогнозном периоде.</li>
+                            <li>Для каждого шага прогноза определяется гипотетическое число родившихся. Это число добавляется в младшую возрастную группу с поправкой на вероятность дожития новорожденных до конца первого возрастного интервала.</li>
+                            <li>Учитывается сальдо миграции (ΔМП<sub>x</sub>) для соответствующего возраста.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Итеративность:</strong> Расчетная процедура повторяется на каждом последующем шаге прогноза.</li>
+                </ul>
+                <p>Метод может применяться для однолетних возрастных групп, а также для различных возрастных интервалов (чаще всего 5- или 10-летние интервалы).</p>
+
+                <h2>Формула Передвижки</h2>
+                <p>Прогнозируемая численность населения в возрасте <em>x</em> через <em>t</em> лет (P<sub>x+t</sub>) может быть рассчитана по следующей формуле:</p>
+                <div class="formula-block">
+                    <div class="formula-expression">
+                        P<sub>x+t</sub> = P<sub>x</sub> · I<sub>x</sub> + ΔМП<sub>x</sub>
+                    </div>
+                    <div class="formula-description">
+                        <p><strong>Где:</strong></p>
+                        <ul>
+                            <li><strong>P<sub>x+t</sub></strong> – прогнозируемая численность населения в возрасте <em>x</em> через <em>t</em> лет.</li>
+                            <li><strong>P<sub>x</sub></strong> – численность населения в начале прогнозируемого периода в возрасте <em>x</em>.</li>
+                            <li><strong>I<sub>x</sub></strong> – коэффициент дожития для возрастной группы <em>x</em> на период <em>t</em>, рассчитываемый на основе сопоставления числа живущих в возрасте <em>x</em> и <em>x+t</em> из таблиц смертности (например, I<sub>x</sub> = L<sub>x+t</sub> / L<sub>x</sub> или схожим образом, в зависимости от структуры таблицы смертности и длины интервала <em>t</em>. В учебнике упоминается I<sub>x</sub> = L<sub>x</sub> / L<sub>x+y</sub>, где y - период прогноза).</li>
+                            <li><strong>ΔМП<sub>x</sub></strong> – сальдо миграции для соответствующего возраста <em>x</em> за период <em>t</em> (может быть положительным или отрицательным).</li>
+                            <li><strong>t</strong> – период, на который осуществляется прогноз.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Результаты Прогноза</h2>
+                <p>В итоге применения метода передвижки возрастов определяются:</p>
+                <ul>
+                    <li>Половозрастная структура населения на прогнозные даты.</li>
+                    <li>Общая численность населения.</li>
+                    <li>Общие коэффициенты рождаемости.</li>
+                    <li>Общие коэффициенты смертности.</li>
+                    <li>Показатели естественного и общего прироста населения.</li>
+                </ul>
+
+                <div class="source-citation">
+                    Информация основана на: Е. О. Михайлова, А. В. Аксянова. Демографическая статистика: Учебное пособие. – Казань: Издательство КНИТУ, 2022. – С. 72-73.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

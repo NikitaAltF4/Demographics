@@ -1,0 +1,114 @@
+<!-- Demographics/templates/home.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}LifeMap Analytics - Демографическое прогнозирование{% endblock %}
+
+
+{% block content %}
+
+<!-- 1. Hero Section -->
+<section class="hero-section-spekk-style">
+    <div class="hero-background-map-container">
+        <img src="{% static 'images/russia_map_community.svg' %}" alt="Карта России" class="hero-russia-map-svg">
+    </div>
+    <div class="hero-content-wrapper">
+        <h1 class="hero-title">LifeMap Analytics</h1>
+        <p class="hero-subtitle">Точные демографические прогнозы для стратегического планирования и исследований.</p>
+        <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-outline-dark btn-hero-spekk">Начать анализ</a>
+    </div>
+    <div class="scroll-down-indicator-spekk">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5V19M12 19L7 14M12 19L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</section>
+
+<!-- 2. Секция с тремя блоками (Features/Services) -->
+<section class="features-section-spekk-style">
+    <div class="feature-block-spekk" style="background-color: #4E4E4E;">
+        <div class="feature-content">
+            <!-- БОЛЬШАЯ АНИМИРОВАННАЯ ИКОНКА -->
+            <div id="lottie-feature-icon-1" class="lottie-feature-animation feature-icon"
+                 data-animation-path="{% static 'animations/wired-outline-134-target-hover-dynamic.json' %}"></div>
+            <h3 class="feature-title">Точность прогнозов</h3>
+            <p class="feature-description">Научно-обоснованные методы для получения достоверных демографических данных.</p>
+            <!-- ССЫЛКА-СТРЕЛКА, УПРАВЛЯЮЩАЯ БОЛЬШОЙ АНИМАЦИЕЙ -->
+            <a href="#" class="feature-arrow-link" data-controls-lottie-id="lottie-feature-icon-1">
+                <img src="{% static 'images/arrow-right-svgrepo-com.svg' %}" alt="Перейти" class="feature-arrow-static-icon">
+            </a>
+        </div>
+    </div>
+    <div class="feature-block-spekk" style="background-color: #6A6A6A;">
+        <div class="feature-content">
+            <div id="lottie-feature-icon-2" class="lottie-feature-animation feature-icon"
+                 data-animation-path="{% static 'animations/wired-outline-186-puzzle-hover-detach.json' %}"></div>
+            <h3 class="feature-title">Гибкость настроек</h3>
+            <p class="feature-description">Учитывайте миграцию, типы поселений, возрастные группы и другие ключевые факторы.</p>
+            <a href="#" class="feature-arrow-link" data-controls-lottie-id="lottie-feature-icon-2">
+                <img src="{% static 'images/arrow-right-svgrepo-com.svg' %}" alt="Перейти" class="feature-arrow-static-icon">
+            </a>
+        </div>
+    </div>
+    <div class="feature-block-spekk" style="background-color: #333333;">
+        <div class="feature-content">
+            <div id="lottie-feature-icon-3" class="lottie-feature-animation feature-icon"
+                 data-animation-path="{% static 'animations/wired-outline-153-bar-chart-hover-pinch.json' %}"></div>
+            <h3 class="feature-title">Визуализация данных</h3>
+            <p class="feature-description">Наглядные графики и экспорт отчетов для эффективного анализа и презентаций.</p>
+            <a href="#" class="feature-arrow-link" data-controls-lottie-id="lottie-feature-icon-3">
+                <img src="{% static 'images/arrow-right-svgrepo-com.svg' %}" alt="Перейти" class="feature-arrow-static-icon">
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Секция "Детальный анализ" -->
+<section class="info-section-spekk-style style-1 py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <img src="{% static 'images/FarEastern.svg' %}" alt="Детальный анализ регионов" class="img-fluid info-image-spekk">
+            </div>
+            <div class="col-md-5 text-block-spekk">
+                <h2 class="info-title-spekk">Детальный анализ по регионам</h2>
+                <p class="info-text-spekk">Получайте глубокое понимание демографической ситуации...</p>
+                <a href="{% url 'detalniy_analiz' %}" class="btn btn-outline-dark btn-spekk">Узнать больше</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Секция "Методология" -->
+<section class="info-section-spekk-style style-2 py-5 bg-light-spekk">
+    <div class="container">
+        <div class="row align-items-center flex-md-row-reverse">
+            <div class="col-md-7">
+                <img src="{% static 'images/resize.webp' %}" alt="Методология прогнозирования" class="img-fluid info-image-spekk">
+            </div>
+            <div class="col-md-5 text-block-spekk">
+                <h2 class="info-title-spekk">Проверенная методология</h2>
+                <p class="info-text-spekk">В основе нашей системы лежит метод передвижки возрастных групп...</p>
+                <a href="{% url 'metodologiya' %}" class="btn btn-outline-dark btn-spekk">О методе</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Секция "Применение" -->
+<section class="info-section-spekk-style style-3 py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <img src="{% static 'images/composition-with-laptop-notepad.png' %}" alt="Применение прогнозов" class="img-fluid info-image-spekk">
+            </div>
+            <div class="col-md-5 text-block-spekk">
+                <h2 class="info-title-spekk">Практическое применение</h2>
+                <p class="info-text-spekk">Наши прогнозы полезны для государственного планирования...</p>
+                <a href="{% url 'primenenie_view' %}" class="btn btn-outline-dark btn-spekk">Сферы использования</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

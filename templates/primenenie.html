@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Практическое применение демографических прогнозов - LifeMap Analytics{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Используем те же CSS переменные и общие стили, что и для предыдущих страниц */
+    :root {
+        --spekk-primary-color: #e66a64; /* Основной цвет (можно заменить на ваш) */
+        --spekk-secondary-color: #6c757d; /* Вторичный цвет */
+        --spekk-light-bg: #f8f9fa;      /* Светлый фон для секций */
+        --spekk-dark-text: #212529;     /* Темный текст */
+        --spekk-medium-text: #495057;   /* Средний текст */
+        --spekk-light-text: #6c757d;    /* Светлый текст (как вторичный) */
+        --spekk-border-color: #dee2e6;  /* Цвет границ */
+        --spekk-accent-color: #3a8cd6;  /* Акцентный цвет (например, зеленый для успеха/применения) */
+        --spekk-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    body.page-application-info {
+        background-color: #f4f7f6;
+        color: var(--spekk-dark-text);
+        font-family: var(--spekk-font-sans-serif);
+    }
+
+    .content-info-wrapper {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .content-info-wrapper h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--spekk-accent-color); /* Используем другой акцентный цвет */
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--spekk-accent-color);
+        letter-spacing: -0.5px;
+    }
+
+    .content-info-wrapper h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--spekk-dark-text);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--spekk-border-color);
+        position: relative;
+    }
+    .content-info-wrapper h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 70px;
+        height: 3px;
+        background-color: var(--spekk-accent-color); /* Акцентный цвет для подчеркивания h2 */
+    }
+
+    .content-info-wrapper p,
+    .content-info-wrapper ul,
+    .content-info-wrapper ol {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--spekk-medium-text);
+        margin-bottom: 1.5rem;
+    }
+
+    .content-info-wrapper ul {
+        padding-left: 25px;
+        list-style-type: none; /* Убираем стандартные маркеры, будем кастомные */
+    }
+    .content-info-wrapper ol {
+        padding-left: 30px; /* Чуть больше отступ для нумерованных */
+    }
+
+    .content-info-wrapper li {
+        margin-bottom: 0.85rem;
+        position: relative;
+    }
+    .content-info-wrapper ul > li::before {
+        content: '✓'; /* Галочка для маркера */
+        color: var(--spekk-accent-color);
+        font-weight: bold;
+        position: absolute;
+        left: -25px; /* Выравнивание маркера */
+        top: 2px;
+    }
+    .content-info-wrapper ol li::marker { /* Для нумерованных списков */
+        color: var(--spekk-accent-color);
+        font-weight: bold;
+    }
+
+    .application-subsection {
+        margin-bottom: 30px;
+        padding-left: 15px; /* Небольшой отступ для подсекций */
+        border-left: 3px solid var(--spekk-light-bg); /* Декоративная левая граница */
+    }
+    .application-subsection h3 {
+        font-size: 1.35rem;
+        color: var(--spekk-primary-color);
+        margin-bottom: 10px;
+        margin-top: 0; /* Убрать лишний отступ сверху для h3 */
+    }
+    .application-subsection p, .application-subsection ul {
+        font-size: 1rem; /* Чуть мельче текст в подсекциях */
+        margin-bottom: 1rem;
+    }
+    .application-subsection ul > li::before { /* Маркеры для вложенных списков, если будут */
+        content: '▹';
+        left: -20px;
+    }
+
+    .call-to-action-application {
+        text-align: center;
+        margin-top: 50px;
+        padding: 25px;
+        background-color: var(--spekk-light-bg);
+        border-radius: 8px;
+    }
+    .call-to-action-application .btn {
+        font-size: 1.15rem;
+        padding: 12px 35px;
+    }
+    .call-to-action-application p {
+        font-size: 1.1rem;
+        color: var(--spekk-medium-text);
+        margin-bottom: 20px;
+    }
+
+
+    @media (max-width: 768px) {
+        .content-info-wrapper {
+            padding: 20px;
+        }
+        .content-info-wrapper h1 {
+            font-size: 2rem;
+        }
+        .content-info-wrapper h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body_class %}page-application-info{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="content-info-wrapper">
+                <h1>Практическое Применение Демографических Прогнозов</h1>
+
+                <p>Демографические прогнозы – это не просто академические упражнения. Это мощный инструмент, который находит широкое применение в различных сферах, помогая формировать стратегии, оптимизировать ресурсы и предвидеть будущие вызовы и возможности. LifeMap Analytics предоставляет данные и аналитику, которые могут стать основой для принятия эффективных решений.</p>
+
+                <h2>Ключевые области применения:</h2>
+
+                <div class="application-subsection">
+                    <h3>1. Государственное и муниципальное управление:</h3>
+                    <ul>
+                        <li><strong>Планирование социальной инфраструктуры:</strong> Прогнозы численности и возрастной структуры населения необходимы для планирования строительства и содержания школ, детских садов, больниц, поликлиник и объектов социального обслуживания.</li>
+                        <li><strong>Развитие транспортных систем:</strong> Оценка будущей плотности населения и его распределения помогает в планировании дорожной сети, общественного транспорта и логистических маршрутов.</li>
+                        <li><strong>Жилищная политика:</strong> Прогнозирование числа домохозяйств и их состава влияет на определение потребности в жилье различных типов и классов.</li>
+                        <li><strong>Бюджетирование и фискальная политика:</strong> Демографические изменения (например, старение населения) напрямую влияют на доходы и расходы бюджетов всех уровней (пенсионное обеспечение, здравоохранение).</li>
+                        <li><strong>Региональное развитие:</strong> Выявление регионов с высоким демографическим потенциалом или, наоборот, с депопуляцией, для разработки целевых программ поддержки.</li>
+                    </ul>
+                </div>
+
+                <div class="application-subsection">
+                    <h3>2. Бизнес и экономика:</h3>
+                    <ul>
+                        <li><strong>Маркетинговые стратегии:</strong> Понимание будущей целевой аудитории, ее численности, возрастного состава и покупательной способности позволяет компаниям адаптировать свои продукты и услуги.</li>
+                        <li><strong>Рынок труда и HR:</strong> Прогнозы трудоспособного населения, его квалификационной структуры и миграционных потоков важны для планирования найма, обучения и удержания персонала.</li>
+                        <li><strong>Инвестиционные решения:</strong> Оценка долгосрочных демографических трендов может влиять на привлекательность инвестиций в различные отрасли и регионы.</li>
+                        <li><strong>Ритейл и сфера услуг:</strong> Прогнозирование спроса на товары и услуги, определение оптимального расположения торговых точек и сервисных центров.</li>
+                        <li><strong>Строительство и недвижимость:</strong> Оценка потребности в жилой и коммерческой недвижимости.</li>
+                    </ul>
+                </div>
+
+                 <div class="application-subsection">
+                    <h3>3. Здравоохранение:</h3>
+                    <ul>
+                        <li><strong>Планирование медицинских услуг:</strong> Прогнозирование заболеваемости, потребности в медицинских кадрах и специализированных учреждениях с учетом старения населения и изменения структуры болезней.</li>
+                        <li><strong>Фармацевтическая промышленность:</strong> Оценка будущего спроса на лекарственные препараты и медицинское оборудование.</li>
+                        <li><strong>Профилактические программы:</strong> Разработка программ общественного здоровья, нацеленных на возрастные группы риска.</li>
+                    </ul>
+                </div>
+
+                <div class="application-subsection">
+                    <h3>4. Образование:</h3>
+                    <ul>
+                        <li><strong>Планирование образовательных учреждений:</strong> Прогнозирование числа детей школьного и дошкольного возраста для определения потребности в школах, детских садах и преподавательских кадрах.</li>
+                        <li><strong>Развитие высшего и профессионального образования:</strong> Адаптация образовательных программ под будущие потребности рынка труда.</li>
+                    </ul>
+                </div>
+
+                <div class="application-subsection">
+                    <h3>5. Научные исследования и аналитика:</h3>
+                    <ul>
+                        <li><strong>Изучение долгосрочных трендов:</strong> Анализ влияния различных факторов на демографические процессы.</li>
+                        <li><strong>Моделирование сценариев:</strong> Оценка последствий различных политических, экономических и социальных изменений на демографическую ситуацию.</li>
+                    </ul>
+                </div>
+
+
+                <h2>Как LifeMap Analytics помогает в практическом применении?</h2>
+                <ul>
+                    <li><strong>Гибкие инструменты прогнозирования:</strong> Возможность настройки параметров и сценариев для моделирования различных вариантов будущего.</li>
+                    <li><strong>Детализированные данные:</strong> Анализ по регионам, возрастным группам и полу.</li>
+                    <li><strong>Наглядные визуализации:</strong> Графики и диаграммы, облегчающие понимание сложных демографических тенденций.</li>
+                    <li><strong>Экспорт данных:</strong> Возможность выгрузки результатов для дальнейшего анализа и интеграции с другими системами.</li>
+                </ul>
+
+                <div class="call-to-action-application">
+                    <p>Используйте демографические прогнозы от LifeMap Analytics, чтобы смотреть в будущее с уверенностью и принимать решения, основанные на данных!</p>
+                     <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-success btn-lg"> {# Замените на ваш URL для создания прогноза #}
+                        <i data-feather="trending-up" class="feather-sm me-2"></i> Создать свой прогноз сейчас
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
