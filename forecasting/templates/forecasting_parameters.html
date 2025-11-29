@@ -1,0 +1,567 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Параметры прогнозирования - LifeMap Analytics{% endblock %}
+
+{% block body_class %}page-full-width page-alt-background{% endblock %}
+
+{% block extra_head %}
+<!-- Стили, специфичные для этой страницы -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+<link rel="stylesheet" href="{% static 'css/forecasting_parameters.css' %}">
+{% endblock %}
+
+{% block content %}
+    
+    
+    <div id="loadingOverlay"> {# Убраны inline-стили #}
+    <div class="progress-container"> 
+        <div id="progressBar">0%</div> {# Убраны inline-стили #}
+        <input type="hidden" id="forecastProgressApiUrl" value="{% url 'forecasting:forecast_progress_api' %}">
+    </div>
+    <p class="loading-text">Идет расчет прогноза, пожалуйста, подождите</p> {# Добавлен класс и убраны точки #}
+</div>
+    
+<div class="forecasting-layout-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Боковая панель навигации (САЙДБАР МЕНЮ - только навигация) -->
+            <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block sidebar">
+                <div class="position-sticky pt-3 sidebar-sticky-content">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted text-uppercase">
+                        <span>Область Анализа</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- Эта ссылка теперь управляет ТОЛЬКО видимостью #regionsContent в <main> -->
+                            <a class="nav-link active" aria-current="page" href="#regionsContent" data-bs-toggle="collapse" data-bs-target="#regionsContent" aria-expanded="true" aria-controls="regionsContent">
+                                <span data-feather="map" class="align-text-bottom"></span>
+                                Регион
+                            </a>
+                            <!-- Панель со списком регионов отсюда УБРАНА -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settlementTypeContent" data-bs-toggle="collapse" data-bs-target="#settlementTypeContent" aria-expanded="false" aria-controls="settlementTypeContent">
+                                <span data-feather="home" class="align-text-bottom"></span>
+                                Тип поселения
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#genderContent" data-bs-toggle="collapse" data-bs-target="#genderContent" aria-expanded="false" aria-controls="genderContent">
+                                <span data-feather="users" class="align-text-bottom"></span>
+                                Пол
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#ageGroupsContent" data-bs-toggle="collapse" data-bs-target="#ageGroupsContent" aria-expanded="false" aria-controls="ageGroupsContent">
+                                <span data-feather="layers" class="align-text-bottom"></span>
+                                Возрастные группы
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#periodContent" data-bs-toggle="collapse" data-bs-target="#periodContent" aria-expanded="false" aria-controls="periodContent">
+                                <span data-feather="calendar" class="align-text-bottom"></span>
+                                Период прогнозирования
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted text-uppercase">
+                        <span>Сценарии и Факторы</span>
+                    </h6>
+                    <ul class="nav flex-column">
+
+                        <li class="nav-item">
+    <a class="nav-link" href="#modelingParamsContent" data-bs-toggle="collapse" data-bs-target="#modelingParamsContent" aria-expanded="false" aria-controls="modelingParamsContent">
+        <span data-feather="sliders" class="align-text-bottom"></span>
+        Параметры Моделирования
+    </a>
+</li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            
+          
+            <!-- Основной контент страницы -->
+            <main class="col-md-8 ms-sm-auto col-lg-9 px-md-4 main-forecasting-content">
+
+
+                <!-- Секция для выбора региона с картой AmCharts -->
+                <!-- Теперь #regionsContent это контейнер для двухколоночного макета -->
+                 <form method="POST" action="{% url 'forecasting:run_forecast' %}" id="demographicForecastForm">
+                    {% csrf_token %}
+                
+                     
+                <div id="regionsContent" class="forecast-content-section collapse show">
+    <h2>Выбор региона</h2>
+    <div class="row">
+        <div class="col-lg-4 col-md-5 region-list-panel">
+            <input type="text" id="regionSearchInput" class="form-control form-control-sm mb-2" placeholder="Поиск по регионам...">
+            <div id="allRegionsListContainer">
+                <ul id="allRegionsList" class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">Загрузка регионов...</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-7 map-and-selected-panel">
+            <div id="amchartsMapContainer">
+                <!-- Карта AmCharts будет отрисована здесь -->
+            </div>
+            <p class="mt-2 mb-1">Выбранные регионы:</p>
+            <ul id="selectedRegionsList" class="list-unstyled selected-regions-display">
+                <!-- Изначальный плейсхолдер, ему дадим ID -->
+                <li id="regionsPlaceholder" class="text-muted">- нет выбранных регионов -</li>
+            </ul>
+            <input type="hidden" id="selectedRegionIdsInput" name="region_ids">
+        </div>
+    </div>
+</div>
+
+                <!-- Секция "Тип поселения" -->
+                <div id="settlementTypeContent" class="forecast-content-section collapse">
+    <h2>Выбор типа поселения</h2>
+    <div class="settlement-type-selector d-flex justify-content-center align-items-stretch flex-wrap">
+        {# Скрытый чекбокс для "Все население" - будет управляться JS #}
+        <input type="checkbox" id="settlementAll" name="settlement_type_all" value="all" class="d-none">
+
+        {# Кнопка для "Городское население" #}
+        <div class="settlement-option" data-value="urban" id="settlementUrbanOption" role="button" tabindex="0" aria-pressed="true"> {# Изначально городское выбрано #}
+            <input type="checkbox" id="settlementUrban" name="settlement_type[]" value="urban" class="d-none" checked> {# Изначально выбрано #}
+            <div class="settlement-icon-wrapper">
+                <img src="{% static 'images/City.svg' %}" alt="Городское население" class="settlement-icon">
+            </div>
+            <span class="settlement-label">Городское</span>
+        </div>
+
+        {# Кнопка для "Сельское население" #}
+        <div class="settlement-option" data-value="rural" id="settlementRuralOption" role="button" tabindex="0" aria-pressed="false">
+            <input type="checkbox" id="settlementRural" name="settlement_type[]" value="rural" class="d-none">
+            <div class="settlement-icon-wrapper">
+                <img src="{% static 'images/Village.svg' %}" alt="Сельское население" class="settlement-icon">
+            </div>
+            <span class="settlement-label">Сельское</span>
+        </div>
+    </div>
+    <!-- Скрытое поле для удобства сбора данных (опционально) -->
+    <input type="hidden" name="settlement_type_id" id="finalSettlementTypeId">
+</div>
+
+                <!-- Секция "Пол" -->
+                <div id="genderContent" class="forecast-content-section collapse">
+    <h2>Выбор пола</h2>
+    <div class="gender-selector d-flex justify-content-center align-items-stretch flex-wrap">
+        {# Скрытый чекбокс для "Оба пола" - управляется JS #}
+        <input type="checkbox" id="genderAll" name="gender_all" value="all" class="d-none" checked> {# Изначально выбран "Оба пола" (т.е. и мужской, и женский) #}
+
+        {# Кнопка для "Мужской" #}
+        <div class="gender-option settlement-option" data-value="male" id="genderMaleOption" role="button" tabindex="0" aria-pressed="true"> {# Класс .settlement-option для переиспользования стилей, если они идентичны #}
+            <input type="checkbox" id="genderMale" name="gender_type[]" value="male" class="d-none" checked> {# Изначально выбран #}
+            <div class="gender-icon-wrapper settlement-icon-wrapper">  {# Класс .settlement-icon-wrapper для переиспользования стилей #}
+                <img src="{% static 'images/man.svg' %}" alt="Мужской пол" class="gender-icon settlement-icon"> {# Класс .settlement-icon для переиспользования стилей #}
+            </div>
+            <span class="gender-label settlement-label">Мужской</span> {# Класс .settlement-label для переиспользования стилей #}
+        </div>
+
+        {# Кнопка для "Женский" #}
+        <div class="gender-option settlement-option" data-value="female" id="genderFemaleOption" role="button" tabindex="0" aria-pressed="true">
+            <input type="checkbox" id="genderFemale" name="gender_type[]" value="female" class="d-none" checked> {# Изначально выбран #}
+            <div class="gender-icon-wrapper settlement-icon-wrapper">
+                <img src="{% static 'images/woman.svg' %}" alt="Женский пол" class="gender-icon settlement-icon">
+            </div>
+            <span class="gender-label settlement-label">Женский</span>
+        </div>
+    </div>
+    <!-- Скрытое поле для данных -->
+    <input type="hidden" name="sex_code_target" id="finalSexCodeTarget">
+</div>
+
+              <!-- Секция "Возрастные группы" -->
+<div id="ageGroupsContent" class="forecast-content-section collapse">
+    <h2>Выбор возрастных групп</h2>
+
+    {# --- Визуализация иконками (очень большие) --- #}
+    <div class="age-group-scaled-icons d-flex justify-content-between align-items-end flex-wrap my-4">
+        {# Классы size-X теперь будут влиять на ОЧЕНЬ большие иконки #}
+        <div class="age-scaled-icon-display" data-min-age="0" data-max-age="12" id="iconScaledAgeChild">
+            <i data-feather="user" class="age-scaled-icon size-1"></i>
+            <span class="age-scaled-label">0-12</span>
+        </div>
+        <div class="age-scaled-icon-display" data-min-age="13" data-max-age="19" id="iconScaledAgeTeen">
+            <i data-feather="user" class="age-scaled-icon size-2"></i>
+            <span class="age-scaled-label">13-19</span>
+        </div>
+        <div class="age-scaled-icon-display" data-min-age="20" data-max-age="39" id="iconScaledAgeYoungAdult">
+            <i data-feather="user" class="age-scaled-icon size-3"></i>
+            <span class="age-scaled-label">20-39</span>
+        </div>
+        <div class="age-scaled-icon-display" data-min-age="40" data-max-age="59" id="iconScaledAgeMiddle">
+            <i data-feather="user" class="age-scaled-icon size-4"></i>
+            <span class="age-scaled-label">40-59</span>
+        </div>
+        <div class="age-scaled-icon-display" data-min-age="60" data-max-age="100" id="iconScaledAgeSenior">
+            <i data-feather="user" class="age-scaled-icon size-5"></i>
+            <span class="age-scaled-label">60+</span>
+        </div>
+    </div>
+
+    {# --- Контролы для выбора диапазона (noUiSlider и поля ввода) --- #}
+    <div class="age-range-controls-noui">
+        {# Контейнер для noUiSlider - его ширина будет равна ширине ряда иконок #}
+        <div id="ageRangeSliderNoui" class="mb-4"></div>
+
+        {# Поля ввода ПОД слайдером #}
+        <div class="row justify-content-center gx-3"> {# gx-3 для горизонтального отступа между колонками #}
+            <div class="col-auto">
+                <label for="ageFromInput" class="form-label">От:</label>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2"> {# Колонки для инпутов #}
+                <input type="number" class="form-control age-input-noui" id="ageFromInputNoui" name="target_age_start" min="0" max="100" aria-label="Возраст от">
+            </div>
+            <div class="col-auto">
+                <label for="ageToInput" class="form-label">До:</label>
+            </div>
+            <div class="col-4 col-sm-3 col-md-2">
+                <input type="number" class="form-control age-input-noui" id="ageToInputNoui" name="target_age_end" min="0" max="100" aria-label="Возраст до">
+            </div>
+        </div>
+    </div>
+    
+    <input type="hidden" name="target_age_group_type" id="selectedAgeRangeInputNoui">
+</div>
+
+
+
+                <!-- Секция "Период прогнозирования" -->
+    <div id="periodContent" class="forecast-content-section collapse">
+    <h2>Период прогнозирования</h2>
+    <p class="text-muted text-center my-4">Задайте начальный и конечный год для прогноза.</p>
+
+    {# --- Визуализация этапов --- #}
+    <div class="year-group-scaled-icons d-flex justify-content-around align-items-end flex-wrap my-4">
+        <div class="year-scaled-icon-display age-scaled-icon-display" data-min-year="2010" data-max-year="2019">
+            <i data-feather="rewind" class="year-scaled-icon age-scaled-icon size-2"></i>
+            <span class="year-scaled-label age-scaled-label">2010-е</span>
+        </div>
+        <div class="year-scaled-icon-display age-scaled-icon-display" data-min-year="2020" data-max-year="2029">
+            <i data-feather="play" class="year-scaled-icon age-scaled-icon size-3"></i>
+            <span class="year-scaled-label age-scaled-label">2020-е</span>
+        </div>
+        <div class="year-scaled-icon-display age-scaled-icon-display" data-min-year="2030" data-max-year="2039">
+            <i data-feather="fast-forward" class="year-scaled-icon age-scaled-icon size-4"></i>
+            <span class="year-scaled-label age-scaled-label">2030-е</span>
+        </div>
+        <div class="year-scaled-icon-display age-scaled-icon-display" data-min-year="2040" data-max-year="2050">
+            <i data-feather="chevrons-right" class="year-scaled-icon age-scaled-icon size-5"></i>
+            <span class="year-scaled-label age-scaled-label">2040-е</span>
+        </div>
+    </div>
+
+    {# --- Контролы для выбора диапазона ГОДОВ (noUiSlider и поля ввода) --- #}
+    <div id="periodContent" class="forecast-content-section collapse">
+    <h2>Период и база прогнозирования</h2> {# Изменили заголовок для ясности #}
+    
+    {# Убрали старое сообщение "Задайте начальный и конечный год..." #}
+    {# Опциональная визуализация иконками (оставляем ваш код, если есть) #}
+    <div class="year-group-scaled-icons d-flex justify-content-around align-items-end flex-wrap my-4">
+        <!-- ... ваш код иконок ... -->
+    </div>
+
+    {# --- Контролы для выбора годов --- #}
+    <div class="year-range-controls-noui"> {# Общий контейнер для обоих слайдеров и инпутов #}
+        
+        {# ---- Блок для ГОДА ПОСЛЕДНИХ ИСТОРИЧЕСКИХ ДАННЫХ (БАЗА) ---- #}
+        <div class="mb-4">
+            <label for="historicalDataEndYearInput" class="form-label d-block text-center fw-bold">
+                Год последних ист. данных (база прогноза)
+            </label>
+            <div id="histDataEndYearSliderNoui" class="noui-slider-custom my-2"></div> {# DIV для слайдера базового года #}
+            <div class="row justify-content-center gx-2 mt-1">
+                <div class="col-md-4 col-sm-5 col-6">
+                     <input type="number" class="form-control text-center" 
+                           id="historicalDataEndYearInput" 
+                           name="historical_data_end_year" 
+                           min="2012" 
+                           max="2022" 
+                           value="{{ default_hist_end }}" 
+                           aria-label="Год последних исторических данных">
+                </div>
+            </div>
+        </div>
+
+        {# ---- Блок для КОНЕЧНОГО ГОДА ПРОГНОЗА ---- #}
+        <div class="mb-3">
+            <label for="forecastEndYearInput" class="form-label d-block text-center fw-bold">
+                Конечный год прогнозирования
+            </label>
+            <div id="forecastEndYearSliderNoui" class="noui-slider-custom my-2"></div> {# DIV для слайдера конечного года #}
+            <div class="row justify-content-center gx-2 mt-1">
+                 <div class="col-md-4 col-sm-5 col-6">
+                     <input type="number" class="form-control text-center" 
+                            id="forecastEndYearInput" 
+                            name="forecast_end_year" 
+                            min="2023"  {# Будет обновляться JS #}
+                            max="2050" 
+                            value="{{ default_forecast_end }}" 
+                            aria-label="Конечный год прогноза">
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+    {# Начальный год прогноза ВЫЧИСЛЯЕТСЯ и отправляется через это скрытое поле #}
+    <input type="hidden" name="forecast_start_year" id="calculatedForecastStartYearInput">
+
+    {# Старое поле selected_year_range_noui больше не нужно, его можно удалить из HTML и JS, если он его использовал #}
+    {# <input type="hidden" name="selected_year_range_noui" id="selectedYearRangeInputNoui"> #}
+    </div>
+    </div>
+
+
+
+               <!-- Секция "Параметры Моделирования" -->
+<div id="modelingParamsContent" class="forecast-content-section collapse">
+    <h2>Параметры Моделирования</h2>
+
+    {# --- Рождаемость --- #}
+    <fieldset class="mb-4">
+        <legend class="h5 fs-6 fw-normal mb-3 pt-2">Коэффициенты рождаемости</legend>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="birth_rate_scenario" id="fertilityFixed" value="{{ scenarios.last_year }}" checked>
+            <label class="form-check-label" for="fertilityFixed">
+                Фиксированные (на уровне последнего доступного года)
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="birth_rate_scenario" id="fertilityManualPositive" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="fertilityPositiveTrendContainer">
+                <div class="input-group input-group-sm">
+                    <input type="number" class="form-control form-control-sm" name="birth_rate_manual_perc_positive_input" placeholder="%" min="0" step="0.1" aria-label="Процент роста рождаемости">
+                    <span class="input-group-text">% в год</span>
+                </div>
+            </div>
+            <label class="form-check-label" for="fertilityManualPositive">
+                Тенденция: Рост
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="birth_rate_scenario" id="fertilityManualNegative" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="fertilityNegativeTrendContainer">
+                <div class="input-group input-group-sm">
+                    <input type="number" class="form-control form-control-sm" name="birth_rate_manual_perc_negative_input" placeholder="%" min="0" step="0.1" aria-label="Процент снижения рождаемости">
+                    <span class="input-group-text">% в год</span>
+                </div>
+            </div>
+            <label class="form-check-label" for="fertilityManualNegative">
+                Тенденция: Снижение
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="birth_rate_scenario" id="fertilityHistoricalTrend" value="{{ scenarios.historical_trend }}">
+            <label class="form-check-label" for="fertilityHistoricalTrend">
+                Следовать исторической тенденции
+            </label>
+        </div>
+        {# Скрытое поле для итогового процента рождаемости #}
+        <input type="hidden" name="birth_rate_manual_change_percent" id="finalBirthRateManualPerc">
+    </fieldset>
+
+    <!-- Коэффициенты смертности (Мужчины) -->
+    <fieldset class="mb-4">
+        <legend class="h5 fs-6 fw-normal mb-3 pt-2">Коэффициенты смертности (Мужчины)</legend>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_male" id="mortalityFixedMale" value="{{ scenarios.last_year }}" checked>
+            <label class="form-check-label" for="mortalityFixedMale">
+                Фиксированные
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_male" id="mortalityManualPositiveMale" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="mortalityPositiveTrendMaleContainer">
+                <div class="input-group input-group-sm">
+                    <input type="number" class="form-control form-control-sm" name="death_rate_manual_perc_male_positive_input" placeholder="%" min="0" step="0.1" aria-label="Процент улучшения смертности (М)">
+                    <span class="input-group-text">% в год</span>
+                </div>
+            </div>
+            <label class="form-check-label" for="mortalityManualPositiveMale">
+                Тенденция: Улучшение (снижение)
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_male" id="mortalityManualNegativeMale" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="mortalityNegativeTrendMaleContainer">
+                <div class="input-group input-group-sm">
+                    <input type="number" class="form-control form-control-sm" name="death_rate_manual_perc_male_negative_input" placeholder="%" min="0" step="0.1" aria-label="Процент ухудшения смертности (М)">
+                    <span class="input-group-text">% в год</span>
+                </div>
+            </div>
+            <label class="form-check-label" for="mortalityManualNegativeMale">
+                Тенденция: Ухудшение (рост)
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_male" id="mortalityHistoricalTrendMale" value="{{ scenarios.historical_trend }}">
+            <label class="form-check-label" for="mortalityHistoricalTrendMale">
+                Следовать исторической тенденции
+            </label>
+        </div>
+        {# Скрытое поле для итогового процента смертности мужчин #}
+        <input type="hidden" name="death_rate_manual_change_percent_male" id="finalDeathRateManualPercMale">
+    </fieldset>
+
+    <!-- Коэффициенты смертности (Женщины) -->
+    <fieldset class="mb-4">
+        <legend class="h5 fs-6 fw-normal mb-3 pt-2">Коэффициенты смертности (Женщины)</legend>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_female" id="mortalityFixedFemale" value="{{ scenarios.last_year }}" checked>
+            <label class="form-check-label" for="mortalityFixedFemale">
+                Фиксированные
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_female" id="mortalityManualPositiveFemale" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="mortalityPositiveTrendFemaleContainer">
+                <div class="input-group input-group-sm">
+                     <input type="number" class="form-control form-control-sm" name="death_rate_manual_perc_female_positive_input" placeholder="%" min="0" step="0.1" aria-label="Процент улучшения смертности (Ж)">
+                     <span class="input-group-text">% в год</span>
+                </div>
+            </div>
+            <label class="form-check-label" for="mortalityManualPositiveFemale">
+                Тенденция: Улучшение (снижение)
+            </label>
+        </div>
+        <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_female" id="mortalityManualNegativeFemale" value="{{ scenarios.manual_percent }}">
+            <div class="percentage-input-container d-none me-2" id="mortalityNegativeTrendFemaleContainer">
+                 <div class="input-group input-group-sm">
+                     <input type="number" class="form-control form-control-sm" name="death_rate_manual_perc_female_negative_input" placeholder="%" min="0" step="0.1" aria-label="Процент ухудшения смертности (Ж)">
+                     <span class="input-group-text">% в год</span>
+                 </div>
+            </div>
+            <label class="form-check-label" for="mortalityManualNegativeFemale">
+                Тенденция: Ухудшение (рост)
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="death_rate_scenario_female" id="mortalityHistoricalTrendFemale" value="{{ scenarios.historical_trend }}">
+            <label class="form-check-label" for="mortalityHistoricalTrendFemale">
+                Следовать исторической тенденции
+            </label>
+        </div>
+        {# Скрытое поле для итогового процента смертности женщин #}
+        <input type="hidden" name="death_rate_manual_change_percent_female" id="finalDeathRateManualPercFemale">
+    </fieldset>
+
+    <!-- Миграция -->
+    <fieldset class="mb-4">
+        <legend class="h5 fs-6 fw-normal mb-3 pt-2">Международная миграция</legend>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="includeMigration" name="include_migration">
+            <label class="form-check-label" for="includeMigration">Учитывать международную миграцию</label>
+        </div>
+
+        <div id="migrationDetails" class="mt-2 collapse"> {# Убрал 'show', JS будет управлять этим #}
+            <div class="ps-3">
+                <div class="form-check"> 
+                    <input class="form-check-input" type="radio" name="migration_scenario" id="migrationFixed" value="{{ scenarios.last_year }}" checked>
+                    <label class="form-check-label" for="migrationFixed">
+                        Фиксированное сальдо (на уровне последнего доступного года)
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input" type="radio" name="migration_scenario" id="migrationManualPositive" value="{{ scenarios.manual_percent }}">
+                    <div class="percentage-input-container d-none me-2" id="migrationPositiveTrendContainer">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control form-control-sm" name="migration_manual_perc_positive_input" placeholder="%" min="0" step="0.1" aria-label="Процент роста сальдо миграции">
+                            <span class="input-group-text">% в год</span>
+                        </div>
+                    </div>
+                    <label class="form-check-label" for="migrationManualPositive">
+                        Тенденция: Рост сальдо
+                    </label>
+                </div>
+                <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input" type="radio" name="migration_scenario" id="migrationManualNegative" value="{{ scenarios.manual_percent }}">
+                    <div class="percentage-input-container d-none me-2" id="migrationNegativeTrendContainer">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control form-control-sm" name="migration_manual_perc_negative_input" placeholder="%" min="0" step="0.1" aria-label="Процент снижения сальдо миграции">
+                            <span class="input-group-text">% в год</span>
+                        </div>
+                    </div>
+                    <label class="form-check-label" for="migrationManualNegative">
+                        Тенденция: Снижение сальдо
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="migration_scenario" id="migrationHistoricalTrend" value="{{ scenarios.historical_trend }}">
+                    <label class="form-check-label" for="migrationHistoricalTrend">
+                        Следовать исторической тенденции
+                    </label>
+                </div>
+                {# Скрытое поле для итогового процента миграции #}
+                <input type="hidden" name="migration_manual_change_percent" id="finalMigrationManualPerc">
+            </div>
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend class="h5 fs-6 fw-normal mb-3 pt-2">Настройки вывода</legend> {# Изменил на 'Настройки вывода' #}
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="detailedAgeForecast" name="output_detailed_by_age"> 
+            <label class="form-check-label" for="detailedAgeForecast">Детальный прогноз по возрастам</label>
+        </div>
+    </fieldset>
+     <button type="submit" class="btn btn-primary mt-4">Рассчитать прогноз</button>
+    
+    {# Кнопка submit должна быть внутри <form>, но ВНЕ fieldset-ов, если она общая #}
+    {# Она уже есть в конце вашей формы, перед закрывающим </main> - это нормально #}
+</div>
+                 </form>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Подключение библиотек AmCharts 5 -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/russiaHigh.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="{% static 'js/am5geodata_russia_regions_lang_ru.js' %}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+
+
+<!-- Feather Icons -->
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace();
+</script>
+
+<script>
+    // Передаем объект сценариев из Django в JavaScript
+    const djangoScenarioValues = { 
+        last_year: "{{ scenarios.last_year|escapejs }}",
+        historical_trend: "{{ scenarios.historical_trend|escapejs }}",
+        manual_percent: "{{ scenarios.manual_percent|escapejs }}"
+    };
+</script>
+
+    {# Затем подключайте ВАШИ КАСТОМНЫЕ JS ФАЙЛЫ #}
+    <script src="{% static 'js/forecasting_left_panel.js' %}"></script>
+    <script src="{% static 'js/forecasting_map.js' %}"></script>
+    <script src="{% static 'js/forecasting_settlement_type.js' %}"></script>
+    <script src="{% static 'js/forecasting_gender_selection.js' %}"></script> 
+    <script src="{% static 'js/forecasting_age_groups.js' %}"></script>    
+    <script src="{% static 'js/forecasting_period.js' %}"></script>
+    <script src="{% static 'js/forecasting_setting_period.js' %}"></script>
+    
+    <script src="{% static 'js/forecasting_form_handler.js' %}"></script> {# Этот файл теперь сможет использовать 'сценарии' #}
+    <script src="{% static 'js/forecasting_progress_bar.js' %}"></script> 
+    
+{% endblock %}

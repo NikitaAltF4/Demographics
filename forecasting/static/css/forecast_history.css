@@ -1,0 +1,121 @@
+/* static/css/style.css или новый static/css/history_page_styles.css */
+
+/* Заголовок страницы истории */
+.history-page-title {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0; /* Более светлый разделитель */
+    font-weight: 600; /* Сделаем чуть жирнее */
+    color: #333; /* Темно-серый */
+}
+
+/* Карточка одного элемента истории прогноза */
+.forecast-history-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Немного светлее рамка */
+    border-left: 4px solid #f05550; /* АКЦЕНТНАЯ ЛИНИЯ СЛЕВА (красная) */
+    border-radius: 0.375rem;
+    margin-bottom: 1.5rem; /* Больше отступ между элементами */
+    padding: 1.25rem 1.5rem; /* Паддинг */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); /* Мягкая тень */
+    transition: box-shadow 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.forecast-history-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+}
+
+/* Заголовок прогноза внутри карточки (ссылка) */
+.forecast-history-item .forecast-title-date a {
+    font-size: 1.25rem; /* Крупнее */
+    font-weight: 600;
+    color: #f05550; /* АКЦЕНТНЫЙ КРАСНЫЙ для заголовка-ссылки */
+    text-decoration: none;
+}
+.forecast-history-item .forecast-title-date a:hover {
+    text-decoration: underline;
+    color: #c82333; /* Темнее красный при наведении */
+}
+
+/* Текст "X минут назад" */
+.forecast-history-item .text-muted {
+    font-size: 0.85em;
+}
+
+/* Краткое описание параметров */
+.forecast-history-item .forecast-params-summary {
+    font-size: 0.9rem;
+    color: #555; /* Чуть темнее серого */
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+.forecast-history-item .forecast-params-summary strong {
+    color: #333; /* Еще темнее для меток параметров */
+}
+
+/* Предупреждения (если есть) */
+.forecast-history-item .alert-warning {
+    background-color: #fff3cd; /* Стандартный желтый Bootstrap */
+    border-color: #ffeeba;
+    color: #856404;
+    font-size: 0.85rem; /* Чуть меньше */
+}
+.forecast-history-item .alert-warning ul {
+    padding-left: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Кнопки действий */
+.forecast-history-item .forecast-actions .btn-outline-primary { /* "Посмотреть детали" */
+    border-color: #f05550;
+    color: #f05550;
+}
+.forecast-history-item .forecast-actions .btn-outline-primary:hover {
+    background-color: #f05550;
+    color: #fff;
+}
+
+.forecast-history-item .forecast-actions .btn-outline-secondary { /* "Экспорт" */
+    /* Оставим стандартный вторичный стиль Bootstrap, он нейтральный */
+}
+
+/* Иконки Feather внутри кнопок */
+.forecast-history-item .forecast-actions .btn .feather-sm,
+.history-page-content .btn .feather-sm { /* Общий класс для страницы, если нужно */
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em; /* Чуть лучшее выравнивание */
+    margin-right: 0.35em;
+}
+
+/* Пагинация */
+.pagination .page-item.active .page-link {
+    background-color: #f05550; /* Красный для активной страницы */
+    border-color: #f05550;
+    color: #fff;
+}
+.pagination .page-link {
+    color: #f05550; /* Красный для ссылок пагинации */
+}
+.pagination .page-link:hover {
+    color: #c82333; /* Темнее красный при наведении */
+    background-color: #fdf0f0; /* Очень легкий красный фон */
+}
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #e9ecef;
+}
+
+/* Кнопка "Сделать новый прогноз" внизу страницы */
+.history-page-content .btn-primary, /* Если есть .history-page-content обертка */
+.container > .text-center > .btn-primary { /* Если кнопка напрямую в .container > .text-center */
+    background-color: #6c757d; /* СЕРЫЙ, как вы просили (Bootstrap .btn-secondary) */
+    border-color: #6c757d;
+    color: #fff;
+}
+.history-page-content .btn-primary:hover,
+.container > .text-center > .btn-primary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}

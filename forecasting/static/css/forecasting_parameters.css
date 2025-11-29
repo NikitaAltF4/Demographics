@@ -1,0 +1,1224 @@
+form#demographicForecastForm {
+    display: contents; /* Это свойство может помочь, если form не должна влиять на layout дочерних flex/grid элементов */
+}
+
+.forecasting-layout-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - var(--header-height));
+    z-index: 100;
+
+    background-color: #f8f9fa;
+    overflow-y: auto;
+    max-width: 300px;
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: var(--text-color-default, #333);
+  padding: .65rem 1.25rem;
+  border-left: 3px solid transparent;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 10px;
+  color: #6c757d;
+  width: 18px;
+  height: 18px;
+}
+
+.sidebar .nav-link.active {
+  color: var(--accent-color-main) !important;
+  background-color: rgba(240, 85, 80, 0.07);
+  border-left-color: var(--accent-color-main);
+}
+
+.sidebar .nav-link:hover {
+    color: var(--accent-color-main);
+    background-color: rgba(240, 85, 80, 0.03);
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: var(--accent-color-main);
+}
+
+.sidebar-heading {
+  font-size: .8rem;
+  color: #6c757d;
+  padding: .75rem 1.25rem .25rem;
+  text-transform: uppercase;
+}
+
+
+
+.main-forecasting-content {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+}
+
+
+
+@media (max-width: 767.98px) {
+  .forecasting-layout-wrapper {
+      flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+      max-width: none;
+    top: auto;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+
+    overflow-y: visible;
+  }
+
+  .main-forecasting-content {
+    padding-top: 1rem;
+  }
+}
+
+
+
+
+.forecast-content-section {
+    padding: 20px;
+    border-radius: .375rem;
+    margin-bottom: 20px;
+    background-color: #fff;
+
+}
+
+.forecast-content-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.forecast-content-section .form-label {
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.forecast-content-section .form-check {
+    padding-left: 2em;
+}
+
+.forecast-content-section .form-check-input {
+    margin-left: -2em;
+}
+
+
+#amchartsMapContainer {
+    width: 100%;
+    flex-grow: 1; /* Карта займет всё доступное вертикальное пространство ПОСЛЕ h2, p, ul */
+    border: 1px solid #ccc;
+    /* margin-bottom: 1rem; /* Этот отступ теперь будет ПОСЛЕ блока карты */
+    min-height: 800px; /* Задайте минимальную разумную высоту для карты, чтобы она не схлопывалась */
+}
+
+/* Остальные элементы внутри #regionsContent будут занимать свою естественную высоту */
+#regionsContent > h2,
+#regionsContent > p,
+#regionsContent > ul {
+    flex-shrink: 0; /* Предотвращает сжатие этих элементов, если карта очень большая */
+}
+#regionsContent > p { /* Добавляем отступ к параграфу, а не к карте, если карта должна быть последней по высоте */
+    margin-top: 1rem;
+}
+
+/* Стили для выбранных регионов, если захотите добавить доп. информацию под картой */
+#selectedRegionsList {
+    margin-top: 10px;
+    padding-left: 20px; /* Для отображения списком */
+}
+#selectedRegionsList li {
+    margin-bottom: 5px;
+}
+
+/* ------------------------------------------------------------------------------------------------*/
+.forecast-content-section {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.forecast-content-section > h2 {
+    margin-bottom: 15px;
+}
+
+#regionsContent > .row {
+    display: flex; /* Убедимся, что .row - это flex-контейнер (Bootstrap это делает по умолчанию) */
+    flex-wrap: wrap; /* Предотвращаем перенос колонок */
+
+}
+
+.region-list-panel {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px; /* Отступ между левой и правой колонками */
+    padding-bottom: 10px;
+    max-width: 300px;    /* Максимальная ширина для левой панели */
+
+}
+
+#regionSearchInput {
+    border-radius: 0;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+}
+
+#allRegionsListContainer {
+    height: 1000px; /* Соответствует высоте карты */
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 0;
+    background-color: #f8f9fa;
+}
+
+#allRegionsList .list-group-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+}
+#allRegionsList .list-group-item:hover {
+    background-color: #e9ecef;
+}
+#allRegionsList .list-group-item.active {
+    background-color: #f58682;
+    color: white;
+}
+
+.map-and-selected-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;  /* << КЛЮЧЕВОЕ: Занять всё доступное горизонтальное пространство */
+    min-width: 0;  /* << КЛЮЧЕВОЕ: Для правильной работы flex-grow */
+
+}
+
+#amchartsMapContainer {
+  width: 100%; /* Занимает всю ширину родителя .map-and-selected-panel */
+  height: 450px; /* Фиксированная высота карты */
+  border: 1px solid #dee2e6;
+  border-radius: 0;
+}
+
+.map-and-selected-panel > p {
+    /* display: flex !important; - Обычно не нужно для простого параграфа */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+#selectedRegionsList {
+    font-size: 0.9em;
+    max-height: 80px;
+    overflow-y: auto;
+    padding-left: 0;
+    flex-shrink: 0;
+}
+#selectedRegionsList li {
+    margin-bottom: 2px;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+}
+.sidebar .nav-link.active {
+    color: #f27d79;
+}
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+/* ----------------------------Спискок вы выбрранных регионнов----------------------------*/
+
+.selected-regions-display { /* Используем класс, который вы задали */
+    font-size: 0.9em;        /* Размер шрифта */
+    min-height: 200px;
+    overflow-y: auto;        /* Включить вертикальную прокрутку при необходимости */
+    padding-left: 0;         /* Убираем стандартный отступ слева у <ul> (так как есть класс list-unstyled) */
+    margin-top: 5px;         /* Небольшой отступ сверху от текста "Выбранные регионы:" */
+    list-style-type: none;   /* Убедимся, что маркеров списка нет (хотя list-unstyled это делает) */
+
+}
+
+/* Стили для каждого элемента <li> в списке выбранных регионов */
+.selected-regions-display li {
+    margin-bottom: 3px;        /* Отступ между названиями регионов */
+    padding: 2px 5px;          /* Небольшие внутренние отступы для каждого элемента */
+    background-color: #f8f9fa;  /* Легкий фон для каждого элемента, если хотите выделить */
+    /* border-radius: 3px; */       /* Небольшое скругление углов для каждого элемента */
+    /* color: #333; */             /* Цвет текста */
+}
+
+/* Стиль для начального сообщения "- нет выбранных регионов -" */
+.selected-regions-display li:only-child { /* Применяется, только если это единственный элемент li */
+    background-color: transparent;  /* Убрать фон, если он есть у обычных li */
+    font-style: italic;         /* Сделать курсивом */
+    color: #6c757d;           /* Серый цвет для сообщения */
+}
+
+/* Если вы хотите, чтобы названия регионов в этом списке как-то визуально
+   соотносились с цветом выделения на карте/в левом списке (например, маленький маркер): */
+.selected-regions-display li:not(:only-child):before { /* Для всех li, кроме placeholder'а */
+    content: "■"; /* Маленький квадратный маркер */
+    color: #f27d79; /* ВАШ ЦВЕТ ВЫДЕЛЕНИЯ */
+    margin-right: 5px;
+    font-size: 0.8em; /* Размер маркера */
+}
+
+/* ---------------------------- Секция "Тип поселения" ---------------------------- */
+.settlement-type-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* Увеличим расстояние, так как блоки стали огромными */
+    margin-top: 2rem;
+}
+
+.settlement-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Иконка сверху, текст снизу, пространство между ними */
+    padding: 40px; /* Значительно увеличиваем внутренние отступы */
+    border: 3px solid #dee2e6; /* Можно сделать рамку еще чуть толще */
+    border-radius: 1rem;   /* Увеличим скругление */
+    cursor: pointer;
+    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    background-color: #fff;
+    text-align: center;
+
+    /* УПРАВЛЕНИЕ ШИРИНОЙ И ВЫСОТОЙ КАРТОЧКИ */
+    /* Для таких больших иконок, скорее всего, только одна карточка будет помещаться в ряд на большинстве экранов,
+       если только экран не сверхширокий. Либо они будут занимать много вертикального пространства. */
+
+    width: 100%;       /* Занимает всю ширину родителя (если родитель - колонка BS)
+                           или будет вести себя как inline-block если родитель flex с wrap */
+    max-width: 800px;  /* << МАКСИМАЛЬНАЯ ШИРИНА ОДНОЙ КАРТОЧКИ.
+                           Даже при таком размере, две карточки + gap могут не влезть в стандартный контейнер.
+                           Возможно, стоит ориентироваться на то, что они будут друг под другом. */
+
+    min-height: 850px; /* << ЗНАЧИТЕЛЬНО УВЕЛИЧИВАЕМ МИНИМАЛЬНУЮ ВЫСОТУ
+                           (иконка 450px + паддинги ~80px + отступы иконки ~40px + текст ~50-80px = ~620-650px) */
+                           /* Подберите это значение так, чтобы все влезло и выглядело гармонично. */
+}
+
+.settlement-option:hover {
+    border-color: #adb5bd;
+}
+
+.settlement-option.active {
+    background-color: #eaeaea;
+}
+
+.settlement-icon-wrapper {
+    padding: 10px; /* Отступ вокруг самой иконки, если он нужен для ее фона */
+    margin-bottom: 30px; /* Увеличим отступ от иконки до текста */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+
+.settlement-icon {
+    display: block;
+    /* РАЗМЕРЫ ИКОНКИ, УВЕЛИЧЕННЫЕ В ~3 РАЗА ОТ 150PX */
+    width: 700px;   /* << НОВЫЙ РАЗМЕР ИКОНКИ */
+    height: 700px;  /* << НОВЫЙ РАЗМЕР ИКОНКИ */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.settlement-label {
+    font-weight: 700; /* Сделаем текст еще жирнее */
+    font-size: 2rem;  /* Увеличим текст еще больше */
+    /* margin-top: auto; /* Оставляем, если justify-content: space-between на .settlement-option */
+}
+
+@media (max-width: 767.98px) { /* Для планшетов и телефонов в портретной ориентации */
+    .settlement-option {
+        padding: 20px;
+        max-width: 90%; /* Занимает почти всю ширину экрана */
+        min-height: auto; /* Пусть высота определяется контентом */
+    }
+    .settlement-icon {
+        width: 150px;  /* Возвращаем к более разумным размерам */
+        height: 150px;
+    }
+    .settlement-icon-wrapper {
+        margin-bottom: 15px;
+    }
+    .settlement-label {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 575.98px) { /* Для телефонов */
+    .settlement-icon {
+        width: 100px;
+        height: 100px;
+    }
+    .settlement-label {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* ==========================================================================
+   Секция "Возрастные группы" - БОЛЬШИЕ ИКОНКИ и noUiSlider
+   ========================================================================== */
+.age-group-scaled-icons {
+    display: flex; /* Добавлено для управления дочерними элементами */
+    justify-content: space-between; /* Равномерное распределение иконок */
+    align-items: flex-end; /* Иконки "стоят" на одной линии */
+    flex-wrap: wrap; /* Позволяем перенос, если нужно */
+    gap: 15px; /* Уменьшим немного gap для более плотного ряда иконок */
+    padding: 20px 0; /* Уменьшим вертикальный padding, если min-height управляет высотой */
+    /* min-height: 320px; /* Высота для самой большой иконки (288px) + текста (~25px) + отступов */
+                       /* Если иконки стали больше, нужно пересчитать */
+    /* Ширина этого блока будет использоваться для установки ширины слайдера JS */
+}
+
+.age-scaled-icon-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    /* width: calc(20% - 12px);  Убрал, т.к. justify-content: space-between сам распределит */
+    flex-basis: calc(20% - 12px); /* Альтернатива width для flex-элементов в ряду (для 5 элементов с gap:15px) */
+    min-width: 100px; /* Минимальная ширина, если иконки большие */
+    border: 3px solid transparent;
+    border-radius: .5rem;
+}
+
+.age-scaled-icon { /* Feather SVG */
+    margin-bottom: 10px; /* Отступ до текста */
+    stroke-width: 1.75;   /* Чуть толще для лучшей видимости больших иконок */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: stroke 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+/* Размеры иконок (оставим ваши последние значения, которые были большими) */
+.age-scaled-icon.size-1 { width: 96px;  height: 96px; }
+.age-scaled-icon.size-2 { width: 144px; height: 144px; }
+.age-scaled-icon.size-3 { width: 192px; height: 192px; }
+.age-scaled-icon.size-4 { width: 240px; height: 240px; }
+.age-scaled-icon.size-5 { width: 288px; height: 288px; }
+
+/* Цвета иконок и текста */
+.age-scaled-icon-display .age-scaled-icon {
+    stroke: #e0e0e0; /* Очень бледно-серый (невыбранный) */
+}
+.age-scaled-icon-display.highlighted .age-scaled-icon {
+    stroke: #555555; /* Темно-серый (выбранный) */
+}
+.age-scaled-label {
+    font-size: 1rem;  /* Немного уменьшил для баланса с большими иконками */
+    color: #adb5bd;
+    margin-top: auto; /* Прижимает текст к низу */
+    font-weight: 500;
+}
+.age-scaled-icon-display.highlighted .age-scaled-label {
+    color: #343a40;
+    font-weight: 600;
+}
+
+/* --- Контролы выбора диапазона с noUiSlider --- */
+.age-range-controls-noui {
+    margin-top: 2rem; /* Отступ от иконок до слайдера */
+    /* max-width: none; /* Ширина будет управляться JS или общим контейнером */
+}
+
+#ageRangeSliderNoui {
+    height: 10px; /* Высота трека слайдера, можно чуть тоньше */
+    margin-bottom: 10px; /* Отступ от слайдера до подписей к нему */
+    /* Ширина будет установлена JavaScript */
+}
+
+/* Кастомизация noUiSlider */
+#ageRangeSliderNoui .noUi-connect {
+    background: var(--accent-color-main, #f27d79);
+}
+#ageRangeSliderNoui .noUi-handle { /* Ползунки */
+    height: 24px; /* Чуть меньше, но все равно крупные */
+    width: 24px;
+    top: -8px;   /* Центрирование на треке */
+    right: -12px;
+    border-radius: 3px; /* Прямоугольные */
+    background: #fff;
+    border: 2px solid var(--accent-color-main, #f27d79);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Легкая тень для объема */
+    cursor: grab;
+}
+#ageRangeSliderNoui .noUi-handle:focus {
+    outline: none;
+    box-shadow: 0 0 0 .2rem rgba(242, 125, 121, 0.35);
+}
+#ageRangeSliderNoui .noUi-tooltip { /* Значения на ползунках */
+    display: block;
+    position: absolute;
+    border: none; /* Убираем рамку тултипа */
+    border-radius: 3px;
+    background: var(--accent-color-main, #f27d79); /* Фон тултипа в цвет акцента */
+    color: white; /* Белый текст */
+    padding: 4px 8px; /* Отступы внутри тултипа */
+    font-size: 0.8rem; /* Размер шрифта в тултипе */
+    font-weight: 600;
+    white-space: nowrap;
+    bottom: 130%; /* Выше ползунка */
+    transform: translateX(-50%); /* Центрируем тултип над ползунком */
+    left: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.range-slider-labels { /* Подписи 0 --- ЗНАЧЕНИЕ --- 100 под слайдером */
+    font-size: 0.8rem; /* Крупнее */
+    color: #6c757d;
+    margin-top: 0.5rem; /* Отступ от полосы слайдера, если нужно */
+}
+.range-slider-labels #ageFromSliderValueDisplay,
+.range-slider-labels #ageToSliderValueDisplay {
+    color: #343a40; /* Темнее для текущих значений */
+    font-weight: 600; /* Жирнее */
+}
+
+
+.age-range-controls-noui .row { /* Контейнер для полей ввода От/До (ПОД слайдером) */
+    margin-top: 1.5rem; /* Отступ от подписей слайдера до полей ввода */
+    justify-content: center; /* Центрируем поля, если они не занимают всю ширину */
+}
+.age-range-controls-noui .form-label {
+    font-weight: 600;     /* Крупнее и жирнее */
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    padding-right: 0.5rem;
+    text-align: right;
+    white-space: nowrap;
+    display: flex;         /* Для вертикального выравнивания */
+    align-items: center;   /* Выравниваем метку по центру с инпутом */
+}
+.age-input-noui.form-control { /* Поля ввода возраста */
+    text-align: center;
+    padding: .6rem .8rem;  /* Увеличиваем внутренние отступы = поле выше и шире внутри */
+    font-size: 1.1rem;      /* Крупнее шрифт в поле */
+    font-weight: 500;
+    /* max-width: 120px; /* Задаем бОльшую максимальную ширину, чтобы поле стало шире */
+    /* Если это .col-md-2 (16.6%), то 120px может быть больше.
+       Bootstrap .col-* управляют шириной. Чтобы поле стало шире, увеличьте .col-*-X в HTML. */
+    width: 100%; /* Занимает всю ширину своей колонки (например col-md-2) */
+    height: auto; /* Позволяем padding определять высоту */
+    line-height: 1.5; /* Стандартный line-height */
+}
+
+
+/* ==========================================================================
+   Адаптивность
+   ========================================================================== */
+
+@media (max-width: 1199.98px) { /* Large экраны и меньше */
+    .age-scaled-icon.size-3 { width: 160px; height: 160px; }
+    .age-scaled-icon.size-4 { width: 200px; height: 200px; }
+    .age-scaled-icon.size-5 { width: 240px; height: 240px; }
+    .age-group-scaled-icons { min-height: 280px; }
+}
+
+@media (max-width: 991.98px) { /* Medium экраны и меньше */
+    .age-scaled-icon-display { flex-basis: calc(33.333% - 10px); min-width: 90px; } /* 3 в ряд */
+    .age-group-scaled-icons { min-height: 220px; }
+    .age-scaled-icon.size-1 { width: 64px; height: 64px; }
+    .age-scaled-icon.size-2 { width: 80px; height: 80px; }
+    .age-scaled-icon.size-3 { width: 110px; height: 110px; }
+    .age-scaled-icon.size-4 { width: 140px; height: 140px; }
+    .age-scaled-icon.size-5 { width: 170px; height: 170px; }
+    .age-scaled-label { font-size: 0.9rem; }
+}
+
+@media (max-width: 767.98px) { /* Small экраны */
+    .age-scaled-icon-display { flex-basis: calc(33.333% - 7px); min-width: 70px; } /* По-прежнему 3 в ряд, но плотнее */
+    .age-group-scaled-icons { min-height: auto; padding: 15px 0; gap: 10px;}
+    .age-scaled-icon.size-1 { width: 40px; height: 40px; }
+    .age-scaled-icon.size-2 { width: 50px; height: 50px; }
+    .age-scaled-icon.size-3 { width: 60px; height: 60px; }
+    .age-scaled-icon.size-4 { width: 70px; height: 70px; }
+    .age-scaled-icon.size-5 { width: 80px; height: 80px; }
+    .age-scaled-label { font-size: 0.8rem; }
+
+    .age-range-controls-noui .form-label { font-size: 1rem; text-align: left; margin-bottom: 0.25rem; }
+    .age-input-noui.form-control { font-size: 1rem; padding: .5rem .75rem; }
+
+    /* Перестраиваем поля От/До в два ряда для лучшего вида на мобильных */
+    .age-range-controls-noui .row > div[class*="col-"] { /* Все колонки в этом ряду */
+      flex-basis: 100%; /* Каждая колонка на всю ширину */
+      max-width: 100%;
+      margin-bottom: 0.5rem; /* Отступ между строками метка/инпут */
+    }
+    .age-range-controls-noui .row .col-auto { /* Метка "От", "До" */
+        text-align: left;
+    }
+    .age-input-noui.form-control {
+        max-width: 100%; /* Инпут занимает всю ширину своей новой 100% строки */
+    }
+
+    #ageRangeSliderNoui .noUi-handle { height: 22px; width: 22px; top: -7px; right: -11px; }
+    #ageRangeSliderNoui .noUi-tooltip { font-size: 0.75rem; padding: 3px 6px; }
+}
+
+@media (max-width: 575.98px) { /* Extra Small экраны */
+     .age-group-scaled-icons { justify-content: space-around; gap: 5px;}
+     .age-scaled-icon-display { flex-basis: calc(33.333% - 4px); min-width: 60px;}
+    .age-scaled-icon.size-1 { width: 32px; height: 32px; stroke-width: 1.5; }
+    .age-scaled-icon.size-2 { width: 38px; height: 38px; stroke-width: 1.5; }
+    .age-scaled-icon.size-3 { width: 44px; height: 44px; stroke-width: 1.5; }
+    .age-scaled-icon.size-4 { width: 50px; height: 50px; stroke-width: 1.5; }
+    .age-scaled-icon.size-5 { width: 56px; height: 56px; stroke-width: 1.5; }
+    .age-scaled-label { font-size: 0.75rem; }
+}
+
+
+
+/* ==========================================================================
+   Секция "Период прогнозирования"
+   ========================================================================== */
+
+/* Если вы используете ОПЦИОНАЛЬНЫЙ блок с иконками для годов
+   и переиспользовали классы .age-*, то стили применятся.
+   Если нужны уникальные стили, создайте классы .year-* */
+.year-group-scaled-icons {
+    /* Если нужны отличия от .age-group-scaled-icons, добавьте их здесь */
+    /* Например, другой min-height или gap */
+    /* min-height: 100px; /* Если иконки периода меньше */
+}
+
+.year-scaled-icon-display { /* Если переиспользуем .age-scaled-icon-display, стили наследуются */
+    /* Уникальные стили, если нужны */
+}
+.year-scaled-icon { /* Если переиспользуем .age-scaled-icon, стили наследуются */
+    /* stroke: #4a90e2; /* Другой цвет для иконок периода? */
+}
+/* Иконки периодов могут быть одного размера, например */
+.year-group-scaled-icons .age-scaled-icon { /* Если переиспользуем класс age-scaled-icon */
+    width: 48px;  /* Например, все иконки периода одного размера */
+    height: 48px;
+}
+.year-scaled-label { /* Если переиспользуем .age-scaled-label */
+    /* font-size: 0.9rem; */
+}
+
+/* Если блок с иконками годов не используется, эти стили не нужны */
+
+
+/* Слайдер и инпуты для ГОДОВ */
+/* Класс .age-range-controls-noui мы переиспользуем из секции возраста,
+   поэтому основные стили для контейнера слайдера и инпутов уже должны быть.
+   ID слайдера #yearRangeSliderNoui будет использован JS для инициализации. */
+
+#yearRangeSliderNoui { /* Уникальный ID, стили для noUiSlider (трек, ручки) глобальные,
+                          но если хотите кастомизировать цвет connect или ручек только для этого слайдера: */
+    /* height: 10px; */ /* Если нужна другая высота трека */
+}
+/* Пример переопределения цвета connect только для слайдера годов */
+/* #yearRangeSliderNoui .noUi-connect {
+    background: #28a745; /* Зеленый, например */
+/* } */
+/* #yearRangeSliderNoui .noUi-handle {
+    border-color: #28a745;
+} */
+/* #yearRangeSliderNoui .noUi-tooltip {
+    background: #28a745;
+} */
+
+
+.year-input-noui.form-control { /* Если нужен уникальный стиль для инпутов годов */
+    /* font-size: 1.1rem; */ /* Убедитесь, что размер шрифта удобен для годов */
+    /* max-width: 100px; */  /* Если нужно изменить ширину полей */
+}
+.year-range-controls-noui .form-label { /* Если нужны отличия для меток "С:" и "По:" */
+    /* font-size: 1.1rem; */
+}
+
+
+/* Адаптивность для секции периода (если отличается от возрастов) */
+/* Обычно стили для .age-range-controls-noui и его дочерних элементов из медиа-запросов
+   применятся и сюда, если вы переиспользуете классы. */
+
+@media (max-width: 767.98px) {
+    .year-group-scaled-icons .age-scaled-icon {
+        /* Уменьшаем иконки периода на мобильных, если они используются */
+        width: 32px;
+        height: 32px;
+    }
+     .year-group-scaled-icons .age-scaled-label {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ==========================================================================
+   Секция "Параметры Моделирования" (#modelingParamsContent)
+   ========================================================================== */
+
+#modelingParamsContent {
+    /* background-color: #fdfdfd; */
+    /* padding: 1.5rem; */
+    /* border: 1px solid #dee2e6; */
+    /* border-radius: .25rem; */
+}
+
+/* --- Общие стили для элементов форм в этой секции --- */
+#modelingParamsContent .form-label:not(.form-check-label) {
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: 0.3rem;
+}
+
+#modelingParamsContent .form-select,
+#modelingParamsContent .form-control {
+    border-radius: 0;
+    border-color: #ced4da;
+    font-size: 0.875rem;
+}
+
+#modelingParamsContent .form-control:focus,
+#modelingParamsContent .form-select:focus {
+    border-color: #f27d79;
+    box-shadow: 0 0 0 .2rem rgba(242, 125, 121, 0.35);
+}
+
+#modelingParamsContent .input-alongside-label .form-control,
+#modelingParamsContent .fixed-value-input-alongside-label .form-control {
+    height: calc(1.5em + .5rem + 2px);
+}
+#modelingParamsContent .input-alongside-label .input-group-text,
+#modelingParamsContent .fixed-value-input-alongside-label .input-group-text {
+    font-size: 0.75rem;
+    padding: .25rem .5rem;
+}
+
+
+/* --- Группировка параметров с помощью fieldset --- */
+#modelingParamsContent fieldset {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+}
+#modelingParamsContent fieldset:last-of-type {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+#modelingParamsContent legend {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #343a40;
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+}
+
+/* --- Стили для чекбоксов и радио-кнопок (.form-check) --- */
+#modelingParamsContent .form-check {
+    margin-bottom: 0.75rem;
+    /* Для строк с d-flex, это уже есть в вашем HTML */
+}
+
+#modelingParamsContent .form-check-input {
+    cursor: pointer;
+    border-color: #ced4da;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    /* Добавляем отступ справа от самого радио/чекбокса */
+    margin-right: 0.6em; /* <<< НОВОЕ/ИЗМЕНЕННОЕ. Подберите это значение! */
+}
+
+#modelingParamsContent .form-check-input:checked {
+    background-color: #f27d79;
+    border-color: #f27d79;
+}
+
+#modelingParamsContent .form-check-label {
+    font-weight: normal;
+    color: #212529;
+    cursor: pointer;
+    /* Убираем padding-left, если метка идет СРАЗУ после input,
+       так как margin-right у input уже создает отступ.
+       Если метка идет ПОСЛЕ .percentage-input-container, то padding-left нужен.
+       Это можно сделать более специфичным селектором.
+    */
+    padding-left: 0; /* <<< ИЗМЕНЕННОЕ. Для случая: Input + Label */
+}
+
+/* Для контейнера с полем ввода, которое появляется МЕЖДУ радиокнопкой и меткой */
+#modelingParamsContent .form-check.d-flex.align-items-center .percentage-input-container,
+#modelingParamsContent .form-check.d-flex.align-items-center .migration-value-input-container {
+    margin-left: 0; /* <<< ИЗМЕНЕННОЕ. Полагаемся на margin-right от .form-check-input */
+    /* Класс me-2 (эквивалент margin-right: 0.5rem;) в HTML уже создает отступ ПОСЛЕ поля ввода.
+       Это хороший отступ перед следующей меткой. Если его нет, добавьте:
+       margin-right: 0.6em; /* Отступ СПРАВА от поля ввода перед текстом метки. */
+}
+
+/* Специальный стиль для метки, которая идет ПОСЛЕ контейнера с полем ввода */
+#modelingParamsContent .form-check.d-flex.align-items-center .percentage-input-container + .form-check-label,
+#modelingParamsContent .form-check.d-flex.align-items-center .migration-value-input-container + .form-check-label {
+    padding-left: 0.6em; /* <<< НОВОЕ. Возвращаем padding-left для метки после поля ввода. Подберите! */
+                           /* Этот padding будет добавлен к margin-right (me-2) от .percentage-input-container */
+}
+
+
+/* Вертикальное выравнивание для радиокнопок в строках с d-flex */
+/* Это правило у вас дублируется, оставим одно */
+#modelingParamsContent .form-check.d-flex.align-items-center .form-check-input {
+     margin-top: 0.2em; /* Оставляем для вертикального выравнивания, подберите по необходимости */
+     /* margin-right: 0.6em; уже задан выше для всех .form-check-input */
+}
+
+
+/* --- Стили для переключателя (form-switch) --- */
+#modelingParamsContent .form-switch {
+    padding-left: 3.5em; /* Отступ для всего блока form-switch */
+}
+#modelingParamsContent .form-switch .form-check-input {
+  width: 3em;
+  height: 1.5em;
+  margin-left: -3.5em; /* Компенсируем padding-left родителя */
+  background-size: contain;
+  margin-right: 0; /* У form-switch свой механизм отступов, обнуляем общий margin-right */
+}
+#modelingParamsContent .form-switch .form-check-label {
+    padding-left: 0.75em; /* Отступ для текста метки от самого переключателя, если стандартный bootstrap не устраивает */
+                           /* Или можно оставить 0, если padding-left у .form-switch достаточен */
+}
+
+
+/* --- Стили для фокуса на элементах форм --- */
+#modelingParamsContent .form-check-input:not(:checked):focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(173, 181, 189, 0.3);
+}
+
+#modelingParamsContent .form-check-input:checked:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(242, 125, 121, 0.35);
+}
+
+
+/* --- Блок пользовательских настроек (#customScenarioParams) --- */
+#customScenarioParams {
+    border: 1px solid #dee2e6;
+    padding: 1.5rem;
+    border-radius: .35rem;
+    background-color: #f8f9fa;
+    margin-top: 1.25rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#customScenarioParams .custom-scenario-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #343a40;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#customScenarioParams .row {
+    margin-bottom: 1rem;
+    align-items: center;
+}
+#customScenarioParams .col-form-label {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    line-height: 1.5;
+    font-size: 0.875rem;
+    color: #6c757d;
+    text-align: right;
+}
+#customScenarioParams .form-control-sm {
+    font-size: 0.875rem;
+}
+#customScenarioParams .form-text {
+    font-size: 0.75rem;
+    color: #6c757d;
+    padding-top: .25rem;
+    display: block;
+}
+
+
+/* --- Блок деталей миграции (#migrationDetails) --- */
+#migrationDetails {
+    background-color: #f8f9fa;
+    padding: 1rem 1rem 0.5rem 1.5rem;
+    border-radius: .35rem;
+    margin-top: 0.75rem;
+    border: 1px solid #dee2e6;
+}
+
+#migrationDetails .form-label-sm {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+    font-weight: normal;
+    color: #6c757d;
+}
+
+/* --- Кнопка отправки формы --- */
+#modelingParamsContent .btn-primary {
+    background-color: #f27d79;
+    border-color: #f27d79;
+    padding: .5rem 1.5rem;
+    font-weight: 500;
+    border-radius: .25rem;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+#modelingParamsContent .btn-primary:hover {
+    background-color: #e66a64;
+    border-color: #e66a64;
+}
+#modelingParamsContent .btn-primary:focus {
+    box-shadow: 0 0 0 .2rem rgba(242, 125, 121, 0.35);
+}
+
+
+/* --- Адаптивность --- */
+@media (max-width: 991.98px) {
+    #customScenarioParams .col-form-label {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #modelingParamsContent legend {
+        font-size: 1.05rem;
+    }
+    #modelingParamsContent fieldset {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+    }
+    #customScenarioParams {
+        padding: 1rem;
+    }
+    #customScenarioParams .col-form-label {
+        margin-bottom: .25rem;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    #customScenarioParams .form-text {
+        padding-top: 0;
+        margin-bottom: .75rem;
+    }
+    #migrationDetails {
+        padding: 0.75rem;
+    }
+    #modelingParamsContent .btn-primary {
+        width: 100%;
+        padding: .75rem 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #modelingParamsContent .form-switch {
+        padding-left: 3em;
+    }
+    #modelingParamsContent .form-switch .form-check-input {
+      width: 2.5em;
+      height: 1.25em;
+      margin-left: -3em;
+    }
+}
+
+
+/* --- Прогресс бар --- */
+#loadingOverlay {
+    display: none; /* Изначально скрыт */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85); /* Полупрозрачный белый фон */
+    z-index: 10000; /* Очень высокий z-index, чтобы быть поверх всего */
+    text-align: center;
+    padding-top: 18%; /* Отступ сверху для центрирования контента (можно подстроить) */
+    box-sizing: border-box;
+}
+
+#loadingOverlay .progress-container {
+    width: 60%;
+    max-width: 500px; /* Максимальная ширина прогресс-бара */
+    margin: 0 auto; /* Горизонтальное центрирование */
+    background-color: #e9ecef; /* Фон контейнера прогресс-бара (Bootstrap .bg-light) */
+    border: 1px solid #ced4da; /* Рамка (Bootstrap .border) */
+    border-radius: .375rem; /* Скругление углов (Bootstrap .rounded) */
+    padding: 5px; /* Небольшой внутренний отступ */
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); /* Небольшая тень для объема */
+}
+
+#loadingOverlay #progressBar {
+    width: 0%;
+    height: 35px;
+    background-color: #e66a64; /* Синий цвет Bootstrap (можно заменить на ваш основной) */
+    color: white;
+    line-height: 35px; /* Вертикальное центрирование текста */
+    border-radius: .25rem; /* Меньшее скругление для самого бара */
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: width 0.2s ease-out, background-color 0.2s ease-out; /* Плавная анимация ширины и цвета */
+    white-space: nowrap; /* Чтобы текст не переносился */
+    overflow: hidden; /* Скрыть текст, если он не помещается (на 0%) */
+}
+
+#loadingOverlay .loading-text {
+    margin-top: 15px;
+    font-size: 1.25em;
+    color: #212529; /* Темно-серый текст (Bootstrap .text-dark) */
+    font-weight: 500;
+}
+
+/* Опционально: анимация для текста "загрузка" */
+#loadingOverlay .loading-text::after {
+    content: '.';
+    animation: dots 1.5s steps(5, end) infinite;
+    display: inline-block; /* Нужно для анимации content */
+    vertical-align: bottom;
+}
+
+@keyframes dots {
+    0%, 20% {
+        color: rgba(0,0,0,0);
+        text-shadow:
+            .25em 0 0 rgba(0,0,0,0),
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    40% {
+        color: #212529;
+        text-shadow:
+            .25em 0 0 rgba(0,0,0,0),
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    60% {
+        text-shadow:
+            .25em 0 0 #212529,
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    80%, 100% {
+        text-shadow:
+            .25em 0 0 #212529,
+            .5em 0 0 #212529;
+    }
+}
+
+.results-sidebar {
+    background-color: #f8f9fa; /* Светлый фон */
+    padding: 1.5rem 1rem;
+    /* Высота: 100% видимой области минус высота шапки и небольшой отступ.
+       Предполагаемая высота шапки ~56px. Подстройте под вашу реальную высоту. */
+    height: calc(100vh - 72px); /* 56px (navbar) + 1rem (16px) отступа top для sticky */
+    position: sticky;
+    top: calc(56px + 1rem); /* Отступ от верха, чтобы сайдбар начинался под шапкой */
+    overflow-y: auto; /* Прокрутка для сайдбара, если контента много */
+    border-right: 1px solid #dee2e6; /* Разделительная линия */
+}
+
+/* Ссылки навигации в сайдбаре (Pills) */
+.results-sidebar .nav-pills .nav-link {
+    color: #212529; /* Темный цвет текста для неактивных ссылок */
+    border-radius: 0.3rem; /* Немного скругления */
+    margin-bottom: 0.3rem; /* Отступ между ссылками */
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.75rem; /* Внутренние отступы */
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.results-sidebar .nav-pills .nav-link.active,
+.results-sidebar .nav-pills .nav-link:hover {
+    color: #fff; /* Белый текст для активной/ховер ссылки */
+    background-color: #f05550; /* Ваш акцентный красный цвет */
+}
+
+/* Иконки Feather в ссылках сайдбара */
+.results-sidebar .nav-link .feather {
+    margin-right: 10px; /* Отступ справа от иконки */
+    color: #6c757d; /* Серый цвет для иконок по умолчанию */
+    width: 18px;
+    height: 18px;
+    transition: color 0.15s ease-in-out;
+}
+
+.results-sidebar .nav-pills .nav-link.active .feather,
+.results-sidebar .nav-pills .nav-link:hover .feather {
+    color: #fff; /* Белый цвет иконок на активной/ховер ссылке */
+}
+
+/* Блок с кнопками экспорта и нового прогноза в сайдбаре */
+.results-sidebar .export-controls {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef; /* Разделитель */
+}
+
+.results-sidebar .btn-new-forecast {
+    margin-top: 1.5rem; /* Отступ сверху для кнопки "Новый прогноз" */
+    padding-top: 1rem;  /* Если нужен дополнительный отступ перед кнопкой после разделителя */
+    border-top: 1px solid #e9ecef;
+}
+
+.results-sidebar .export-controls .dropdown-menu a.dropdown-item {
+    cursor: pointer; /* Чтобы ссылки в выпадающем меню выглядели кликабельными */
+    font-size: 0.9rem;
+}
+.results-sidebar .export-controls .btn-sm,
+.results-sidebar .btn-new-forecast .btn-sm {
+    font-size: 0.9rem; /* Размер для кнопок в сайдбаре */
+}
+
+
+/* Основной контент страницы результатов */
+.results-main-content {
+    padding: 1.5rem; /* Внутренние отступы для контентной области */
+    height: calc(100vh - 72px); /* Аналогично сайдбару, чтобы была внутренняя прокрутка */
+    overflow-y: auto;
+}
+
+/* Секции контента для навигации по якорям/вкладкам */
+.results-main-content .content-section {
+     margin-bottom: 2.5rem;
+     padding-top: 70px;  /* Отступ сверху, равный высоте шапки + небольшой запас, для корректной работы якорей */
+     margin-top: -70px; /* Компенсация этого отступа, чтобы якорь был точно у заголовка секции */
+}
+.results-main-content .content-section > h2 { /* Заголовки секций (Параметры, Результаты, Визуализация) */
+    font-size: 1.75rem; /* Крупнее */
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    color: #343a40;
+}
+
+/* Стили для карточек, если они используются внутри .content-section */
+.content-section .card .card-header {
+    font-weight: 500; /* Заголовки карточек жирнее */
+}
+
+/* Кастомный акцентный цвет для заголовков карточек (если нужен) */
+.card-header.card-header-custom-accent {
+     background-color: #f05550 !important; /* Ваш акцентный красный, !important если Bootstrap перебивает */
+     color: white !important;
+}
+.content-section .card dl.row dt { /* Для списка параметров */
+    font-weight: 500;
+}
+
+
+/* === СТИЛИ ДЛЯ СЕКЦИИ ВИЗУАЛИЗАЦИИ (внутри #visualizationSection) === */
+#plotlyChartContainer {
+    min-height: 500px;
+    width:100%;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    padding:15px; /* Немного больше паддинг */
+    margin-top:1.5rem; /* Отступ от кнопки "Построить" */
+}
+
+.chart-controls { /* Общий контейнер для групп контролов */
+    /* Используйте row, col-md-X из Bootstrap для разметки */
+}
+
+.chart-controls .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.35rem;
+    display:block; /* Метка над селектом */
+}
+
+.chart-controls .form-select-sm {
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+}
+.chart-controls .form-select-sm:focus {
+    border-color: #f05550; /* Акцентный цвет при фокусе */
+    box-shadow: 0 0 0 0.2rem rgba(240, 85, 80, 0.25);
+}
+
+/* Контейнер для слоев временного ряда */
+#layersContainer .layer-control-group {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    margin-bottom: 0.75rem !important;
+    border: 1px solid #e9ecef;
+    align-items: flex-end; /* Выровнять кнопку удаления по низу */
+}
+#layersContainer .layer-control-group:last-child {
+    border-bottom: 1px solid #e9ecef !important;
+    margin-bottom: 0 !important;
+}
+
+#layersContainer .remove-layer-button { /* Кнопка "X" для удаления слоя */
+    padding: 0.375rem 0.75rem; /* Стандартные размеры Bootstrap btn-sm */
+}
+
+/* Контролы для пирамиды */
+#pyramidControlsContainer .pyramid-layer-controls {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 1rem;
+    border-radius: .3rem;
+}
+#pyramidControlsContainer .pyramid-layer-controls h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+#pyramidControlsContainer input[type="color"] {
+    padding: 0.1rem 0.2rem;
+    height: calc(1.5em + 0.75rem + 2px); /* Bootstrap .form-control-sm height */
+    width: 50px;
+    border: 1px solid #ced4da;
+    border-radius: 0.2rem;
+    vertical-align: middle;
+    margin: 0 0.25rem; /* Небольшие отступы вокруг инпутов цвета */
+}
+
+/* Общая кнопка "Построить/Обновить график" */
+#renderChartButton {
+    background-color: #28a745; /* Зеленый, как пример для "успешного" действия */
+    border-color: #28a745;
+    color:white;
+    padding: 0.5rem 1rem; /* Размеры побольше */
+    font-size: 1rem;
+}
+#renderChartButton:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

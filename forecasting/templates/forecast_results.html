@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Результаты прогноза - LifeMap Analytics{% endblock %}
+
+{% block body_class %}page-alt-background{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/forecast_results.css' %}">
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script> 
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {# --- Sidebar Column --- #}
+        <div class="col-lg-3 col-md-4 sidebar-column">
+            <nav class="sidebar-nav d-flex flex-column h-100 p-3"> {# h-100 and d-flex for bottom buttons #}
+                
+                {# Main Navigation Links for Page Sections #}
+                <div class="sidebar-section mb-4 flex-grow-1"> {# flex-grow-1 pushes bottom content down #}
+                    <h6 class="sidebar-section-title text-uppercase fw-bold mb-2">Разделы отчета</h6>
+                    <ul class="nav nav-pills flex-column"> {# Using nav-pills for Bootstrap styling a bit closer to example #}
+                        <li class="nav-item">
+                            <a class="nav-link sidebar-link" href="#forecastParamsSection"> {# Pointing to an ID on the page #}
+                                <i data-feather="settings" class="me-2"></i> Параметры прогноза
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sidebar-link" href="#visualizationSection"> {# Pointing to an ID on the page #}
+                                <i data-feather="bar-chart-2" class="me-2"></i> Визуализация данных
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sidebar-link" href="#resultsTableSection"> {# Pointing to an ID on the page #}
+                                <i data-feather="file-text" class="me-2"></i> Результаты (таблица)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {# Export Button/Dropdown - Placed before the "Repeat Forecast" button #}
+                <div class="sidebar-section mb-3">
+                    {# Example: Dropdown for export options. You can make it a simple button if only one export type. #}
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary btn-sm w-100 dropdown-toggle" type="button" id="exportDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i data-feather="download" class="me-2"></i> Экспорт данных
+                        </button>
+                        <ul class="dropdown-menu w-100" aria-labelledby="exportDropdownButton">
+                            <li><a class="dropdown-item" href="{% if forecast_run_id_for_template %}{% url 'forecasting:export_forecast_data' forecast_run_id=forecast_run_id_for_template export_format='csv' %}{% else %}#{% endif %}" id="exportCsvButton">Экспорт в CSV</a></li>
+                            <li><a class="dropdown-item" href="{% if forecast_run_id_for_template %}{% url 'forecasting:export_forecast_data' forecast_run_id=forecast_run_id_for_template export_format='xlsx' %}{% else %}#{% endif %}" id="exportExcelButton">Экспорт в Excel</a></li>
+                            {# Add other export options if needed #}
+                        </ul>
+                    </div>
+                </div>
+                
+                {# Repeat Forecast Button - At the very bottom of the sidebar #}
+                <div class="sidebar-section mt-auto pt-4 border-top"> {# mt-auto pushes to bottom, pt-3 for spacing, border-top for separation #}
+                    <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-primary w-100">
+                        <i data-feather="refresh-cw" class="me-2"></i> Новый прогноз
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        {# --- Main Content Column --- #}
+        <div class="col-lg-9 col-md-8 main-content-column">
+            
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Ошибка!</h4>
+                    <p>{{ error_message }}</p>
+                    <hr>
+                    <p class="mb-0">Пожалуйста, вернитесь назад и попробуйте снова или обратитесь к администратору.</p>
+                    <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-primary mt-3">Вернуться к форме прогноза</a>
+                </div>
+            {% else %}
+
+                {# SECTION 1: Forecast Parameters #}
+                <section id="forecastParamsSection" class="content-section pt-2"> {# Added pt-2 to avoid title being too close to top if navbar is fixed #}
+                    <h2 class="mb-4">Параметры исходного запроса</h2>
+                    {% if params_display_overall %}
+                    <div class="card mb-5 shadow-sm">
+                        {# <div class="card-header bg-light"><h5 class="mb-0">Общие параметры исходного запроса</h5></div> #}
+                        <div class="card-body"><dl class="row">
+                            <dt class="col-sm-4">Изначально запрошенные регионы:</dt><dd class="col-sm-8">{{ params_display_overall.region_names_display|join:", " }}</dd>
+                            <dt class="col-sm-4">Изначально выбранный тип поселения:</dt><dd class="col-sm-8">{{ params_display_overall.settlement_type_name_display }}</dd>
+                            <dt class="col-sm-4">Изначально выбранный целевой пол:</dt><dd class="col-sm-8">{{ params_display_overall.sex_code_name_display }}</dd>
+                            <dt class="col-sm-4">Период прогноза:</dt><dd class="col-sm-8">{{ params_display_overall.forecast_start_year }} - {{ params_display_overall.forecast_end_year }}</dd>
+                            <dt class="col-sm-4">Период исторических данных:</dt><dd class="col-sm-8">{{ params_display_overall.historical_data_start_year }} - {{ params_display_overall.historical_data_end_year }}</dd>
+                            <dt class="col-sm-4">Прогноз для возрастной группы (исходно):</dt><dd class="col-sm-8">{{ params_display_overall.target_age_group_input_display }}</dd> 
+                            <dt class="col-sm-4">Детализация по возрастам (общая настройка):</dt><dd class="col-sm-8">{% if output_detailed_by_age_global %}Да{% else %}Нет{% endif %}</dd>
+                            <dt class="col-sm-4">Общий сценарий рождаемости:</dt><dd class="col-sm-8">{{ params_display_overall.birth_rate_scenario_name_display }}</dd>
+                            <dt class="col-sm-4">Общий сценарий смертности (М):</dt><dd class="col-sm-8">{{ params_display_overall.death_rate_scenario_male_name_display }}</dd>
+                            <dt class="col-sm-4">Общий сценарий смертности (Ж):</dt><dd class="col-sm-8">{{ params_display_overall.death_rate_scenario_female_name_display }}</dd>
+                            <dt class="col-sm-4">Учет миграции (общая настройка):</dt><dd class="col-sm-8">{% if params_display_overall.include_migration %}Да{% else %}Нет{% endif %}</dd>
+                            {% if params_display_overall.include_migration %}<dt class="col-sm-4">Общий сценарий миграции:</dt><dd class="col-sm-8">{{ params_display_overall.migration_scenario_name_display }}</dd>{% endif %}
+                        </dl></div>
+                    </div>
+                    {% endif %}
+                </section>
+                
+               
+
+                {# SECTION 2: Visualization #}
+                <section id="visualizationSection" class="content-section">
+                    <h2 class="mb-4">Интерактивная визуализация данных</h2>
+                    <div class="card shadow-sm mb-5">
+                        {# <div class="card-header bg-primary text-white"><h5 class="mb-0">Интерактивная визуализация данных</h5></div> #}
+                        <div class="card-body">
+                            {# -- ОБЩИЕ КОНТРОЛЫ ДЛЯ ВСЕХ ГРАФИКОВ -- #}
+                            <div class="row chart-controls mb-3 border-bottom pb-3">
+                                <div class="col-md-4">
+                                    <label for="chartRegionGroupSelect" class="form-label">Группа регионов:</label>
+                                    <select id="chartRegionGroupSelect" class="form-select form-select-sm"></select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="chartMainTypeSelect" class="form-label">Тип визуализации:</label>
+                                    <select id="chartMainTypeSelect" class="form-select form-select-sm">
+                                        <option value="time_series">Временной ряд (наложение)</option>
+                                        <option value="pyramid" {% if not output_detailed_by_age_global %}disabled title="Для пирамиды необходима детализация по возрастам"{% endif %}>Возрастно-половая пирамида (наложение)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {# -- КОНТРОЛЫ ДЛЯ ВРЕМЕННОГО РЯДА / МНОЖЕСТВЕННЫХ ТРЕЙСОВ -- #}
+                            <div id="timeSeriesLayeredControls" class="row chart-controls mb-3 specific-chart-controls">
+                                <div class="col-md-12 mb-2">
+                                    <label for="tsGlobalChartTypeSelect" class="form-label">Общий тип графика для слоев:</label>
+                                    <select id="tsGlobalChartTypeSelect" class="form-select form-select-sm" style="width: auto; display: inline-block;">
+                                        <option value="lines+markers">Линейный с точками</option>
+                                        <option value="lines">Линейный</option>
+                                        <option value="bar">Столбчатый</option>
+                                        <option value="markers">Точечный</option>
+                                    </select>
+                                    <label for="tsBarModeSelect" class="form-label ms-2" id="barModeLabel" style="display: none;">Режим для столбцов:</label>
+                                    <select id="tsBarModeSelect" class="form-select form-select-sm" style="width: auto; display: none;">
+                                        <option value="group">Группировать</option>
+                                        <option value="stack">Накапливать (стэк)</option>
+                                        <option value="relative">Относительный (стэк до 100%)</option>
+                                    </select>
+                                </div>
+                                <div id="layersContainer" class="col-md-12">
+                                    {# Сюда JS будет добавлять контролы для каждого слоя временного ряда #}
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <button type="button" id="addLayerButton" class="btn btn-sm btn-outline-primary me-2">Добавить показатель (слой)</button>
+                                </div>
+                            </div>
+
+                            {# -- КОНТРОЛЫ ДЛЯ ПИРАМИДЫ -- #}
+                            <div id="pyramidControlsContainer" class="specific-chart-controls" style="display: none;">
+                                <p class="text-muted small" id="pyramidNote" style="display: none;">Примечание: для сравнения пирамиды накладываются с полупрозрачностью.</p>
+                                <div class="pyramid-layer-controls mb-3 p-3 border rounded" data-layer-id="0">
+                                    <h5>Пирамида 1 (Основная)</h5>
+                                    <div class="row chart-controls">
+                                        <div class="col-md-3">
+                                            <label for="pyramidRegionSelect_0" class="form-label">Группа регионов:</label>
+                                            <select id="pyramidRegionSelect_0" class="form-select form-select-sm pyramid-region-select"></select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="pyramidYearSelect_0" class="form-label">Год:</label>
+                                            <select id="pyramidYearSelect_0" class="form-select form-select-sm pyramid-year-select"></select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="pyramidSettlementTypeSelect_0" class="form-label">Тип поселения:</label>
+                                            <select id="pyramidSettlementTypeSelect_0" class="form-select form-select-sm pyramid-settlement-select">
+                                                <option value="total" selected>Все население</option>
+                                                <option value="urban">Городское</option>
+                                                <option value="rural">Сельское</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label d-block">Цвета (М / Ж):</label>
+                                            <input type="color" id="pyramidMaleColor_0" class="form-control-sm pyramid-male-color" value="#377eb8" title="Цвет для мужчин (Пирамида 1)"> /
+                                            <input type="color" id="pyramidFemaleColor_0" class="form-control-sm pyramid-female-color" value="#e41a1c" title="Цвет для женщин (Пирамида 1)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="additionalPyramidLayersContainer">
+                                    {# Сюда JS добавит контролы для второй и последующих пирамид #}
+                                </div>
+                                <div class="mt-2">
+                                     <button type="button" id="addPyramidLayerButton" class="btn btn-sm btn-outline-primary me-2" {% if not output_detailed_by_age_global %}disabled{% endif %}>
+                                         Добавить пирамиду для сравнения
+                                     </button>
+                                     <button type="button" id="removeLastPyramidLayerButton" class="btn btn-sm btn-outline-danger" style="display:none;">
+                                         Удалить последнюю пирамиду
+                                     </button>
+                                </div>
+                            </div>
+
+                            {# Общая кнопка для рендеринга и контейнер для графика #}
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                     <button type="button" id="renderChartButton" class="btn btn-lg btn-success mt-2 mb-4">Построить/Обновить график</button>
+                                </div>
+                            </div>
+                            <div id="plotlyChartContainer" style="min-height: 450px;"></div>
+                        </div> {# Закрытие .card-body #}
+                    </div> {# Закрытие .card #}
+                </section>
+                
+
+                {# Warnings #}
+                {% if form_warnings %}
+                <div class="alert alert-warning" role="alert">
+                    <h5 class="alert-heading">Общие примечания и предупреждения:</h5><ul>{% for warning in form_warnings %}<li>{{ warning }}</li>{% endfor %}</ul>
+                </div>
+                
+                {% endif %}
+
+                {# SECTION 3: Forecast Results Table #}
+                <section id="resultsTableSection" class="content-section">
+                    <h2 class="mb-4">Результаты прогноза (детально)</h2>
+                    {% for region_group_forecast in grouped_forecasts %}
+                        <div class="forecast-result-block mb-5 pt-3">
+                            <h4 class="mb-3">{{ region_group_forecast.title }}</h4> {# Changed to H4 for better hierarchy #}
+                            
+                            {% if region_group_forecast.warnings %}
+                                <div class="alert alert-secondary small" role="alert">
+                                    
+                                    <ul>{% for warning in region_group_forecast.warnings %}<li>{{ warning }}</li>{% endfor %}</ul>
+                                </div>
+                            {% endif %}
+
+                            {% if region_group_forecast.data_by_year %}
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-hover table-bordered mt-2">
+                                       
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2" class="align-middle text-center">Год</th>
+                                                {% if output_detailed_by_age_global %}
+                                                <th rowspan="2" class="align-middle text-center">Возраст</th>
+                                                {% endif %}
+
+                                                {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_URBAN %}
+                                                    <th colspan="{% if user_selected_sex_code == SEX_CODE_TOTAL %}3{% else %}1{% endif %}" class="text-center">Городское</th>
+                                                {% endif %}
+                                                
+                                                {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_RURAL %}
+                                                     <th colspan="{% if user_selected_sex_code == SEX_CODE_TOTAL %}3{% else %}1{% endif %}" class="text-center">Сельское</th>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_URBAN %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                        <th class="text-center">Мужчины</th>
+                                                    {% endif %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                        <th class="text-center">Женщины</th>
+                                                    {% endif %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                        <th class="text-center">Всего</th>
+                                                    {% endif %}
+                                                {% endif %}
+                                                
+                                                {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_RURAL %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                        <th class="text-center">Мужчины</th>
+                                                    {% endif %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                        <th class="text-center">Женщины</th>
+                                                    {% endif %}
+                                                    {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                        <th class="text-center">Всего</th>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for year_item in region_group_forecast.data_by_year %}
+                                                {% if output_detailed_by_age_global %}
+                                                    {% for age_row in year_item.age_rows %}
+                                                    <tr>
+                                                        <td class="text-center">{% if forloop.first %}{{ year_item.year }}{% endif %}</td>
+                                                        <td class="text-center">{{ age_row.age_display }}</td>
+                                                        
+                                                        {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_URBAN %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                                <td class="text-center">{{ age_row.urban_male | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                                <td class="text-center">{{ age_row.urban_female | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                                <td class="text-center">{{ age_row.urban_total | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                        {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_RURAL %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                                <td class="text-center">{{ age_row.rural_male | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                               <td class="text-center">{{ age_row.rural_female | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                                <td class="text-center">{{ age_row.rural_total | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% empty %}{% endfor %}
+                                                {% else %} {# Not detailed by age #}
+                                                    <tr>
+                                                        <td class="text-center">{{ year_item.year }}</td>
+                                                        {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_URBAN %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                                <td class="text-center">{{ year_item.urban_male | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                                <td class="text-center">{{ year_item.urban_female | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                                <td class="text-center">{{ year_item.urban_total | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                        {% if user_selected_settlement_id == ID_SETTLEMENT_TOTAL or user_selected_settlement_id == ID_SETTLEMENT_RURAL %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_MALE %}
+                                                               <td class="text-center">{{ year_item.rural_male | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL or user_selected_sex_code == SEX_CODE_FEMALE %}
+                                                                <td class="text-center">{{ year_item.rural_female | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                            {% if user_selected_sex_code == SEX_CODE_TOTAL %}
+                                                                <td class="text-center">{{ year_item.rural_total | default_if_none:"-" }}</td>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </tr>
+                                                {% endif %}
+                                            {% empty %}
+                                                <tr><td colspan="100%" class="text-center">Нет данных для отображения...</td></tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <p>Результаты прогноза для группы "{{ region_group_forecast.title }}" не были получены...</p>
+                            {% endif %}
+                        </div>
+                        {% if not forloop.last %}<hr class="my-4">{% endif %}
+                    {% empty %}
+                        <p class="lead">Нет сгруппированных результатов прогноза для отображения.</p>
+                    {% endfor %}
+                </section>
+            
+                
+               
+               
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      // Initialize Feather Icons
+      // It's good practice to call this after the DOM is fully loaded,
+      // or at least after the part of the DOM containing icons is rendered.
+      // Since this script block is at the end of the body, it should be fine.
+      if (typeof feather !== 'undefined') { 
+          try {
+            feather.replace(); 
+          } catch(e) {
+            console.warn("Feather icons could not be replaced on results page.", e);
+          }
+      }
+    </script>
+
+    {# === ПЕРЕДАЧА ДАННЫХ ИЗ DJANGO В JAVASCRIPT === #}
+    <script>
+        const allForecastData = {{ grouped_forecasts_json|safe }};
+        const availableMetricsRaw = {{ active_data_keys_json|safe }};
+        const isDetailedByAgeGlobal = {{ output_detailed_by_age_global_js|safe }};
+    </script>
+
+    {# === ПОДКЛЮЧЕНИЕ ВАШЕГО НОВОГО JS ФАЙЛА === #}
+    <script src="{% static 'js/forecast_chart_plotly.js' %}"></script>
+    <script src="{% static 'js/results_page_handler.js' %}"></script>
+{% endblock %}

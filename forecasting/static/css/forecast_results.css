@@ -1,0 +1,328 @@
+/* Иконки Feather (общий стиль, если используется на странице результатов) */
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    stroke-width: 2;
+}
+
+/* ==========================================================================
+   Макет страницы результатов: Сайдбар и Основной контент
+   ========================================================================== */
+
+/* Сайдбар на странице результатов */
+/* Класс .sidebar-column используется в вашем HTML */
+.sidebar-column {
+    background-color: #f8f9fa; /* Светлый фон для сайдбара (стандартный Bootstrap) */
+    padding: 0; /* nav.sidebar-nav внутри уже имеет p-3 */
+    position: sticky;
+    /* ВАЖНО: Установите здесь фактическую высоту вашего хедера,
+       если вы не используете CSS переменную --header-height */
+    top: 56px; /* Пример: если высота хедера 56px. ЗАМЕНИТЕ НА ВАШУ ВЫСОТУ ХЕДЕРА */
+    height: calc(100vh - 56px); /* Пример: ЗАМЕНИТЕ 56px НА ВАШУ ВЫСОТУ ХЕДЕРА */
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6; /* Стандартная граница Bootstrap */
+    z-index: 1020;
+}
+
+/* Основной контент на странице результатов */
+/* Класс .main-content-column используется в вашем HTML */
+.main-content-column {
+    padding: 1.5rem;
+    /* ВАЖНО: Установите здесь фактическую высоту вашего хедера */
+    height: calc(100vh - 56px); /* Пример: ЗАМЕНИТЕ 56px НА ВАШУ ВЫСОТУ ХЕДЕРА */
+    overflow-y: auto;
+    background-color: #FFFFFF; /* Фон для основного контента страницы результатов, если отличается от body */
+}
+
+/* Если у body есть класс .page-alt-background, как в вашем HTML,
+   то фон для .main-content-column можно убрать, если он должен быть таким же, как у body */
+body.page-alt-background .main-content-column {
+   /* background-color: inherit; /* или конкретный цвет, если body.page-alt-background имеет другой */
+}
+
+
+/* ==========================================================================
+   Стили для содержимого Сайдбара на странице результатов
+   ========================================================================== */
+/* nav.sidebar-nav - используется в вашем HTML */
+
+.sidebar-nav .sidebar-section-title {
+    font-size: .8rem;
+    color: #6c757d; /* Приглушенный цвет текста Bootstrap */
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    /* text-uppercase fw-bold mb-2 - уже есть в HTML (Bootstrap классы) */
+}
+
+/* Ссылки навигации в сайдбаре */
+.sidebar-nav .nav-pills .nav-link.sidebar-link {
+    color: #212529; /* Темный цвет текста Bootstrap по умолчанию */
+    padding: 0.6rem 0.85rem;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    border-radius: 0.3rem;
+    margin-bottom: 0.25rem;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.sidebar-nav .nav-pills .nav-link.sidebar-link .feather {
+    margin-right: 10px;
+    color: #6c757d; /* Цвет иконок сайдбара */
+    width: 18px;
+    height: 18px;
+    transition: color 0.15s ease-in-out;
+}
+
+.sidebar-nav .nav-pills .nav-link.sidebar-link:hover {
+    color: #f05550; /* Ваш акцентный цвет */
+    background-color: rgba(240, 85, 80, 0.07); /* Слегка акцентный фон */
+}
+
+.sidebar-nav .nav-pills .nav-link.sidebar-link:hover .feather {
+    color: #f05550; /* Ваш акцентный цвет */
+}
+
+/* Активное состояние для ссылок сайдбара (JS должен добавлять класс 'active') */
+.sidebar-nav .nav-pills .nav-link.sidebar-link.active {
+    color: #f05550; /* Ваш акцентный цвет */
+    background-color: rgba(240, 85, 80, 0.1);  /* Чуть более насыщенный акцентный фон */
+    border-left-color: #f05550; /* Ваш акцентный цвет */
+}
+
+.sidebar-nav .nav-pills .nav-link.sidebar-link.active .feather {
+    color: #f05550; /* Ваш акцентный цвет */
+}
+
+/* Кнопка/дропдаун экспорта в сайдбаре */
+.sidebar-column .sidebar-section .dropdown .btn-outline-secondary {
+    text-align: left;
+    border-color: #dee2e6; /* Стандартная граница Bootstrap */
+    color: #212529; /* Темный цвет текста */
+}
+.sidebar-column .sidebar-section .dropdown .btn-outline-secondary:hover,
+.sidebar-column .sidebar-section .dropdown .btn-outline-secondary:focus {
+    background-color: #e9ecef; /* Светлый фон Bootstrap */
+    color: #212529;
+}
+
+.sidebar-column .sidebar-section .dropdown .btn-outline-secondary .feather {
+    margin-right: 8px;
+    vertical-align: middle;
+    width: 16px; height: 16px;
+}
+
+.sidebar-column .sidebar-section .dropdown-menu {
+    font-size: 0.9rem;
+}
+.sidebar-column .sidebar-section .dropdown-menu .dropdown-item .feather {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    color: #6c757d; /* Приглушенный цвет иконок */
+}
+.sidebar-column .sidebar-section .dropdown-menu .dropdown-item:hover .feather,
+.sidebar-column .sidebar-section .dropdown-menu .dropdown-item:focus .feather {
+    color: #212529; /* Темный цвет при наведении на пункт меню */
+}
+
+/* Кнопка "Новый прогноз" в сайдбаре */
+/* div.sidebar-section.mt-auto.pt-3.border-top - уже есть в HTML для позиционирования */
+.sidebar-column .sidebar-section .btn-primary {
+    background-color: #f05550; /* Ваш акцентный цвет */
+    border-color: #f05550; /* Ваш акцентный цвет */
+    font-weight: 500;
+    color: #fff; /* Белый текст на акцентной кнопке */
+}
+
+.sidebar-column .sidebar-section .btn-primary:hover,
+.sidebar-column .sidebar-section .btn-primary:focus {
+    background-color: #e04540; /* Более темный оттенок акцентного цвета */
+    border-color: #e04540;
+    box-shadow: 0 0 0 0.2rem rgba(240, 85, 80, 0.35); /* Тень при фокусе */
+}
+
+.sidebar-column .sidebar-section .btn-primary .feather {
+    margin-right: 8px;
+    vertical-align: middle;
+    width: 16px; height: 16px;
+}
+
+
+/* ==========================================================================
+   Стили для Основного Контента на странице результатов
+   ========================================================================== */
+/* .content-section используется в вашем HTML */
+.main-content-column .content-section {
+    padding-top: 1rem; /* Начальный отступ для секций */
+    margin-bottom: 2.5rem;
+    /* Для корректной работы якорных ссылок с фиксированной шапкой */
+    /* ВАЖНО: Установите здесь фактическую высоту вашего хедера */
+    scroll-margin-top: calc(56px + 1rem); /* Пример: ЗАМЕНИТЕ 56px НА ВАШУ ВЫСОТУ ХЕДЕРА */
+}
+
+.main-content-column .content-section > h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem; /* Bootstrap mb-4 = 1.5rem */
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e9ecef; /* Мягкая граница */
+    color: #343a40; /* Темно-серый цвет заголовка Bootstrap */
+}
+
+/* Карточки на странице результатов */
+.main-content-column .card {
+    border: 1px solid #dee2e6; /* Стандартная граница Bootstrap */
+    background-color: #fff; /* Фон для карточек */
+    /* .shadow-sm уже применен в HTML (Bootstrap класс) */
+}
+.main-content-column .card-body dl.row dt {
+    font-weight: 500;
+    color: #495057; /* Цвет для dt в Bootstrap */
+}
+.main-content-column .card-body dl.row dd {
+    color: #212529; /* Цвет для dd в Bootstrap */
+}
+
+/* Секция "Визуализация" на странице результатов */
+#visualizationSection .chart-controls .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.35rem;
+}
+
+#visualizationSection .chart-controls .form-select-sm {
+    font-size: 0.875rem;
+}
+#visualizationSection .chart-controls .form-select-sm:focus {
+    border-color: #f05550; /* Ваш акцентный цвет */
+    box-shadow: 0 0 0 0.2rem rgba(240, 85, 80, 0.25);
+}
+
+#visualizationSection #layersContainer .layer-control-group {
+    background-color: #f8f9fa; /* Светлый фон */
+    padding: 1rem;
+    border-radius: 0.3rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e9ecef; /* Мягкая граница */
+}
+
+#visualizationSection #pyramidControlsContainer .pyramid-layer-controls {
+    background-color: #f8f9fa; /* Светлый фон */
+    border: 1px solid #e9ecef; /* Мягкая граница */
+    padding: 1rem;
+    border-radius: .3rem;
+    margin-bottom: 1rem;
+}
+#visualizationSection #pyramidControlsContainer .pyramid-layer-controls h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+#visualizationSection #pyramidControlsContainer input[type="color"].form-control-sm {
+    padding: 0.1rem 0.2rem;
+    height: calc(1.5em + 0.5rem + 2px); /* Высота Bootstrap .form-control-sm */
+    width: 45px;
+    border: 1px solid #dee2e6; /* Стандартная граница Bootstrap */
+    border-radius: 0.2rem;
+    vertical-align: middle;
+    margin: 0 0.25rem;
+}
+#visualizationSection #pyramidControlsContainer input[type="color"].form-control-sm:focus {
+    border-color: #f05550; /* Ваш акцентный цвет */
+    box-shadow: 0 0 0 0.2rem rgba(240, 85, 80, 0.25);
+}
+
+
+#plotlyChartContainer {
+    min-height: 80vh;; /* Как в HTML */
+    width: 100%;
+    border: 1px solid #dee2e6; /* Стандартная граница Bootstrap */
+    background-color: #fff; /* Белый фон для контейнера графика */
+    border-radius: 0.3rem;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075); /* Тень Bootstrap .shadow-sm */
+    padding: 15px;
+    margin-top: 1.5rem;
+}
+
+/* Кнопка "Построить/Обновить график" */
+#renderChartButton.btn-success { /* Если используется Bootstrap btn-success */
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    /* Цвета для .btn-success определяются Bootstrap */
+}
+
+/* Секция "Результаты (таблица)" на странице результатов */
+.main-content-column .forecast-result-block > h4 {
+    color: #343a40; /* Темно-серый цвет Bootstrap */
+}
+.main-content-column .forecast-result-block .alert.small {
+    font-size: 0.875em;
+    padding: 0.5rem 0.75rem;
+}
+.main-content-column .table-responsive .table {
+    font-size: 0.875rem;
+}
+.main-content-column .table th {
+    background-color: #f8f9fa; /* Светлый фон для заголовков таблицы */
+    font-weight: 500;
+    vertical-align: middle;
+    border-color: #dee2e6; /* Стандартная граница Bootstrap */
+}
+.main-content-column .table td {
+    vertical-align: middle;
+    border-color: #e9ecef; /* Мягкая граница */
+}
+
+/* ==========================================================================
+   Адаптивность для макета страницы результатов
+   ========================================================================== */
+@media (max-width: 767.98px) { /* md breakpoint Bootstrap (<768px) */
+    .sidebar-column {
+        position: static; /* Убрать sticky */
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #dee2e6; /* Граница снизу */
+        margin-bottom: 1.5rem;
+        overflow-y: visible;
+        top: auto; /* Сброс top для static */
+    }
+    .main-content-column {
+        height: auto;
+        overflow-y: visible;
+        padding: 1rem; /* Меньшие отступы */
+    }
+
+    .main-content-column .content-section {
+
+        scroll-margin-top: calc(56px + 0.5rem); /* Пример: ЗАМЕНИТЕ 56px НА ВАШУ ВЫСОТУ ХЕДЕРА */
+    }
+    .main-content-column .content-section > h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton {
+    border-color: #343a40; /* Темно-серый цвет Bootstrap */
+    color: #343a40;
+    background-color: transparent;
+    font-weight: 500;
+}
+
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton:hover,
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton:focus {
+    background-color: #343a40;
+    color: #fff;
+    border-color: #343a40;
+}
+
+/* Иконка */
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton .feather {
+    color: #343a40;
+}
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton:hover .feather,
+.sidebar-column .sidebar-section .dropdown button#exportDropdownButton:focus .feather {
+    color: #fff;
+}

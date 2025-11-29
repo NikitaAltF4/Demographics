@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %} {# Для фильтра naturaltime #}
+
+{% block title %}История ваших прогнозов - LifeMap Analytics{% endblock %}
+
+{% block body_class %}page-alt-background{% endblock %} {# Можете добавить свой класс, если нужен особый фон/layout #}
+
+{% block extra_head %}
+    {# Если нужны специфичные CSS для этой страницы, подключите их здесь #}
+    <link rel="stylesheet" href="{% static 'css/forecast_history.css' %}">
+    {# Стили для .forecast-history-item и .history-page-title предполагается, что будут в вашем основном style.css или в forecast_results.css #}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1"> {# Центрируем контент, делаем немного уже #}
+            <h1 class="history-page-title">История ваших прогнозов</h1>
+
+            {% if page_obj.object_list %}
+                <div class="list-group-flush"> {# Используем flush для удаления внешних границ list-group #}
+                    {% for forecast_run in page_obj.object_list %}
+                        <div class="forecast-history-item"> {# Класс из вашего CSS #}
+                            <div class="d-flex w-100 justify-content-between mb-2">
+                                <h5 class="forecast-title-date mb-0">
+                                    <a href="{% url 'forecasting:view_historical_forecast' forecast_run_id=forecast_run.id %}" class="text-decoration-none">
+                                        {% if forecast_run.custom_title %}
+                                            {{ forecast_run.custom_title }}
+                                        {% else %}
+                                            Прогноз от {{ forecast_run.created_at|date:"d.m.Y H:i" }}
+                                        {% endif %}
+                                    </a>
+                                </h5>
+                                <small class="text-muted">{{ forecast_run.created_at|naturaltime }}</small>
+                            </div>
+                            
+                            <p class="forecast-params-summary small">
+                                {# Более детальный вывод параметров, если они есть в input_parameters_json #}
+                                {% with params=forecast_run.input_parameters_json %}
+                                    <strong>Регионы:</strong> 
+                                    {% if params.region_names_display %}
+                                        {{ params.region_names_display|join:", " }}
+                                    {% elif params.region_ids %}
+                                        ID: {{ params.region_ids|join:", " }}
+                                    {% else %}
+                                        Не указаны
+                                    {% endif %}<br>
+                                    <strong>Период:</strong> {{ params.forecast_start_year|default:"?" }} - {{ params.forecast_end_year|default:"?" }}<br>
+                                    <strong>Тип поселения:</strong> {{ params.settlement_type_name_display|default:"Не указан" }}<br>
+                                    <strong>Пол:</strong> {{ params.sex_code_name_display|default:"Не указан" }}
+                                {% endwith %}
+                            </p>
+
+                            {% if forecast_run.warnings_json %}
+                                <div class="alert alert-warning alert-sm small p-2 mt-2" role="alert" style="font-size: 0.8em;">
+                                    <strong>Предупреждения:</strong>
+                                    <ul class="mb-0 ps-3" style="list-style-type: disc;">
+                                        {% for warning in forecast_run.warnings_json|slice:":2" %}
+                                            <li>{{ warning|truncatewords:15 }}</li>
+                                        {% endfor %}
+                                        {% if forecast_run.warnings_json|length > 2 %}
+                                            <li>... и еще {{ forecast_run.warnings_json|length|add:"-2" }}.</li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+                            <div class="forecast-actions mt-3">
+                                <a href="{% url 'forecasting:view_historical_forecast' forecast_run_id=forecast_run.id %}" class="btn btn-sm btn-outline-primary me-2">
+                                    <i data-feather="eye" class="feather-sm"></i> Посмотреть детали
+                                </a>
+                                
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i data-feather="download" class="feather-sm"></i> Экспорт
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                       
+   <li><a class="dropdown-item export-csv-history-link"
+          href="{% url 'forecasting:export_forecast_data' forecast_run_id=forecast_run.id export_format='csv' %}"
+          data-forecast-id="{{ forecast_run.id }}">Экспорт в CSV</a></li>
+   <li><a class="dropdown-item export-xlsx-history-link"
+          href="{% url 'forecasting:export_forecast_data' forecast_run_id=forecast_run.id export_format='xlsx' %}"
+          data-forecast-id="{{ forecast_run.id }}">Экспорт в Excel</a></li>
+</ul>
+                                    
+                                </div>
+                               
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# Включаем шаблон пагинации #}
+                {% include "includes/pagination.html" with page_obj=page_obj %}
+
+            {% else %}
+                <div class="text-center py-5">
+                    <i data-feather="info" class="text-muted mb-3" style="width: 48px; height: 48px;"></i>
+                    <p class="lead">У вас пока нет сохраненных прогнозов.</p>
+                    <p>Начните с создания нового прогноза, чтобы он появился в истории.</p>
+                </div>
+            {% endif %}
+           <p class="mt-4 text-center">
+    <a href="{% url 'forecasting:run_forecast' %}" class="btn btn-secondary"> {# <--- СТАЛО btn-secondary #}
+         <i data-feather="plus-circle" class="feather-sm"></i> Сделать новый прогноз
+    </a>
+</p>
+        </div>
+    </div>
+</div>
+    
+  
+{% endblock %}
+
+{% block extra_js %}
+        
+        <script src="{% static 'js/forecast_history_page.js' %}"></script>
+{% endblock %}
