@@ -1,0 +1,378 @@
+{
+    "original_input_params": {
+        "forecast_start_year": 2023,
+        "forecast_end_year": 2032,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2022,
+        "target_age_group_input": "Все возрасты",
+        "output_detailed_by_age": false,
+        "settlement_type_id": 2,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "last_year",
+        "birth_rate_manual_change_percent": null,
+        "death_rate_scenario_male": "last_year",
+        "death_rate_manual_change_percent_male": null,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": false,
+        "migration_scenario": "last_year",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null
+    },
+    "display_params_overall": {
+        "forecast_start_year": 2023,
+        "forecast_end_year": 2032,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2022,
+        "target_age_group_input": "Все возрасты",
+        "output_detailed_by_age": false,
+        "settlement_type_id": 2,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "last_year",
+        "birth_rate_manual_change_percent": null,
+        "death_rate_scenario_male": "last_year",
+        "death_rate_manual_change_percent_male": null,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": false,
+        "migration_scenario": "last_year",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null,
+        "region_ids": [
+            4,
+            5
+        ],
+        "region_names_display": [
+            "Владимирская область",
+            "Воронежская область"
+        ],
+        "settlement_type_name_display": "Городское население",
+        "sex_code_name_display": "Оба пола",
+        "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+        "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+        "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+        "migration_scenario_name_display": "Фиксированные (посл. год)",
+        "target_age_group_input_display": "Все возрасты"
+    },
+    "all_warnings": [],
+    "grouped_forecasts_data": [
+        {
+            "title": "Владимирская область",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2023,
+                "forecast_end_year": 2032,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2022,
+                "target_age_group_input": "Все возрасты",
+                "output_detailed_by_age": false,
+                "settlement_type_id": 2,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "last_year",
+                "birth_rate_manual_change_percent": null,
+                "death_rate_scenario_male": "last_year",
+                "death_rate_manual_change_percent_male": null,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": false,
+                "migration_scenario": "last_year",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    4
+                ],
+                "region_names_display": [
+                    "Владимирская область"
+                ],
+                "settlement_type_name_display": "Городское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Фиксированные (посл. год)",
+                "target_age_group_input_display": "Все возрасты"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2023,
+                    "urban_male": 265937,
+                    "urban_female": 364180,
+                    "urban_total": 630117
+                },
+                {
+                    "year": 2024,
+                    "urban_male": 181746,
+                    "urban_female": 265758,
+                    "urban_total": 447504
+                },
+                {
+                    "year": 2025,
+                    "urban_male": 143561,
+                    "urban_female": 213677,
+                    "urban_total": 357239
+                },
+                {
+                    "year": 2026,
+                    "urban_male": 123865,
+                    "urban_female": 182074,
+                    "urban_total": 305940
+                },
+                {
+                    "year": 2027,
+                    "urban_male": 111506,
+                    "urban_female": 160265,
+                    "urban_total": 271770
+                },
+                {
+                    "year": 2028,
+                    "urban_male": 102763,
+                    "urban_female": 143798,
+                    "urban_total": 246560
+                },
+                {
+                    "year": 2029,
+                    "urban_male": 95635,
+                    "urban_female": 130507,
+                    "urban_total": 226142
+                },
+                {
+                    "year": 2030,
+                    "urban_male": 89539,
+                    "urban_female": 119507,
+                    "urban_total": 209046
+                },
+                {
+                    "year": 2031,
+                    "urban_male": 84271,
+                    "urban_female": 110158,
+                    "urban_total": 194429
+                },
+                {
+                    "year": 2032,
+                    "urban_male": 79317,
+                    "urban_female": 102074,
+                    "urban_total": 181392
+                }
+            ]
+        },
+        {
+            "title": "Воронежская область",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2023,
+                "forecast_end_year": 2032,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2022,
+                "target_age_group_input": "Все возрасты",
+                "output_detailed_by_age": false,
+                "settlement_type_id": 2,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "last_year",
+                "birth_rate_manual_change_percent": null,
+                "death_rate_scenario_male": "last_year",
+                "death_rate_manual_change_percent_male": null,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": false,
+                "migration_scenario": "last_year",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    5
+                ],
+                "region_names_display": [
+                    "Воронежская область"
+                ],
+                "settlement_type_name_display": "Городское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Фиксированные (посл. год)",
+                "target_age_group_input_display": "Все возрасты"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2023,
+                    "urban_male": 473224,
+                    "urban_female": 651015,
+                    "urban_total": 1124239
+                },
+                {
+                    "year": 2024,
+                    "urban_male": 362252,
+                    "urban_female": 552332,
+                    "urban_total": 914584
+                },
+                {
+                    "year": 2025,
+                    "urban_male": 310278,
+                    "urban_female": 503086,
+                    "urban_total": 813363
+                },
+                {
+                    "year": 2026,
+                    "urban_male": 282357,
+                    "urban_female": 474938,
+                    "urban_total": 757295
+                },
+                {
+                    "year": 2027,
+                    "urban_male": 265100,
+                    "urban_female": 456546,
+                    "urban_total": 721646
+                },
+                {
+                    "year": 2028,
+                    "urban_male": 254012,
+                    "urban_female": 443092,
+                    "urban_total": 697105
+                },
+                {
+                    "year": 2029,
+                    "urban_male": 246335,
+                    "urban_female": 432886,
+                    "urban_total": 679221
+                },
+                {
+                    "year": 2030,
+                    "urban_male": 240697,
+                    "urban_female": 424169,
+                    "urban_total": 664865
+                },
+                {
+                    "year": 2031,
+                    "urban_male": 236470,
+                    "urban_female": 416396,
+                    "urban_total": 652866
+                },
+                {
+                    "year": 2032,
+                    "urban_male": 232949,
+                    "urban_female": 409618,
+                    "urban_total": 642567
+                }
+            ]
+        },
+        {
+            "title": "Сумма по 2 выбранным регионам",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2023,
+                "forecast_end_year": 2032,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2022,
+                "target_age_group_input": "Все возрасты",
+                "output_detailed_by_age": false,
+                "settlement_type_id": 2,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "last_year",
+                "birth_rate_manual_change_percent": null,
+                "death_rate_scenario_male": "last_year",
+                "death_rate_manual_change_percent_male": null,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": false,
+                "migration_scenario": "last_year",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    4,
+                    5
+                ],
+                "region_names_display": [
+                    "Владимирская область",
+                    "Воронежская область"
+                ],
+                "settlement_type_name_display": "Городское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Фиксированные (посл. год)",
+                "target_age_group_input_display": "Все возрасты"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2023,
+                    "urban_male": 731102,
+                    "urban_female": 1001411,
+                    "urban_total": 1732513
+                },
+                {
+                    "year": 2024,
+                    "urban_male": 532123,
+                    "urban_female": 792945,
+                    "urban_total": 1325069
+                },
+                {
+                    "year": 2025,
+                    "urban_male": 440122,
+                    "urban_female": 681292,
+                    "urban_total": 1121413
+                },
+                {
+                    "year": 2026,
+                    "urban_male": 391658,
+                    "urban_female": 612018,
+                    "urban_total": 1003676
+                },
+                {
+                    "year": 2027,
+                    "urban_male": 361620,
+                    "urban_female": 562906,
+                    "urban_total": 924525
+                },
+                {
+                    "year": 2028,
+                    "urban_male": 341481,
+                    "urban_female": 524834,
+                    "urban_total": 866315
+                },
+                {
+                    "year": 2029,
+                    "urban_male": 326204,
+                    "urban_female": 493791,
+                    "urban_total": 819995
+                },
+                {
+                    "year": 2030,
+                    "urban_male": 313840,
+                    "urban_female": 467460,
+                    "urban_total": 781300
+                },
+                {
+                    "year": 2031,
+                    "urban_male": 303630,
+                    "urban_female": 444592,
+                    "urban_total": 748222
+                },
+                {
+                    "year": 2032,
+                    "urban_male": 294179,
+                    "urban_female": 424804,
+                    "urban_total": 718983
+                }
+            ]
+        }
+    ],
+    "output_detailed_by_age_global": false,
+    "user_selected_settlement_id": 2,
+    "user_selected_sex_code": "A",
+    "ID_SETTLEMENT_TOTAL": 1,
+    "ID_SETTLEMENT_URBAN": 2,
+    "ID_SETTLEMENT_RURAL": 3,
+    "SEX_CODE_TOTAL": "A",
+    "SEX_CODE_MALE": "M",
+    "SEX_CODE_FEMALE": "F",
+    "active_data_keys": [
+        "urban_female",
+        "urban_male",
+        "urban_total"
+    ]
+}

@@ -1,0 +1,3460 @@
+{
+    "original_input_params": {
+        "forecast_start_year": 2022,
+        "forecast_end_year": 2040,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2021,
+        "target_age_group_input": [
+            18,
+            20
+        ],
+        "output_detailed_by_age": true,
+        "settlement_type_id": 3,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "manual_percent",
+        "birth_rate_manual_change_percent": 0.5,
+        "death_rate_scenario_male": "manual_percent",
+        "death_rate_manual_change_percent_male": -0.6,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": true,
+        "migration_scenario": "historical_trend",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null
+    },
+    "display_params_overall": {
+        "forecast_start_year": 2022,
+        "forecast_end_year": 2040,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2021,
+        "target_age_group_input": [
+            18,
+            20
+        ],
+        "output_detailed_by_age": true,
+        "settlement_type_id": 3,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "manual_percent",
+        "birth_rate_manual_change_percent": 0.5,
+        "death_rate_scenario_male": "manual_percent",
+        "death_rate_manual_change_percent_male": -0.6,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": true,
+        "migration_scenario": "historical_trend",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null,
+        "region_ids": [
+            68,
+            2,
+            35,
+            69,
+            70,
+            76
+        ],
+        "region_names_display": [
+            "Алтайский край",
+            "Белгородская область",
+            "Волгоградская область",
+            "Забайкальский край",
+            "Красноярский край",
+            "Республика Саха (Якутия)"
+        ],
+        "settlement_type_name_display": "Сельское население",
+        "sex_code_name_display": "Оба пола",
+        "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+        "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+        "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+        "migration_scenario_name_display": "Исторический тренд",
+        "target_age_group_input_display": "[18, 20]"
+    },
+    "all_warnings": [],
+    "grouped_forecasts_data": [
+        {
+            "title": "Алтайский край",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    68
+                ],
+                "region_names_display": [
+                    "Алтайский край"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3897,
+                            "rural_female": 3929,
+                            "rural_total": 7825
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3515,
+                            "rural_female": 3167,
+                            "rural_total": 6682
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1772,
+                            "rural_female": 3025,
+                            "rural_total": 4797
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3445,
+                            "rural_female": 3696,
+                            "rural_total": 7142
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3285,
+                            "rural_female": 3387,
+                            "rural_total": 6673
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1792,
+                            "rural_female": 2891,
+                            "rural_total": 4684
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3455,
+                            "rural_female": 3786,
+                            "rural_total": 7241
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2908,
+                            "rural_female": 3187,
+                            "rural_total": 6095
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1683,
+                            "rural_female": 3092,
+                            "rural_total": 4775
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3418,
+                            "rural_female": 4151,
+                            "rural_total": 7569
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2919,
+                            "rural_female": 3264,
+                            "rural_total": 6183
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1496,
+                            "rural_female": 2909,
+                            "rural_total": 4405
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3714,
+                            "rural_female": 4590,
+                            "rural_total": 8304
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2891,
+                            "rural_female": 3579,
+                            "rural_total": 6470
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1508,
+                            "rural_female": 2979,
+                            "rural_total": 4487
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3552,
+                            "rural_female": 4524,
+                            "rural_total": 8076
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3144,
+                            "rural_female": 3957,
+                            "rural_total": 7101
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1500,
+                            "rural_female": 3267,
+                            "rural_total": 4766
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3264,
+                            "rural_female": 4220,
+                            "rural_total": 7484
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3010,
+                            "rural_female": 3900,
+                            "rural_total": 6911
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1638,
+                            "rural_female": 3612,
+                            "rural_total": 5250
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3164,
+                            "rural_female": 4387,
+                            "rural_total": 7551
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2769,
+                            "rural_female": 3638,
+                            "rural_total": 6407
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1575,
+                            "rural_female": 3561,
+                            "rural_total": 5135
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3102,
+                            "rural_female": 4719,
+                            "rural_total": 7821
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2687,
+                            "rural_female": 3782,
+                            "rural_total": 6469
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1455,
+                            "rural_female": 3321,
+                            "rural_total": 4776
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2915,
+                            "rural_female": 4535,
+                            "rural_total": 7450
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2637,
+                            "rural_female": 4068,
+                            "rural_total": 6705
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1417,
+                            "rural_female": 3452,
+                            "rural_total": 4869
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2845,
+                            "rural_female": 4172,
+                            "rural_total": 7017
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2480,
+                            "rural_female": 3910,
+                            "rural_total": 6390
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1397,
+                            "rural_female": 3714,
+                            "rural_total": 5110
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2521,
+                            "rural_female": 3892,
+                            "rural_total": 6413
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2423,
+                            "rural_female": 3597,
+                            "rural_total": 6019
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1319,
+                            "rural_female": 3569,
+                            "rural_total": 4888
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2195,
+                            "rural_female": 3565,
+                            "rural_total": 5760
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2149,
+                            "rural_female": 3355,
+                            "rural_total": 5504
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1294,
+                            "rural_female": 3283,
+                            "rural_total": 4577
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1961,
+                            "rural_female": 3236,
+                            "rural_total": 5196
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1873,
+                            "rural_female": 3074,
+                            "rural_total": 4947
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1152,
+                            "rural_female": 3063,
+                            "rural_total": 4215
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1859,
+                            "rural_female": 2729,
+                            "rural_total": 4588
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1675,
+                            "rural_female": 2790,
+                            "rural_total": 4464
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1008,
+                            "rural_female": 2806,
+                            "rural_total": 3814
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1690,
+                            "rural_female": 2371,
+                            "rural_total": 4061
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1590,
+                            "rural_female": 2353,
+                            "rural_total": 3942
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 905,
+                            "rural_female": 2546,
+                            "rural_total": 3451
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1430,
+                            "rural_female": 1565,
+                            "rural_total": 2995
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1446,
+                            "rural_female": 2044,
+                            "rural_total": 3490
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 862,
+                            "rural_female": 2148,
+                            "rural_total": 3010
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 502,
+                            "rural_female": 778,
+                            "rural_total": 1280
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1225,
+                            "rural_female": 1349,
+                            "rural_total": 2574
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 788,
+                            "rural_female": 1866,
+                            "rural_total": 2654
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1552,
+                            "rural_female": 3822,
+                            "rural_total": 5373
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 431,
+                            "rural_female": 670,
+                            "rural_total": 1101
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 670,
+                            "rural_female": 1232,
+                            "rural_total": 1902
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Белгородская область",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    2
+                ],
+                "region_names_display": [
+                    "Белгородская область"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1902,
+                            "rural_female": 1678,
+                            "rural_total": 3580
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2335,
+                            "rural_female": 2253,
+                            "rural_total": 4588
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1783,
+                            "rural_female": 861,
+                            "rural_total": 2645
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1406,
+                            "rural_female": 1461,
+                            "rural_total": 2867
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1902,
+                            "rural_female": 1678,
+                            "rural_total": 3580
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1900,
+                            "rural_female": 899,
+                            "rural_total": 2799
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1098,
+                            "rural_female": 1497,
+                            "rural_total": 2595
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1406,
+                            "rural_female": 1461,
+                            "rural_total": 2867
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1550,
+                            "rural_female": 669,
+                            "rural_total": 2220
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 982,
+                            "rural_female": 1439,
+                            "rural_total": 2422
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1098,
+                            "rural_female": 1497,
+                            "rural_total": 2595
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1147,
+                            "rural_female": 583,
+                            "rural_total": 1730
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 975,
+                            "rural_female": 1528,
+                            "rural_total": 2503
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 982,
+                            "rural_female": 1439,
+                            "rural_total": 2422
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 897,
+                            "rural_female": 597,
+                            "rural_total": 1494
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 915,
+                            "rural_female": 1510,
+                            "rural_total": 2425
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 975,
+                            "rural_female": 1528,
+                            "rural_total": 2503
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 803,
+                            "rural_female": 574,
+                            "rural_total": 1378
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 702,
+                            "rural_female": 1411,
+                            "rural_total": 2113
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 915,
+                            "rural_female": 1510,
+                            "rural_total": 2425
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 798,
+                            "rural_female": 610,
+                            "rural_total": 1408
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 718,
+                            "rural_female": 1237,
+                            "rural_total": 1955
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 702,
+                            "rural_female": 1411,
+                            "rural_total": 2113
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 750,
+                            "rural_female": 602,
+                            "rural_total": 1352
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 713,
+                            "rural_female": 1171,
+                            "rural_total": 1885
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 718,
+                            "rural_female": 1237,
+                            "rural_total": 1955
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 576,
+                            "rural_female": 563,
+                            "rural_total": 1139
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 684,
+                            "rural_female": 1203,
+                            "rural_total": 1887
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 713,
+                            "rural_female": 1171,
+                            "rural_total": 1885
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 590,
+                            "rural_female": 494,
+                            "rural_total": 1084
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 634,
+                            "rural_female": 1083,
+                            "rural_total": 1717
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 684,
+                            "rural_female": 1203,
+                            "rural_total": 1887
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 587,
+                            "rural_female": 467,
+                            "rural_total": 1054
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 621,
+                            "rural_female": 1046,
+                            "rural_total": 1667
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 634,
+                            "rural_female": 1083,
+                            "rural_total": 1717
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 564,
+                            "rural_female": 480,
+                            "rural_total": 1043
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 536,
+                            "rural_female": 942,
+                            "rural_total": 1479
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 621,
+                            "rural_female": 1046,
+                            "rural_total": 1667
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 523,
+                            "rural_female": 432,
+                            "rural_total": 955
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 501,
+                            "rural_female": 851,
+                            "rural_total": 1352
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 536,
+                            "rural_female": 942,
+                            "rural_total": 1479
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 513,
+                            "rural_female": 417,
+                            "rural_total": 930
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 468,
+                            "rural_female": 796,
+                            "rural_total": 1264
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 501,
+                            "rural_female": 851,
+                            "rural_total": 1352
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 443,
+                            "rural_female": 376,
+                            "rural_total": 819
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 456,
+                            "rural_female": 580,
+                            "rural_total": 1036
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 468,
+                            "rural_female": 796,
+                            "rural_total": 1264
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 415,
+                            "rural_female": 340,
+                            "rural_total": 754
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 312,
+                            "rural_female": 305,
+                            "rural_total": 617
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 456,
+                            "rural_female": 580,
+                            "rural_total": 1036
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 388,
+                            "rural_female": 317,
+                            "rural_total": 705
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 156,
+                            "rural_female": 100,
+                            "rural_total": 256
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 312,
+                            "rural_female": 305,
+                            "rural_total": 617
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 378,
+                            "rural_female": 231,
+                            "rural_total": 610
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 393,
+                            "rural_female": 406,
+                            "rural_total": 799
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 156,
+                            "rural_female": 100,
+                            "rural_total": 256
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 259,
+                            "rural_female": 122,
+                            "rural_total": 381
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Волгоградская область",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    35
+                ],
+                "region_names_display": [
+                    "Волгоградская область"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1335,
+                            "rural_female": 1715,
+                            "rural_total": 3050
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1383,
+                            "rural_female": 2501,
+                            "rural_total": 3884
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1210,
+                            "rural_female": 1664,
+                            "rural_total": 2875
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1016,
+                            "rural_female": 1287,
+                            "rural_total": 2303
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 676,
+                            "rural_female": 1715,
+                            "rural_total": 2391
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 645,
+                            "rural_female": 1750,
+                            "rural_total": 2395
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 678,
+                            "rural_female": 1196,
+                            "rural_total": 1873
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 516,
+                            "rural_female": 1287,
+                            "rural_total": 1804
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 317,
+                            "rural_female": 1200,
+                            "rural_total": 1517
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 512,
+                            "rural_female": 1392,
+                            "rural_total": 1903
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 346,
+                            "rural_female": 1196,
+                            "rural_total": 1542
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 243,
+                            "rural_female": 901,
+                            "rural_total": 1144
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 518,
+                            "rural_female": 1527,
+                            "rural_total": 2045
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 262,
+                            "rural_female": 1392,
+                            "rural_total": 1654
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 164,
+                            "rural_female": 837,
+                            "rural_total": 1000
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 420,
+                            "rural_female": 1323,
+                            "rural_total": 1743
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 267,
+                            "rural_female": 1527,
+                            "rural_total": 1794
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 125,
+                            "rural_female": 974,
+                            "rural_total": 1098
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 275,
+                            "rural_female": 1278,
+                            "rural_total": 1553
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 217,
+                            "rural_female": 1323,
+                            "rural_total": 1541
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 128,
+                            "rural_female": 1068,
+                            "rural_total": 1196
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 297,
+                            "rural_female": 1146,
+                            "rural_total": 1443
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 143,
+                            "rural_female": 1278,
+                            "rural_total": 1421
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 104,
+                            "rural_female": 926,
+                            "rural_total": 1030
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 318,
+                            "rural_female": 1126,
+                            "rural_total": 1444
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 155,
+                            "rural_female": 1146,
+                            "rural_total": 1301
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 69,
+                            "rural_female": 894,
+                            "rural_total": 963
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 280,
+                            "rural_female": 1057,
+                            "rural_total": 1337
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 167,
+                            "rural_female": 1126,
+                            "rural_total": 1293
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 75,
+                            "rural_female": 802,
+                            "rural_total": 877
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 229,
+                            "rural_female": 1052,
+                            "rural_total": 1281
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 148,
+                            "rural_female": 1057,
+                            "rural_total": 1204
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 81,
+                            "rural_female": 788,
+                            "rural_total": 869
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 203,
+                            "rural_female": 959,
+                            "rural_total": 1162
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 121,
+                            "rural_female": 1052,
+                            "rural_total": 1173
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 72,
+                            "rural_female": 739,
+                            "rural_total": 812
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 148,
+                            "rural_female": 832,
+                            "rural_total": 980
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 108,
+                            "rural_female": 959,
+                            "rural_total": 1067
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 60,
+                            "rural_female": 736,
+                            "rural_total": 796
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 101,
+                            "rural_female": 794,
+                            "rural_total": 895
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 79,
+                            "rural_female": 832,
+                            "rural_total": 911
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 53,
+                            "rural_female": 671,
+                            "rural_total": 724
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 62,
+                            "rural_female": 638,
+                            "rural_total": 700
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 54,
+                            "rural_female": 794,
+                            "rural_total": 848
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 39,
+                            "rural_female": 582,
+                            "rural_total": 621
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 0,
+                            "rural_female": 496,
+                            "rural_total": 496
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 33,
+                            "rural_female": 638,
+                            "rural_total": 671
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 27,
+                            "rural_female": 555,
+                            "rural_total": 582
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 0,
+                            "rural_female": 452,
+                            "rural_total": 452
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 0,
+                            "rural_female": 496,
+                            "rural_total": 496
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 17,
+                            "rural_female": 446,
+                            "rural_total": 463
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 0,
+                            "rural_female": 145,
+                            "rural_total": 145
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 0,
+                            "rural_female": 452,
+                            "rural_total": 452
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 0,
+                            "rural_female": 347,
+                            "rural_total": 347
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3,
+                            "rural_female": 549,
+                            "rural_total": 553
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 0,
+                            "rural_female": 145,
+                            "rural_total": 145
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 0,
+                            "rural_female": 316,
+                            "rural_total": 316
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Забайкальский край",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    69
+                ],
+                "region_names_display": [
+                    "Забайкальский край"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 639,
+                            "rural_female": 1320,
+                            "rural_total": 1959
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 581,
+                            "rural_female": 673,
+                            "rural_total": 1254
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 575,
+                            "rural_female": 499,
+                            "rural_total": 1074
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 404,
+                            "rural_female": 635,
+                            "rural_total": 1039
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 215,
+                            "rural_female": 563,
+                            "rural_total": 778
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 195,
+                            "rural_female": 224,
+                            "rural_total": 420
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 149,
+                            "rural_female": 527,
+                            "rural_total": 675
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 137,
+                            "rural_female": 271,
+                            "rural_total": 408
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 73,
+                            "rural_female": 188,
+                            "rural_total": 260
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 164,
+                            "rural_female": 463,
+                            "rural_total": 627
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 51,
+                            "rural_female": 225,
+                            "rural_total": 275
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 47,
+                            "rural_female": 90,
+                            "rural_total": 137
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 153,
+                            "rural_female": 427,
+                            "rural_total": 580
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 56,
+                            "rural_female": 197,
+                            "rural_total": 254
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 17,
+                            "rural_female": 75,
+                            "rural_total": 92
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 140,
+                            "rural_female": 370,
+                            "rural_total": 511
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 53,
+                            "rural_female": 182,
+                            "rural_total": 235
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 20,
+                            "rural_female": 66,
+                            "rural_total": 85
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 120,
+                            "rural_female": 307,
+                            "rural_total": 427
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 49,
+                            "rural_female": 158,
+                            "rural_total": 207
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 19,
+                            "rural_female": 61,
+                            "rural_total": 79
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 101,
+                            "rural_female": 303,
+                            "rural_total": 404
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 42,
+                            "rural_female": 131,
+                            "rural_total": 173
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 17,
+                            "rural_female": 53,
+                            "rural_total": 70
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 103,
+                            "rural_female": 304,
+                            "rural_total": 407
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 36,
+                            "rural_female": 129,
+                            "rural_total": 165
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 15,
+                            "rural_female": 44,
+                            "rural_total": 59
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 106,
+                            "rural_female": 309,
+                            "rural_total": 415
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 37,
+                            "rural_female": 130,
+                            "rural_total": 166
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 13,
+                            "rural_female": 43,
+                            "rural_total": 56
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 91,
+                            "rural_female": 267,
+                            "rural_total": 358
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 38,
+                            "rural_female": 132,
+                            "rural_total": 170
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 13,
+                            "rural_female": 43,
+                            "rural_total": 56
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 59,
+                            "rural_female": 265,
+                            "rural_total": 325
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 33,
+                            "rural_female": 114,
+                            "rural_total": 147
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 14,
+                            "rural_female": 44,
+                            "rural_total": 58
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 43,
+                            "rural_female": 203,
+                            "rural_total": 246
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 22,
+                            "rural_female": 113,
+                            "rural_total": 135
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 12,
+                            "rural_female": 38,
+                            "rural_total": 50
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 39,
+                            "rural_female": 95,
+                            "rural_total": 133
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 16,
+                            "rural_female": 87,
+                            "rural_total": 102
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 8,
+                            "rural_female": 38,
+                            "rural_total": 46
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 36,
+                            "rural_female": 71,
+                            "rural_total": 107
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 14,
+                            "rural_female": 40,
+                            "rural_total": 55
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 6,
+                            "rural_female": 29,
+                            "rural_total": 35
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 33,
+                            "rural_female": 38,
+                            "rural_total": 70
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 14,
+                            "rural_female": 30,
+                            "rural_total": 44
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 5,
+                            "rural_female": 13,
+                            "rural_total": 19
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 36,
+                            "rural_female": 27,
+                            "rural_total": 63
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 12,
+                            "rural_female": 16,
+                            "rural_total": 28
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 5,
+                            "rural_female": 10,
+                            "rural_total": 15
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 40,
+                            "rural_female": 9,
+                            "rural_total": 49
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 14,
+                            "rural_female": 11,
+                            "rural_total": 25
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 5,
+                            "rural_female": 5,
+                            "rural_total": 10
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 44,
+                            "rural_female": 24,
+                            "rural_total": 68
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 15,
+                            "rural_female": 4,
+                            "rural_total": 19
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 5,
+                            "rural_female": 4,
+                            "rural_total": 9
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Красноярский край",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    70
+                ],
+                "region_names_display": [
+                    "Красноярский край"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2290,
+                            "rural_female": 2621,
+                            "rural_total": 4910
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 818,
+                            "rural_female": 1890,
+                            "rural_total": 2708
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1020,
+                            "rural_female": 2083,
+                            "rural_total": 3103
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1436,
+                            "rural_female": 2870,
+                            "rural_total": 4306
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 769,
+                            "rural_female": 2164,
+                            "rural_total": 2933
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 368,
+                            "rural_female": 1890,
+                            "rural_total": 2258
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 849,
+                            "rural_female": 2769,
+                            "rural_total": 3618
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 486,
+                            "rural_female": 2370,
+                            "rural_total": 2856
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 348,
+                            "rural_female": 2164,
+                            "rural_total": 2512
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 847,
+                            "rural_female": 2510,
+                            "rural_total": 3356
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 290,
+                            "rural_female": 2286,
+                            "rural_total": 2576
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 221,
+                            "rural_female": 2370,
+                            "rural_total": 2591
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 864,
+                            "rural_female": 2321,
+                            "rural_total": 3184
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 291,
+                            "rural_female": 2072,
+                            "rural_total": 2364
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 132,
+                            "rural_female": 2286,
+                            "rural_total": 2418
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 835,
+                            "rural_female": 2210,
+                            "rural_total": 3045
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 299,
+                            "rural_female": 1916,
+                            "rural_total": 2216
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 134,
+                            "rural_female": 2072,
+                            "rural_total": 2206
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 783,
+                            "rural_female": 2038,
+                            "rural_total": 2821
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 292,
+                            "rural_female": 1825,
+                            "rural_total": 2116
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 138,
+                            "rural_female": 1916,
+                            "rural_total": 2054
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 825,
+                            "rural_female": 2017,
+                            "rural_total": 2842
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 276,
+                            "rural_female": 1683,
+                            "rural_total": 1958
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 135,
+                            "rural_female": 1825,
+                            "rural_total": 1960
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 859,
+                            "rural_female": 2190,
+                            "rural_total": 3050
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 292,
+                            "rural_female": 1666,
+                            "rural_total": 1958
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 128,
+                            "rural_female": 1683,
+                            "rural_total": 1811
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 895,
+                            "rural_female": 2243,
+                            "rural_total": 3138
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 307,
+                            "rural_female": 1809,
+                            "rural_total": 2116
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 137,
+                            "rural_female": 1666,
+                            "rural_total": 1803
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 769,
+                            "rural_female": 2168,
+                            "rural_total": 2937
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 322,
+                            "rural_female": 1852,
+                            "rural_total": 2174
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 145,
+                            "rural_female": 1809,
+                            "rural_total": 1953
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 720,
+                            "rural_female": 1823,
+                            "rural_total": 2543
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 279,
+                            "rural_female": 1790,
+                            "rural_total": 2069
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 152,
+                            "rural_female": 1852,
+                            "rural_total": 2005
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 556,
+                            "rural_female": 1586,
+                            "rural_total": 2141
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 263,
+                            "rural_female": 1506,
+                            "rural_total": 1768
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 133,
+                            "rural_female": 1790,
+                            "rural_total": 1923
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 523,
+                            "rural_female": 1526,
+                            "rural_total": 2048
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 204,
+                            "rural_female": 1310,
+                            "rural_total": 1514
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 126,
+                            "rural_female": 1506,
+                            "rural_total": 1631
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 430,
+                            "rural_female": 1419,
+                            "rural_total": 1849
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 193,
+                            "rural_female": 1260,
+                            "rural_total": 1453
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 98,
+                            "rural_female": 1310,
+                            "rural_total": 1408
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 355,
+                            "rural_female": 1015,
+                            "rural_total": 1370
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 160,
+                            "rural_female": 1172,
+                            "rural_total": 1332
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 93,
+                            "rural_female": 1260,
+                            "rural_total": 1353
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 183,
+                            "rural_female": 782,
+                            "rural_total": 965
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 133,
+                            "rural_female": 838,
+                            "rural_total": 971
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 78,
+                            "rural_female": 1172,
+                            "rural_total": 1250
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 49,
+                            "rural_female": 260,
+                            "rural_total": 309
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 69,
+                            "rural_female": 646,
+                            "rural_total": 715
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 65,
+                            "rural_female": 838,
+                            "rural_total": 903
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 202,
+                            "rural_female": 709,
+                            "rural_total": 911
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 19,
+                            "rural_female": 214,
+                            "rural_total": 233
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 34,
+                            "rural_female": 646,
+                            "rural_total": 680
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Республика Саха (Якутия)",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    76
+                ],
+                "region_names_display": [
+                    "Республика Саха (Якутия)"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1636,
+                            "rural_female": 2151,
+                            "rural_total": 3787
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 775,
+                            "rural_female": 819,
+                            "rural_total": 1594
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1766,
+                            "rural_female": 2073,
+                            "rural_total": 3839
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1198,
+                            "rural_female": 1529,
+                            "rural_total": 2727
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 550,
+                            "rural_female": 767,
+                            "rural_total": 1317
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 629,
+                            "rural_female": 819,
+                            "rural_total": 1448
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 687,
+                            "rural_female": 895,
+                            "rural_total": 1582
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 406,
+                            "rural_female": 545,
+                            "rural_total": 951
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 447,
+                            "rural_female": 767,
+                            "rural_total": 1213
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 681,
+                            "rural_female": 966,
+                            "rural_total": 1647
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 234,
+                            "rural_female": 319,
+                            "rural_total": 554
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 330,
+                            "rural_female": 545,
+                            "rural_total": 875
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 392,
+                            "rural_female": 780,
+                            "rural_total": 1172
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 234,
+                            "rural_female": 344,
+                            "rural_total": 579
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 191,
+                            "rural_female": 319,
+                            "rural_total": 510
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 394,
+                            "rural_female": 692,
+                            "rural_total": 1086
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 136,
+                            "rural_female": 278,
+                            "rural_total": 414
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 191,
+                            "rural_female": 344,
+                            "rural_total": 535
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 288,
+                            "rural_female": 647,
+                            "rural_total": 936
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 138,
+                            "rural_female": 247,
+                            "rural_total": 384
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 111,
+                            "rural_female": 278,
+                            "rural_total": 389
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 250,
+                            "rural_female": 658,
+                            "rural_total": 908
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 102,
+                            "rural_female": 231,
+                            "rural_total": 332
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 113,
+                            "rural_female": 247,
+                            "rural_total": 359
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 253,
+                            "rural_female": 479,
+                            "rural_total": 732
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 89,
+                            "rural_female": 235,
+                            "rural_total": 323
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 83,
+                            "rural_female": 231,
+                            "rural_total": 314
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 263,
+                            "rural_female": 486,
+                            "rural_total": 749
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 90,
+                            "rural_female": 171,
+                            "rural_total": 261
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 73,
+                            "rural_female": 235,
+                            "rural_total": 307
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 266,
+                            "rural_female": 496,
+                            "rural_total": 762
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 95,
+                            "rural_female": 173,
+                            "rural_total": 268
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 74,
+                            "rural_female": 171,
+                            "rural_total": 245
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 250,
+                            "rural_female": 449,
+                            "rural_total": 700
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 96,
+                            "rural_female": 177,
+                            "rural_total": 273
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 78,
+                            "rural_female": 173,
+                            "rural_total": 251
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 191,
+                            "rural_female": 328,
+                            "rural_total": 519
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 91,
+                            "rural_female": 160,
+                            "rural_total": 252
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 79,
+                            "rural_female": 177,
+                            "rural_total": 256
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 139,
+                            "rural_female": 160,
+                            "rural_total": 299
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 70,
+                            "rural_female": 117,
+                            "rural_total": 187
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 75,
+                            "rural_female": 160,
+                            "rural_total": 235
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 95,
+                            "rural_female": 155,
+                            "rural_total": 250
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 51,
+                            "rural_female": 57,
+                            "rural_total": 109
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 58,
+                            "rural_female": 117,
+                            "rural_total": 175
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1,
+                            "rural_female": 109,
+                            "rural_total": 111
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 35,
+                            "rural_female": 55,
+                            "rural_total": 91
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 42,
+                            "rural_female": 57,
+                            "rural_total": 100
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3,
+                            "rural_female": 91,
+                            "rural_total": 93
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 0,
+                            "rural_female": 39,
+                            "rural_total": 39
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 29,
+                            "rural_female": 55,
+                            "rural_total": 85
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 4,
+                            "rural_female": 43,
+                            "rural_total": 47
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1,
+                            "rural_female": 32,
+                            "rural_total": 33
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 0,
+                            "rural_female": 39,
+                            "rural_total": 39
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 6,
+                            "rural_female": 154,
+                            "rural_total": 160
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2,
+                            "rural_female": 15,
+                            "rural_total": 17
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1,
+                            "rural_female": 32,
+                            "rural_total": 33
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Сумма по 6 выбранным регионам",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2022,
+                "forecast_end_year": 2040,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2021,
+                "target_age_group_input": [
+                    18,
+                    20
+                ],
+                "output_detailed_by_age": true,
+                "settlement_type_id": 3,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "manual_percent",
+                "birth_rate_manual_change_percent": 0.5,
+                "death_rate_scenario_male": "manual_percent",
+                "death_rate_manual_change_percent_male": -0.6,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "historical_trend",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    68,
+                    2,
+                    35,
+                    69,
+                    70,
+                    76
+                ],
+                "region_names_display": [
+                    "Алтайский край",
+                    "Белгородская область",
+                    "Волгоградская область",
+                    "Забайкальский край",
+                    "Красноярский край",
+                    "Республика Саха (Якутия)"
+                ],
+                "settlement_type_name_display": "Сельское население",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Ручное изменение (+0.5%)",
+                "death_rate_scenario_male_name_display": "Ручное изменение (-0.6%)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Исторический тренд",
+                "target_age_group_input_display": "18 - 20 лет"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2022,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 11339,
+                            "rural_female": 13318,
+                            "rural_total": 24657
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 6574,
+                            "rural_female": 10746,
+                            "rural_total": 17320
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 7529,
+                            "rural_female": 9284,
+                            "rural_total": 16813
+                        }
+                    ]
+                },
+                {
+                    "year": 2023,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 8468,
+                            "rural_female": 11018,
+                            "rural_total": 19486
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 4753,
+                            "rural_female": 9809,
+                            "rural_total": 14562
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 3433,
+                            "rural_female": 7387,
+                            "rural_total": 10821
+                        }
+                    ]
+                },
+                {
+                    "year": 2024,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 5903,
+                            "rural_female": 9973,
+                            "rural_total": 15877
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3571,
+                            "rural_female": 8114,
+                            "rural_total": 11685
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 2493,
+                            "rural_female": 6743,
+                            "rural_total": 9236
+                        }
+                    ]
+                },
+                {
+                    "year": 2025,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 5590,
+                            "rural_female": 10184,
+                            "rural_total": 15773
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2504,
+                            "rural_female": 7345,
+                            "rural_total": 9849
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1880,
+                            "rural_female": 5578,
+                            "rural_total": 7459
+                        }
+                    ]
+                },
+                {
+                    "year": 2026,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 5342,
+                            "rural_female": 10195,
+                            "rural_total": 15537
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2385,
+                            "rural_female": 7500,
+                            "rural_total": 9885
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1324,
+                            "rural_female": 5050,
+                            "rural_total": 6374
+                        }
+                    ]
+                },
+                {
+                    "year": 2027,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 4988,
+                            "rural_female": 9526,
+                            "rural_total": 14514
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2292,
+                            "rural_female": 7508,
+                            "rural_total": 9801
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1266,
+                            "rural_female": 5156,
+                            "rural_total": 6422
+                        }
+                    ]
+                },
+                {
+                    "year": 2028,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 4128,
+                            "rural_female": 8797,
+                            "rural_total": 12925
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 2152,
+                            "rural_female": 7016,
+                            "rural_total": 9168
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1222,
+                            "rural_female": 5162,
+                            "rural_total": 6384
+                        }
+                    ]
+                },
+                {
+                    "year": 2029,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 4038,
+                            "rural_female": 8595,
+                            "rural_total": 12634
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1791,
+                            "rural_female": 6479,
+                            "rural_total": 8270
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 1152,
+                            "rural_female": 4823,
+                            "rural_total": 5975
+                        }
+                    ]
+                },
+                {
+                    "year": 2030,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 4088,
+                            "rural_female": 8499,
+                            "rural_total": 12587
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1762,
+                            "rural_female": 6331,
+                            "rural_total": 8093
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 963,
+                            "rural_female": 4454,
+                            "rural_total": 5417
+                        }
+                    ]
+                },
+                {
+                    "year": 2031,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3976,
+                            "rural_female": 8417,
+                            "rural_total": 12393
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1794,
+                            "rural_female": 6260,
+                            "rural_total": 8054
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 951,
+                            "rural_female": 4352,
+                            "rural_total": 5303
+                        }
+                    ]
+                },
+                {
+                    "year": 2032,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3630,
+                            "rural_female": 7948,
+                            "rural_total": 11578
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1754,
+                            "rural_female": 6199,
+                            "rural_total": 7954
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 972,
+                            "rural_female": 4303,
+                            "rural_total": 5275
+                        }
+                    ]
+                },
+                {
+                    "year": 2033,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 3230,
+                            "rural_female": 7291,
+                            "rural_total": 10521
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1610,
+                            "rural_female": 5854,
+                            "rural_total": 7465
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 954,
+                            "rural_female": 4262,
+                            "rural_total": 5216
+                        }
+                    ]
+                },
+                {
+                    "year": 2034,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2599,
+                            "rural_female": 6211,
+                            "rural_total": 8810
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1441,
+                            "rural_female": 5370,
+                            "rural_total": 6811
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 879,
+                            "rural_female": 4024,
+                            "rural_total": 4903
+                        }
+                    ]
+                },
+                {
+                    "year": 2035,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 2253,
+                            "rural_female": 4925,
+                            "rural_total": 7177
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1165,
+                            "rural_female": 4574,
+                            "rural_total": 5740
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 790,
+                            "rural_female": 3691,
+                            "rural_total": 4481
+                        }
+                    ]
+                },
+                {
+                    "year": 2036,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1931,
+                            "rural_female": 4287,
+                            "rural_total": 6218
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 1016,
+                            "rural_female": 3627,
+                            "rural_total": 4643
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 641,
+                            "rural_female": 3145,
+                            "rural_total": 3786
+                        }
+                    ]
+                },
+                {
+                    "year": 2037,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 1245,
+                            "rural_female": 3168,
+                            "rural_total": 4412
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 875,
+                            "rural_female": 3157,
+                            "rural_total": 4033
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 561,
+                            "rural_female": 2493,
+                            "rural_total": 3054
+                        }
+                    ]
+                },
+                {
+                    "year": 2038,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 751,
+                            "rural_female": 2295,
+                            "rural_total": 3046
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 567,
+                            "rural_female": 2333,
+                            "rural_total": 2900
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 485,
+                            "rural_female": 2171,
+                            "rural_total": 2656
+                        }
+                    ]
+                },
+                {
+                    "year": 2039,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 6,
+                            "rural_female": 747,
+                            "rural_total": 753
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 344,
+                            "rural_female": 1690,
+                            "rural_total": 2034
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 316,
+                            "rural_female": 1604,
+                            "rural_total": 1919
+                        }
+                    ]
+                },
+                {
+                    "year": 2040,
+                    "age_rows": [
+                        {
+                            "age_display": "18",
+                            "rural_male": 956,
+                            "rural_female": 2387,
+                            "rural_total": 3343
+                        },
+                        {
+                            "age_display": "19",
+                            "rural_male": 3,
+                            "rural_female": 550,
+                            "rural_total": 553
+                        },
+                        {
+                            "age_display": "20",
+                            "rural_male": 192,
+                            "rural_female": 1162,
+                            "rural_total": 1354
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "output_detailed_by_age_global": true,
+    "user_selected_settlement_id": 3,
+    "user_selected_sex_code": "A",
+    "ID_SETTLEMENT_TOTAL": 1,
+    "ID_SETTLEMENT_URBAN": 2,
+    "ID_SETTLEMENT_RURAL": 3,
+    "SEX_CODE_TOTAL": "A",
+    "SEX_CODE_MALE": "M",
+    "SEX_CODE_FEMALE": "F",
+    "active_data_keys": [
+        "rural_female",
+        "rural_male",
+        "rural_total"
+    ]
+}

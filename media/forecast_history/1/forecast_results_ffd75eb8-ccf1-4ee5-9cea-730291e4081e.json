@@ -1,0 +1,333 @@
+{
+    "original_input_params": {
+        "forecast_start_year": 2023,
+        "forecast_end_year": 2046,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2022,
+        "target_age_group_input": "Все возрасты",
+        "output_detailed_by_age": false,
+        "settlement_type_id": 1,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "last_year",
+        "birth_rate_manual_change_percent": null,
+        "death_rate_scenario_male": "last_year",
+        "death_rate_manual_change_percent_male": null,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": true,
+        "migration_scenario": "last_year",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null
+    },
+    "display_params_overall": {
+        "forecast_start_year": 2023,
+        "forecast_end_year": 2046,
+        "historical_data_start_year": 2012,
+        "historical_data_end_year": 2022,
+        "target_age_group_input": "Все возрасты",
+        "output_detailed_by_age": false,
+        "settlement_type_id": 1,
+        "sex_code_target": "A",
+        "birth_rate_scenario": "last_year",
+        "birth_rate_manual_change_percent": null,
+        "death_rate_scenario_male": "last_year",
+        "death_rate_manual_change_percent_male": null,
+        "death_rate_scenario_female": "last_year",
+        "death_rate_manual_change_percent_female": null,
+        "include_migration": true,
+        "migration_scenario": "last_year",
+        "migration_manual_change_percent": null,
+        "death_rate_male_manual_change_percent": null,
+        "death_rate_female_manual_change_percent": null,
+        "region_ids": [
+            1
+        ],
+        "region_names_display": [
+            "Российская Федерация"
+        ],
+        "settlement_type_name_display": "Все население (городское + сельское)",
+        "sex_code_name_display": "Оба пола",
+        "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+        "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+        "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+        "migration_scenario_name_display": "Фиксированные (посл. год)",
+        "target_age_group_input_display": "Все возрасты"
+    },
+    "all_warnings": [],
+    "grouped_forecasts_data": [
+        {
+            "title": "Российская Федерация",
+            "params_for_display_group_context": {
+                "forecast_start_year": 2023,
+                "forecast_end_year": 2046,
+                "historical_data_start_year": 2012,
+                "historical_data_end_year": 2022,
+                "target_age_group_input": "Все возрасты",
+                "output_detailed_by_age": false,
+                "settlement_type_id": 1,
+                "sex_code_target": "A",
+                "birth_rate_scenario": "last_year",
+                "birth_rate_manual_change_percent": null,
+                "death_rate_scenario_male": "last_year",
+                "death_rate_manual_change_percent_male": null,
+                "death_rate_scenario_female": "last_year",
+                "death_rate_manual_change_percent_female": null,
+                "include_migration": true,
+                "migration_scenario": "last_year",
+                "migration_manual_change_percent": null,
+                "death_rate_male_manual_change_percent": null,
+                "death_rate_female_manual_change_percent": null,
+                "region_ids": [
+                    1
+                ],
+                "region_names_display": [
+                    "Российская Федерация"
+                ],
+                "settlement_type_name_display": "Все население (городское + сельское)",
+                "sex_code_name_display": "Оба пола",
+                "birth_rate_scenario_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_male_name_display": "Фиксированные (посл. год)",
+                "death_rate_scenario_female_name_display": "Фиксированные (посл. год)",
+                "migration_scenario_name_display": "Фиксированные (посл. год)",
+                "target_age_group_input_display": "Все возрасты"
+            },
+            "warnings": [],
+            "data_by_year": [
+                {
+                    "year": 2023,
+                    "urban_male": 48644863,
+                    "urban_female": 57709921,
+                    "urban_total": 106354784,
+                    "rural_male": 16877538,
+                    "rural_female": 18121298,
+                    "rural_total": 34998836
+                },
+                {
+                    "year": 2024,
+                    "urban_male": 47963602,
+                    "urban_female": 57106879,
+                    "urban_total": 105070481,
+                    "rural_male": 16661372,
+                    "rural_female": 18054815,
+                    "rural_total": 34716187
+                },
+                {
+                    "year": 2025,
+                    "urban_male": 47433557,
+                    "urban_female": 56630771,
+                    "urban_total": 104064328,
+                    "rural_male": 16583210,
+                    "rural_female": 18135959,
+                    "rural_total": 34719170
+                },
+                {
+                    "year": 2026,
+                    "urban_male": 46967704,
+                    "urban_female": 56214874,
+                    "urban_total": 103182578,
+                    "rural_male": 16584824,
+                    "rural_female": 18285173,
+                    "rural_total": 34869997
+                },
+                {
+                    "year": 2027,
+                    "urban_male": 46533979,
+                    "urban_female": 55834987,
+                    "urban_total": 102368966,
+                    "rural_male": 16643049,
+                    "rural_female": 18470870,
+                    "rural_total": 35113919
+                },
+                {
+                    "year": 2028,
+                    "urban_male": 46119148,
+                    "urban_female": 55476778,
+                    "urban_total": 101595927,
+                    "rural_male": 16747676,
+                    "rural_female": 18680572,
+                    "rural_total": 35428249
+                },
+                {
+                    "year": 2029,
+                    "urban_male": 45718866,
+                    "urban_female": 55131964,
+                    "urban_total": 100850830,
+                    "rural_male": 16893797,
+                    "rural_female": 18911053,
+                    "rural_total": 35804850
+                },
+                {
+                    "year": 2030,
+                    "urban_male": 45332849,
+                    "urban_female": 54792731,
+                    "urban_total": 100125580,
+                    "rural_male": 17078893,
+                    "rural_female": 19161684,
+                    "rural_total": 36240576
+                },
+                {
+                    "year": 2031,
+                    "urban_male": 44960709,
+                    "urban_female": 54449796,
+                    "urban_total": 99410505,
+                    "rural_male": 17301613,
+                    "rural_female": 19432483,
+                    "rural_total": 36734095
+                },
+                {
+                    "year": 2032,
+                    "urban_male": 44603542,
+                    "urban_female": 54096943,
+                    "urban_total": 98700485,
+                    "rural_male": 17561219,
+                    "rural_female": 19724526,
+                    "rural_total": 37285745
+                },
+                {
+                    "year": 2033,
+                    "urban_male": 44262381,
+                    "urban_female": 53732093,
+                    "urban_total": 97994474,
+                    "rural_male": 17856464,
+                    "rural_female": 20038638,
+                    "rural_total": 37895101
+                },
+                {
+                    "year": 2034,
+                    "urban_male": 43937669,
+                    "urban_female": 53359486,
+                    "urban_total": 97297155,
+                    "rural_male": 18185078,
+                    "rural_female": 20375024,
+                    "rural_total": 38560102
+                },
+                {
+                    "year": 2035,
+                    "urban_male": 43631266,
+                    "urban_female": 52986770,
+                    "urban_total": 96618036,
+                    "rural_male": 18543317,
+                    "rural_female": 20732378,
+                    "rural_total": 39275695
+                },
+                {
+                    "year": 2036,
+                    "urban_male": 43344368,
+                    "urban_female": 52619545,
+                    "urban_total": 95963914,
+                    "rural_male": 18926382,
+                    "rural_female": 21107804,
+                    "rural_total": 40034185
+                },
+                {
+                    "year": 2037,
+                    "urban_male": 43076983,
+                    "urban_female": 52260940,
+                    "urban_total": 95337923,
+                    "rural_male": 19328894,
+                    "rural_female": 21498188,
+                    "rural_total": 40827083
+                },
+                {
+                    "year": 2038,
+                    "urban_male": 42827650,
+                    "urban_female": 51912376,
+                    "urban_total": 94740026,
+                    "rural_male": 19744984,
+                    "rural_female": 21899962,
+                    "rural_total": 41644946
+                },
+                {
+                    "year": 2039,
+                    "urban_male": 42593219,
+                    "urban_female": 51574729,
+                    "urban_total": 94167948,
+                    "rural_male": 20173018,
+                    "rural_female": 22313807,
+                    "rural_total": 42486825
+                },
+                {
+                    "year": 2040,
+                    "urban_male": 42371888,
+                    "urban_female": 51250892,
+                    "urban_total": 93622780,
+                    "rural_male": 20610144,
+                    "rural_female": 22738111,
+                    "rural_total": 43348255
+                },
+                {
+                    "year": 2041,
+                    "urban_male": 42160716,
+                    "urban_female": 50942695,
+                    "urban_total": 93103411,
+                    "rural_male": 21065636,
+                    "rural_female": 23182659,
+                    "rural_total": 44248295
+                },
+                {
+                    "year": 2042,
+                    "urban_male": 41955351,
+                    "urban_female": 50648879,
+                    "urban_total": 92604229,
+                    "rural_male": 21564478,
+                    "rural_female": 23671807,
+                    "rural_total": 45236284
+                },
+                {
+                    "year": 2043,
+                    "urban_male": 41752794,
+                    "urban_female": 50368767,
+                    "urban_total": 92121561,
+                    "rural_male": 22137202,
+                    "rural_female": 24236177,
+                    "rural_total": 46373379
+                },
+                {
+                    "year": 2044,
+                    "urban_male": 41549626,
+                    "urban_female": 50100362,
+                    "urban_total": 91649988,
+                    "rural_male": 22803139,
+                    "rural_female": 24894583,
+                    "rural_total": 47697721
+                },
+                {
+                    "year": 2045,
+                    "urban_male": 41343859,
+                    "urban_female": 49841390,
+                    "urban_total": 91185249,
+                    "rural_male": 23574253,
+                    "rural_female": 25659527,
+                    "rural_total": 49233780
+                },
+                {
+                    "year": 2046,
+                    "urban_male": 41134468,
+                    "urban_female": 49589074,
+                    "urban_total": 90723542,
+                    "rural_male": 24449421,
+                    "rural_female": 26528683,
+                    "rural_total": 50978103
+                }
+            ]
+        }
+    ],
+    "output_detailed_by_age_global": false,
+    "user_selected_settlement_id": 1,
+    "user_selected_sex_code": "A",
+    "ID_SETTLEMENT_TOTAL": 1,
+    "ID_SETTLEMENT_URBAN": 2,
+    "ID_SETTLEMENT_RURAL": 3,
+    "SEX_CODE_TOTAL": "A",
+    "SEX_CODE_MALE": "M",
+    "SEX_CODE_FEMALE": "F",
+    "active_data_keys": [
+        "rural_female",
+        "rural_male",
+        "rural_total",
+        "urban_female",
+        "urban_male",
+        "urban_total"
+    ]
+}
